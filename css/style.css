@@ -1,0 +1,1092 @@
+/* =====================================================================
+ * style.css  --  Shared, mobile-first stylesheet for MG Ballpark
+ * =====================================================================
+ *  Styles BOTH pages from the same file:
+ *    - index.html  (client Service Package Calculator)
+ *    - admin.html  (Manage Rates & Services)
+ *
+ *  Strategy:
+ *    - All theming flows through CSS custom properties on :root
+ *      (the "CSS CONTRACT"); markup uses semantic classes + ids only.
+ *    - Mobile-first: base rules target small screens (<=600px, single
+ *      column). Two media queries progressively enhance the layout:
+ *        @media (min-width: 601px)  -> two-column option / form rows
+ *        @media (min-width: 1025px) -> spacious desktop layout
+ *    - Layout uses CSS Grid + Flexbox. Touch targets >= 44px.
+ *    - Sizing in rem so it respects the user's root font size.
+ *    - No external fonts or assets (system font stack only).
+ * ===================================================================== */
+
+/* ---------------------------------------------------------------------
+ * Design tokens (CSS CONTRACT)
+ * ------------------------------------------------------------------- */
+:root {
+  /* Brand: confident indigo/violet primary with strong contrast. */
+  --primary: #4f46e5;        /* main brand action color            */
+  --primary-dark: #3730a3;   /* hover / active / emphasis           */
+  --accent: #0d9488;         /* teal accent for secondary actions   */
+
+  /* Surfaces & text */
+  --bg: #f4f5fb;             /* page background (soft tint)         */
+  --surface: #ffffff;        /* cards / panels                      */
+  --text: #1e2433;           /* primary text (near-black, warm)     */
+  --muted: #6b7280;          /* secondary / helper text             */
+  --border: #e2e5ee;         /* hairline borders & dividers         */
+
+  /* Feedback */
+  --danger: #dc2626;         /* destructive (delete) actions        */
+  --warning-bg: #fef9c3;     /* yellow info notice background       */
+  --warning-border: #fde047; /* yellow info notice border           */
+
+  /* Shape & depth */
+  --radius: 12px;            /* default corner radius               */
+  --shadow: 0 1px 2px rgba(16, 24, 40, 0.04),
+            0 8px 24px rgba(16, 24, 40, 0.08);
+
+  /* Internal spacing scale (not part of the contract). */
+  --space: 1rem;
+  --maxw: 880px;
+}
+
+/* ---------------------------------------------------------------------
+ * Reset / base
+ * ------------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica,
+    Arial, "Apple Color Emoji", "Segoe UI Emoji", sans-serif;
+  font-size: 1rem;          /* 16px base */
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0 0 0.5rem;
+  line-height: 1.25;
+  font-weight: 700;
+  color: var(--text);
+}
+
+p {
+  margin: 0 0 0.75rem;
+}
+
+a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+a:hover,
+a:focus-visible {
+  color: var(--primary-dark);
+  text-decoration: underline;
+}
+
+code {
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+    "Liberation Mono", monospace;
+  font-size: 0.9em;
+  background: var(--bg);
+  padding: 0.1em 0.35em;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+}
+
+.muted {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+/* Visible keyboard focus everywhere for accessibility. */
+:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--primary) 45%, transparent);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* ---------------------------------------------------------------------
+ * Page wrappers (shared)
+ * ------------------------------------------------------------------- */
+.container,
+.admin-wrap {
+  width: 100%;
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 1.25rem 1rem 3rem;
+}
+
+/* ---------------------------------------------------------------------
+ * Headers
+ * ------------------------------------------------------------------- */
+.page-header {
+  text-align: center;
+  padding: 0.5rem 0 1.25rem;
+}
+
+.page-header h1 {
+  font-size: 1.6rem;
+  letter-spacing: -0.01em;
+}
+
+.subtitle {
+  color: var(--muted);
+  max-width: 46ch;
+  margin: 0.25rem auto 0;
+  font-size: 0.98rem;
+}
+
+.admin-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 1.25rem;
+}
+
+.admin-header h1 {
+  font-size: 1.5rem;
+}
+
+.back-link {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+/* ---------------------------------------------------------------------
+ * Generic panel / card surface (shared)
+ * ------------------------------------------------------------------- */
+.options-panel,
+.results-panel,
+.card,
+.category-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+/* ---------------------------------------------------------------------
+ * Checkboxes / toggles (shared)
+ * ------------------------------------------------------------------- */
+.checkbox-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  min-height: 44px;          /* touch-friendly hit area */
+  padding: 0.25rem 0;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.checkbox-label input[type="checkbox"],
+.radio-label input[type="radio"] {
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-top: 0.15rem;
+  flex: 0 0 auto;
+  accent-color: var(--primary);
+  cursor: pointer;
+}
+
+.toggle-row {
+  padding-bottom: 0.25rem;
+}
+
+/* ---------------------------------------------------------------------
+ * Options grid: logistics + fabrication
+ * Mobile = stacked single column.
+ * ------------------------------------------------------------------- */
+.options-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.option-group {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.9rem 1rem 1rem;
+  margin: 0;
+  min-width: 0;
+}
+
+.option-group legend {
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 0 0.4rem;
+  color: var(--text);
+}
+
+/* Logistics radio list */
+.radio-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.radio-label {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-height: 44px;
+  padding: 0.25rem 0.4rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.radio-label:hover {
+  background: var(--bg);
+}
+
+/* Fabrication badge */
+.fab-badge-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0.75rem 0 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.badge {
+  display: inline-block;
+  font-weight: 700;
+  font-size: 0.85rem;
+  line-height: 1;
+  padding: 0.4rem 0.6rem;
+  border-radius: 999px;
+  color: var(--primary-dark);
+  background: color-mix(in srgb, var(--primary) 14%, var(--surface));
+  border: 1px solid color-mix(in srgb, var(--primary) 30%, transparent);
+}
+
+/* Highlighted state when fabrication is active (badge-fab). */
+.badge.badge-fab {
+  color: #fff;
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+/* Optional discount field (index.html options panel). */
+.discount-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  margin-top: 1rem;
+  max-width: 18rem;
+}
+
+.discount-row label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.discount-row input {
+  min-height: 44px;
+  padding: 0.55rem 0.7rem;
+  font-size: 1rem;
+  font-family: inherit;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.discount-row input:focus-visible {
+  border-color: var(--primary);
+}
+
+/* ---------------------------------------------------------------------
+ * Buttons (shared across both pages)
+ * ------------------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  min-height: 44px;
+  padding: 0.65rem 1.1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: inherit;
+  line-height: 1.2;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.15s ease, border-color 0.15s ease,
+    box-shadow 0.15s ease, transform 0.05s ease;
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+}
+
+.btn-primary:hover:not(:disabled),
+.btn-primary:focus-visible {
+  background: var(--primary-dark);
+  border-color: var(--primary-dark);
+}
+
+.btn-accent {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+
+.btn-accent:hover:not(:disabled),
+.btn-accent:focus-visible {
+  background: color-mix(in srgb, var(--accent) 80%, #000);
+}
+
+.btn-danger {
+  background: var(--surface);
+  color: var(--danger);
+  border-color: color-mix(in srgb, var(--danger) 45%, var(--border));
+}
+
+.btn-danger:hover:not(:disabled),
+.btn-danger:focus-visible {
+  background: var(--danger);
+  color: #fff;
+  border-color: var(--danger);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--muted);
+  border-color: var(--border);
+}
+
+.btn-ghost:hover:not(:disabled),
+.btn-ghost:focus-visible {
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* The large, centered primary Generate button on index.html. */
+.generate-row {
+  display: flex;
+  justify-content: center;
+  margin: 0.5rem 0 1.5rem;
+}
+
+.btn-large {
+  width: 100%;
+  font-size: 1.1rem;
+  min-height: 52px;
+  padding: 0.85rem 1.5rem;
+  box-shadow: var(--shadow);
+}
+
+#generateBtn {
+  letter-spacing: 0.01em;
+}
+
+/* ---------------------------------------------------------------------
+ * Services area (index.html) -- categories + service rows
+ * ------------------------------------------------------------------- */
+#servicesContainer {
+  display: block;
+}
+
+/* Catalog search/filter box (the seed catalog is large). */
+.search-row {
+  margin: 0.5rem 0 1rem;
+}
+
+#serviceSearch {
+  width: 100%;
+  min-height: 48px;
+  padding: 0.6rem 0.9rem;
+  font-size: 1rem;
+  font-family: inherit;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+
+#serviceSearch:focus-visible {
+  border-color: var(--primary);
+}
+
+.loading-msg {
+  text-align: center;
+  color: var(--muted);
+  padding: 1.5rem 0;
+}
+
+/* Category card heading (index render uses .category-name/.category-desc) */
+.category-name {
+  font-size: 1.15rem;
+  margin-bottom: 0.15rem;
+}
+
+.category-desc {
+  color: var(--muted);
+  font-size: 0.92rem;
+  margin: 0 0 0.85rem;
+}
+
+.service-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* Client-facing service row: name/unit on the left, qty input on right. */
+.service-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.6rem 0.75rem;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+
+.service-label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  cursor: pointer;
+  min-width: 0;
+}
+
+.service-name {
+  font-weight: 600;
+}
+
+.service-unit {
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+/* Quantity input -- the only client-visible numeric field. */
+.qty-input {
+  width: 5rem;
+  flex: 0 0 auto;
+  min-height: 44px;
+  padding: 0.5rem 0.6rem;
+  font-size: 1rem;
+  font-family: inherit;
+  text-align: center;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.qty-input:focus-visible {
+  border-color: var(--primary);
+}
+
+/* ---------------------------------------------------------------------
+ * Results section (index.html)
+ * ------------------------------------------------------------------- */
+.results-title {
+  font-size: 1.3rem;
+  margin-bottom: 0.75rem;
+}
+
+.results-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.results-meta p {
+  margin: 0;
+}
+
+.meta-label {
+  color: var(--muted);
+  font-weight: 600;
+  margin-right: 0.35rem;
+}
+
+/* Responsive table: wrapper allows horizontal scroll on small screens. */
+.table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-bottom: 1.25rem;
+}
+
+.results-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 420px;          /* keeps columns readable; scroll if narrower */
+  font-size: 0.95rem;
+}
+
+.results-table thead th {
+  text-align: left;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  background: var(--bg);
+  padding: 0.65rem 0.85rem;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+.results-table tbody td {
+  padding: 0.7rem 0.85rem;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+
+.results-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Numeric columns (Qty / Unit Price / Amount) are right-aligned. */
+.results-table .num {
+  text-align: right;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Summary lines (Subtotal / ASF / VAT / Base Total) */
+.summary {
+  margin: 0 0 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.summary-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 0.4rem 0.25rem;
+}
+
+.summary-line dt {
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.summary-line dd {
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+}
+
+.summary-total {
+  margin-top: 0.25rem;
+  padding-top: 0.6rem;
+  border-top: 2px solid var(--border);
+}
+
+.summary-total dt,
+.summary-total dd {
+  color: var(--text);
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+/* Small USD conversion note under the PHP total. */
+.usd-note {
+  display: block;
+  margin-top: 0.1rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+/* Budget range -- the hero number. */
+.budget-range-box {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  text-align: center;
+  padding: 1.25rem 1rem;
+  border-radius: var(--radius);
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--primary) 10%, var(--surface)),
+    color-mix(in srgb, var(--accent) 10%, var(--surface))
+  );
+  border: 1px solid color-mix(in srgb, var(--primary) 25%, transparent);
+  margin-bottom: 1.25rem;
+}
+
+.budget-range-label {
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--muted);
+}
+
+.budget-range {
+  font-size: 1.7rem;
+  font-weight: 800;
+  color: var(--primary-dark);
+  font-variant-numeric: tabular-nums;
+  line-height: 1.2;
+}
+
+/* USD equivalent under the hero PHP budget range. */
+.budget-range-usd {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Footnotes inside results */
+.footnotes {
+  font-size: 0.85rem;
+  color: var(--muted);
+  border-top: 1px solid var(--border);
+  padding-top: 1rem;
+}
+
+.footnotes ul {
+  margin: 0.5rem 0 0;
+  padding-left: 1.1rem;
+}
+
+.footnotes li {
+  margin-bottom: 0.35rem;
+}
+
+.footnotes strong {
+  color: var(--text);
+}
+
+/* ---------------------------------------------------------------------
+ * Error banner (index.html)
+ * ------------------------------------------------------------------- */
+.error-banner {
+  background: color-mix(in srgb, var(--danger) 10%, var(--surface));
+  border: 1px solid color-mix(in srgb, var(--danger) 40%, transparent);
+  color: var(--danger);
+  border-radius: var(--radius);
+  padding: 0.85rem 1rem;
+  margin-bottom: 1.25rem;
+  font-weight: 600;
+}
+
+/* ---------------------------------------------------------------------
+ * Page footer + admin link (index.html)
+ * ------------------------------------------------------------------- */
+.page-footer {
+  text-align: center;
+  padding-top: 1rem;
+  margin-top: 0.5rem;
+  border-top: 1px solid var(--border);
+}
+
+.admin-link {
+  color: var(--muted);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.admin-link:hover,
+.admin-link:focus-visible {
+  color: var(--primary);
+}
+
+/* =====================================================================
+ * ADMIN PAGE (admin.html)
+ * ===================================================================== */
+
+/* Yellow info notice */
+.notice {
+  border-radius: var(--radius);
+  padding: 0.85rem 1rem;
+  margin: 0 0 1.25rem;
+  font-size: 0.95rem;
+}
+
+.notice-warning {
+  background: var(--warning-bg);
+  border: 1px solid var(--warning-border);
+  color: #713f12;            /* readable amber-brown text */
+}
+
+.notice-error {
+  background: color-mix(in srgb, var(--danger) 10%, var(--surface));
+  border: 1px solid color-mix(in srgb, var(--danger) 40%, transparent);
+  color: var(--danger);
+}
+
+/* Status bar toast (#statusBar) */
+.status-bar {
+  position: sticky;
+  top: 0.5rem;
+  z-index: 20;
+  border-radius: 10px;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1.25rem;
+  font-weight: 600;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+}
+
+.status-success {
+  background: color-mix(in srgb, var(--accent) 14%, var(--surface));
+  border-color: color-mix(in srgb, var(--accent) 45%, transparent);
+  color: color-mix(in srgb, var(--accent) 75%, #000);
+}
+
+.status-error {
+  background: color-mix(in srgb, var(--danger) 12%, var(--surface));
+  border-color: color-mix(in srgb, var(--danger) 45%, transparent);
+  color: var(--danger);
+}
+
+.status-info {
+  background: color-mix(in srgb, var(--primary) 12%, var(--surface));
+  border-color: color-mix(in srgb, var(--primary) 40%, transparent);
+  color: var(--primary-dark);
+}
+
+/* Card header (title + add button) */
+.card-head {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.card-head h2 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.settings-card h2 {
+  font-size: 1.2rem;
+}
+
+/* ---------------------------------------------------------------------
+ * Form fields (admin: settings, categories, services, add forms)
+ * Mobile = each field stacked full width.
+ * ------------------------------------------------------------------- */
+.field-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+  align-items: end;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  min-width: 0;
+}
+
+.field label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+/* Text / number inputs */
+.text-input {
+  width: 100%;
+  min-height: 44px;
+  padding: 0.55rem 0.7rem;
+  font-size: 1rem;
+  font-family: inherit;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.text-input:focus-visible {
+  border-color: var(--primary);
+}
+
+/* Fabrication checkbox field */
+.field-check {
+  flex-direction: row;
+  align-items: center;
+  min-height: 44px;
+}
+
+.field-check label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.field-check input[type="checkbox"] {
+  width: 1.25rem;
+  height: 1.25rem;
+  accent-color: var(--primary);
+  cursor: pointer;
+}
+
+/* Action cell: groups Save/Delete or Create/Cancel buttons. */
+.field-action {
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: stretch;
+}
+
+.field-action .btn {
+  flex: 1 1 auto;
+}
+
+/* Inline add forms (add category / add service) */
+.inline-form {
+  background: var(--bg);
+  border: 1px dashed var(--border);
+  border-radius: var(--radius);
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.add-service-form {
+  margin-top: 1rem;
+}
+
+/* ---------------------------------------------------------------------
+ * Categories container + editable category cards (admin)
+ * ------------------------------------------------------------------- */
+.categories-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Admin category cards are nested inside .card; give them their own tint. */
+.categories-container .category-card {
+  background: var(--bg);
+  box-shadow: none;
+  margin-bottom: 0;
+}
+
+.category-edit {
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 1rem;
+}
+
+.services-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.services-title {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  margin: 0 0 0.25rem;
+}
+
+/* Editable service rows (admin) sit on the surface for separation. */
+.categories-container .service-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 0.85rem;
+  align-items: end;
+}
+
+.admin-footer {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  text-align: center;
+}
+
+/* =====================================================================
+ * BREAKPOINT 1 -- tablets and up (>= 601px)
+ * Two-column option / form rows; Services stay full width.
+ * ===================================================================== */
+@media (min-width: 601px) {
+  .container,
+  .admin-wrap {
+    padding: 1.75rem 1.5rem 3.5rem;
+  }
+
+  .page-header h1 {
+    font-size: 1.9rem;
+  }
+
+  /* Logistics + Fabrication side by side. */
+  .options-grid {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+
+  /* Generate button no longer full-bleed; comfortably sized + centered. */
+  .btn-large {
+    width: auto;
+    min-width: 18rem;
+  }
+
+  /* Admin header: title left, back link right. */
+  .admin-header {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  /* Card head: title left, add button right. */
+  .card-head {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  /* Settings: ASF / VAT / USD-FX with the action column hugging right. */
+  .settings-card .field-row {
+    grid-template-columns: 1fr 1fr 1fr auto;
+  }
+
+  /* Add-category: name / description with the action column hugging right. */
+  #addCategoryForm .field-row {
+    grid-template-columns: 1fr 1fr auto;
+  }
+
+  /* Action columns size to content, not stretched. */
+  .field-action {
+    flex-wrap: nowrap;
+  }
+
+  .field-action .btn {
+    flex: 0 0 auto;
+  }
+
+  /* Editable category header: name / description / actions. */
+  .category-edit {
+    grid-template-columns: 1fr 1fr auto;
+  }
+
+  /* Editable service rows: name | rate | unit | fab | actions. */
+  .categories-container .service-row {
+    grid-template-columns: 1.6fr 1fr 1fr auto auto;
+    align-items: end;
+  }
+
+  /* Add-service form mirrors the service row columns. */
+  .add-service-form .field-row {
+    grid-template-columns: 1.6fr 1fr 1fr auto auto;
+  }
+
+  /* Results table can breathe -- no forced min-width scroll on tablet+. */
+  .results-table {
+    min-width: 0;
+  }
+
+  .budget-range {
+    font-size: 2rem;
+  }
+}
+
+/* =====================================================================
+ * BREAKPOINT 2 -- desktop (>= 1025px)
+ * Spacious layout, larger type and padding.
+ * ===================================================================== */
+@media (min-width: 1025px) {
+  :root {
+    --maxw: 980px;
+  }
+
+  .container,
+  .admin-wrap {
+    padding: 2.25rem 2rem 4rem;
+  }
+
+  .page-header h1 {
+    font-size: 2.15rem;
+  }
+
+  .options-panel,
+  .results-panel,
+  .card {
+    padding: 1.75rem;
+  }
+
+  .category-card {
+    padding: 1.5rem 1.75rem;
+  }
+
+  .budget-range {
+    font-size: 2.4rem;
+  }
+
+  .results-title {
+    font-size: 1.5rem;
+  }
+
+  /* Slightly roomier service rows on large screens. */
+  .service-row {
+    padding: 0.75rem 1rem;
+  }
+}
+
+/* ---------------------------------------------------------------------
+ * Reduced motion: respect user preference.
+ * ------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}

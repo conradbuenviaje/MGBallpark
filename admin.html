@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manage Rates &amp; Services &middot; MG Ballpark</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="admin-page">
+  <main class="admin-wrap">
+
+    <!-- ===== Header ===== -->
+    <header class="admin-header">
+      <h1>&#9881;&#65039; Manage Rates &amp; Services</h1>
+      <a class="back-link" href="index.html">&larr; Back to Calculator</a>
+    </header>
+
+    <!-- ===== Yellow info notice ===== -->
+    <p class="notice notice-warning">
+      Base rates you enter here are <strong>costs</strong>. A hidden
+      <span id="markupPct">30%</span> markup is applied on the client side.
+    </p>
+
+    <!-- ===== Status bar (success / error feedback) ===== -->
+    <div id="statusBar" class="status-bar" role="status" aria-live="polite" hidden></div>
+
+    <!-- ===== Global Settings ===== -->
+    <section class="card settings-card" aria-labelledby="settingsHeading">
+      <h2 id="settingsHeading">Global Settings</h2>
+      <p class="muted">
+        Values are entered as percentages (e.g. <code>12.5</code> for 12.5%).
+        They are stored internally as fractions.
+      </p>
+      <div class="field-row">
+        <div class="field">
+          <label for="asfRateInput">ASF Rate (%)</label>
+          <input type="number" id="asfRateInput" class="text-input"
+                 min="0" step="0.01" inputmode="decimal" placeholder="12.5" />
+        </div>
+        <div class="field">
+          <label for="vatRateInput">VAT Rate (%)</label>
+          <input type="number" id="vatRateInput" class="text-input"
+                 min="0" step="0.01" inputmode="decimal" placeholder="12" />
+        </div>
+        <div class="field">
+          <label for="usdRateInput">USD → PHP Rate</label>
+          <input type="number" id="usdRateInput" class="text-input"
+                 min="0" step="0.0001" inputmode="decimal" placeholder="55.89" />
+        </div>
+        <div class="field field-action">
+          <button type="button" id="updateSettingsBtn" class="btn btn-primary">
+            Save Settings
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Categories & Services ===== -->
+    <section class="card" aria-labelledby="categoriesHeading">
+      <div class="card-head">
+        <h2 id="categoriesHeading">Categories &amp; Services</h2>
+        <button type="button" id="addCategoryBtn" class="btn btn-primary">
+          + Add Category
+        </button>
+      </div>
+
+      <!-- Add-category form (hidden until "Add Category" is clicked) -->
+      <form id="addCategoryForm" class="inline-form" hidden>
+        <div class="field-row">
+          <div class="field">
+            <label for="newCategoryName">Name</label>
+            <input type="text" id="newCategoryName" class="text-input"
+                   placeholder="Category name" />
+          </div>
+          <div class="field">
+            <label for="newCategoryDescription">Description</label>
+            <input type="text" id="newCategoryDescription" class="text-input"
+                   placeholder="Short description (optional)" />
+          </div>
+          <div class="field field-action">
+            <button type="submit" class="btn btn-primary">Create</button>
+            <button type="button" id="cancelAddCategoryBtn" class="btn btn-ghost">
+              Cancel
+            </button>
+          </div>
+        </div>
+      </form>
+
+      <!-- admin.js renders the list of categories (each with its services) here -->
+      <div id="categoriesContainer" class="categories-container">
+        <p class="muted">Loading&hellip;</p>
+      </div>
+    </section>
+
+    <footer class="admin-footer">
+      <a class="back-link" href="index.html">&larr; Back to Calculator</a>
+    </footer>
+
+  </main>
+
+  <!-- ===== Scripts: CDN -> config.js -> admin.js (order matters) ===== -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/config.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

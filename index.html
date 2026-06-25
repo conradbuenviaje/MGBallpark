@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Service Package Calculator</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <main class="container">
+    <!-- ============================ HEADER ============================ -->
+    <header class="page-header">
+      <h1>📋 Service Package Calculator</h1>
+      <p class="subtitle">
+        Estimate a ballpark budget range for your service package.
+        Enter the quantities you need and generate your estimate.
+      </p>
+    </header>
+
+    <!-- ===================== GLOBAL CLIENT OPTIONS ==================== -->
+    <section class="options-panel" aria-label="Client options">
+      <!-- Non-VAT toggle -->
+      <div class="toggle-row">
+        <label class="checkbox-label" for="nonVatToggle">
+          <input type="checkbox" id="nonVatToggle" />
+          <span>I am a Non-VAT Client (VAT is included in each service rate)</span>
+        </label>
+      </div>
+
+      <!-- Logistics + Fabrication row (2 cols desktop / stacked mobile) -->
+      <div class="options-grid">
+        <!-- Logistics radios -->
+        <fieldset class="option-group" id="logisticsGroup">
+          <legend>📍 Logistics / Delivery Location</legend>
+          <div class="radio-list" id="logisticsRadios">
+            <!-- Radios rendered by calculator.js from LOGISTICS -->
+          </div>
+        </fieldset>
+
+        <!-- Fabrication toggle + badge -->
+        <fieldset class="option-group">
+          <legend>🛠️ Fabrication</legend>
+          <label class="checkbox-label" for="fabricationToggle">
+            <input type="checkbox" id="fabricationToggle" />
+            <span>🛠️ Includes Fabrication Services</span>
+          </label>
+          <p class="fab-badge-row">
+            High-end range:
+            <span class="badge" id="fabBadge" aria-live="polite">+50%</span>
+          </p>
+        </fieldset>
+      </div>
+
+      <!-- Discount (optional, applied after ASF and before VAT) -->
+      <div class="discount-row">
+        <label for="discountInput">Discount (₱, optional)</label>
+        <input type="number" id="discountInput" min="0" step="0.01"
+               inputmode="decimal" placeholder="0.00" value="0" />
+      </div>
+    </section>
+
+    <!-- ====================== SERVICES CONTAINER ===================== -->
+    <!-- Search/filter (the catalog is large) -->
+    <div class="search-row">
+      <input type="search" id="serviceSearch"
+             placeholder="🔎 Search services (e.g. LED, camera, manager)…"
+             aria-label="Search services" />
+    </div>
+
+    <!-- calculator.js renders categories + services here -->
+    <div id="servicesContainer" aria-live="polite">
+      <p class="loading-msg">Loading services…</p>
+    </div>
+
+    <!-- ======================= GENERATE BUTTON ======================= -->
+    <div class="generate-row">
+      <button type="button" id="generateBtn" class="btn btn-primary btn-large">
+        📊 Generate Ballpark Cost
+      </button>
+    </div>
+
+    <!-- ========================== RESULTS ============================ -->
+    <section id="resultsSection" class="results-panel" hidden>
+      <h2 class="results-title">Your Ballpark Estimate</h2>
+
+      <div class="results-meta">
+        <p>
+          <span class="meta-label">Logistics:</span>
+          <span id="resultsLocation">—</span>
+        </p>
+        <p>
+          <span class="meta-label">Fabrication:</span>
+          <span id="resultsFabrication">—</span>
+        </p>
+      </div>
+
+      <div class="table-wrap">
+        <table class="results-table">
+          <thead>
+            <tr>
+              <th scope="col">Service</th>
+              <th scope="col" class="num">Qty</th>
+              <th scope="col" class="num">Unit Price</th>
+              <th scope="col" class="num">Amount</th>
+            </tr>
+          </thead>
+          <tbody id="resultsTableBody">
+            <!-- Rows rendered by calculator.js (only qty > 0) -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Summary lines -->
+      <dl class="summary">
+        <div class="summary-line">
+          <dt>Subtotal</dt>
+          <dd id="sumSubtotal">₱0.00</dd>
+        </div>
+        <div class="summary-line">
+          <dt>ASF</dt>
+          <dd id="sumAsf">₱0.00</dd>
+        </div>
+        <div class="summary-line" id="discountRow" hidden>
+          <dt>Discount</dt>
+          <dd id="sumDiscount">−₱0.00</dd>
+        </div>
+        <div class="summary-line" id="vatRow">
+          <dt>VAT</dt>
+          <dd id="sumVat">₱0.00</dd>
+        </div>
+        <div class="summary-line summary-total">
+          <dt>Base Total</dt>
+          <dd>
+            <span id="sumTotal">₱0.00</span>
+            <small id="sumTotalUsd" class="usd-note">≈ $0.00</small>
+          </dd>
+        </div>
+      </dl>
+
+      <!-- Budget range (big + bold) -->
+      <div class="budget-range-box">
+        <span class="budget-range-label">Estimated Budget Range</span>
+        <strong class="budget-range" id="budgetRange">₱0.00 — ₱0.00</strong>
+        <span class="budget-range-usd" id="budgetRangeUsd">≈ $0.00 — $0.00</span>
+      </div>
+
+      <!-- Footnotes -->
+      <footer class="footnotes">
+        <p>
+          <strong>Note:</strong> Figures are indicative ballpark estimates only
+          and may change after a detailed scoping. Some pricing details are not
+          itemized in this view.
+        </p>
+        <ul>
+          <li>
+            <strong>ASF</strong> (Agency Service Fee) of
+            <strong id="fnAsfPct">12.5%</strong> is applied as a percentage of
+            the subtotal.
+          </li>
+          <li>
+            <strong>VAT:</strong> For VAT-registered clients, VAT
+            (<span id="fnVatPct">12%</span>) is computed on the subtotal plus
+            ASF. Non-VAT clients have VAT already included in each service rate
+            (no separate VAT line).
+          </li>
+          <li>
+            <strong>Budget range:</strong> The high end adds
+            <strong id="fnStdPct">+50%</strong> to the base total for standard
+            packages, or <strong id="fnFabPct">+70%</strong> when fabrication
+            services are included, to account for scope variability.
+          </li>
+          <li>
+            <strong>Discount &amp; USD:</strong> Any discount is applied after
+            ASF and before VAT. USD figures are indicative, converted from PHP
+            at the current exchange rate.
+          </li>
+        </ul>
+      </footer>
+    </section>
+
+    <!-- Error / status message area -->
+    <div id="errorBanner" class="error-banner" role="alert" hidden></div>
+
+    <!-- ============================ FOOTER =========================== -->
+    <footer class="page-footer">
+      <a href="admin.html" class="admin-link">Admin</a>
+    </footer>
+  </main>
+
+  <!-- ===================== SCRIPTS (load order) ==================== -->
+  <!-- 1) Supabase CDN  2) config.js  3) page script -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/config.js"></script>
+  <script src="js/calculator.js"></script>
+</body>
+</html>
