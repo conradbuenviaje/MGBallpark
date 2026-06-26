@@ -39,6 +39,13 @@ CREATE TABLE services (
     sort_order     INT     NOT NULL DEFAULT 0
 );
 
+-- Disable Row Level Security so the public anon key can read AND write
+-- (documented choice for this internal/demo tool). Supabase may auto-enable
+-- RLS on new tables, so we explicitly turn it OFF here.
+ALTER TABLE settings   DISABLE ROW LEVEL SECURITY;
+ALTER TABLE categories DISABLE ROW LEVEL SECURITY;
+ALTER TABLE services   DISABLE ROW LEVEL SECURITY;
+
 -- Settings seed: ASF 12.5%, VAT 12%, USD->PHP FX 55.89
 INSERT INTO settings (id, asf_rate, vat_rate, usd_php_rate) VALUES (1, 0.125, 0.12, 55.89);
 
