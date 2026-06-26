@@ -1,0 +1,9 @@
+# Supabase project config (used by the Supabase GitHub integration / CLI).
+# Replace the project ref below with YOUR project ref:
+#   Supabase Dashboard -> Project Settings -> General -> "Reference ID"
+# (it is the subdomain in your project URL: https://<project_ref>.supabase.co)
+project_id = "qvuvntyhyromzmnzhzzs"
+
+[db]
+# Postgres major version of your Supabase project (15 is current default).
+major_version = 15

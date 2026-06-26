@@ -24,8 +24,8 @@
 /* ---------------------------------------------------------------------
  * Supabase credentials (REPLACE THESE)
  * ------------------------------------------------------------------- */
-const SUPABASE_URL = 'YOUR_SUPABASE_URL';
-const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY';
+const SUPABASE_URL = 'https://qvuvntyhyromzmnzhzzs.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF2dXZudHloeXJvbXptbnpoenpzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI0NTUzODYsImV4cCI6MjA5ODAzMTM4Nn0.pxY1Z6jws02UDWsNlWi4DXy4VGnf93GLfXkO83OVrrk';
 
 /* ---------------------------------------------------------------------
  * Are the credentials still the unconfigured placeholders (or empty)?
