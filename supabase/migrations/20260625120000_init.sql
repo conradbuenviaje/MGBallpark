@@ -40,12 +40,19 @@ CREATE TABLE services (
     sort_order     INT     NOT NULL DEFAULT 0
 );
 
--- Disable Row Level Security so the public anon key can read AND write
--- (documented choice for this internal/demo tool). Supabase may auto-enable
--- RLS on new tables, so we explicitly turn it OFF here.
-ALTER TABLE settings   DISABLE ROW LEVEL SECURITY;
-ALTER TABLE categories DISABLE ROW LEVEL SECURITY;
-ALTER TABLE services   DISABLE ROW LEVEL SECURITY;
+-- Row Level Security: the public (anon) client may READ everything (the
+-- calculator needs it); only SIGNED-IN admins (Supabase Auth) may WRITE.
+ALTER TABLE settings   ENABLE ROW LEVEL SECURITY;
+ALTER TABLE categories ENABLE ROW LEVEL SECURITY;
+ALTER TABLE services   ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "settings public read"   ON settings   FOR SELECT USING (true);
+CREATE POLICY "categories public read" ON categories FOR SELECT USING (true);
+CREATE POLICY "services public read"   ON services   FOR SELECT USING (true);
+
+CREATE POLICY "settings admin write"   ON settings   FOR ALL TO authenticated USING (true) WITH CHECK (true);
+CREATE POLICY "categories admin write" ON categories FOR ALL TO authenticated USING (true) WITH CHECK (true);
+CREATE POLICY "services admin write"   ON services   FOR ALL TO authenticated USING (true) WITH CHECK (true);
 
 -- Settings seed: ASF 12.5%, VAT 12%, USD->PHP FX 55.89
 INSERT INTO settings (id, asf_rate, vat_rate, usd_php_rate) VALUES (1, 0.125, 0.12, 55.89);
@@ -933,15 +940,18 @@ CREATE TABLE package_services (
     sort_order INT NOT NULL DEFAULT 0
 );
 
-ALTER TABLE packages         DISABLE ROW LEVEL SECURITY;
-ALTER TABLE package_services DISABLE ROW LEVEL SECURITY;
+ALTER TABLE packages         ENABLE ROW LEVEL SECURITY;
+ALTER TABLE package_services ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "packages public read"         ON packages         FOR SELECT USING (true);
+CREATE POLICY "package_services public read"  ON package_services FOR SELECT USING (true);
+CREATE POLICY "packages admin write"         ON packages         FOR ALL TO authenticated USING (true) WITH CHECK (true);
+CREATE POLICY "package_services admin write"  ON package_services FOR ALL TO authenticated USING (true) WITH CHECK (true);
 
 -- ----------------------------------------------------------------------------
--- RLS REMINDER: keep Row Level Security DISABLED for this demo (the admin panel
--- writes with the public anon key), OR enable RLS and add permissive anon
--- policies, e.g.:
---   ALTER TABLE settings ENABLE ROW LEVEL SECURITY;
---   CREATE POLICY "demo all access" ON settings   FOR ALL TO anon USING (true) WITH CHECK (true);
---   CREATE POLICY "demo all access" ON categories FOR ALL TO anon USING (true) WITH CHECK (true);
---   CREATE POLICY "demo all access" ON services   FOR ALL TO anon USING (true) WITH CHECK (true);
+-- ADMIN ACCESS: the admin panel (admin.html) requires Supabase Auth login.
+-- Create an admin user in the Supabase dashboard:
+--   Authentication -> Users -> Add user -> set email + password (auto-confirm).
+-- The RLS policies above let anyone READ (the public calculator) but only
+-- signed-in (authenticated) users WRITE. Never ship the service_role key.
 -- ============================================================================

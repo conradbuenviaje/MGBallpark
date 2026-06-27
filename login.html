@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Login &middot; MG Ballpark</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <main class="container login-wrap">
+    <header class="page-header">
+      <h1>🔒 Admin Login</h1>
+      <p class="subtitle">Sign in to manage rates, services and packages.</p>
+    </header>
+
+    <section class="options-panel">
+      <form id="loginForm">
+        <div class="field">
+          <label for="loginEmail">Email</label>
+          <input type="email" id="loginEmail" class="text-input" autocomplete="username" required />
+        </div>
+        <div class="field">
+          <label for="loginPassword">Password</label>
+          <input type="password" id="loginPassword" class="text-input" autocomplete="current-password" required />
+        </div>
+        <div id="loginError" class="error-banner" role="alert" hidden></div>
+        <div class="field field-action">
+          <button type="submit" id="loginBtn" class="btn btn-primary btn-large">Sign in</button>
+        </div>
+      </form>
+      <p class="muted"><a href="index.html">← Back to calculator</a></p>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/config.js"></script>
+  <script src="js/login.js"></script>
+</body>
+</html>

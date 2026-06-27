@@ -945,7 +945,7 @@
    * Init / wiring
    * ================================================================= */
 
-  function init() {
+  async function init() {
     // Resolve element references.
     statusBar = document.getElementById('statusBar');
     asfRateInput = document.getElementById('asfRateInput');
@@ -1024,6 +1024,24 @@
     if (packageCore) packageCore.addEventListener('change', function () { populatePackageServiceSelect(packageCore.value); });
     const packageCoreFilter = document.getElementById('packageCoreFilter');
     if (packageCoreFilter) packageCoreFilter.addEventListener('change', renderPackagesList);
+
+    // Log out.
+    const logoutBtn = document.getElementById('logoutBtn');
+    if (logoutBtn) {
+      logoutBtn.addEventListener('click', async function () {
+        try { await db.auth.signOut(); } catch (e) { /* ignore */ }
+        window.location.replace('login.html');
+      });
+    }
+
+    // Auth gate: must be signed in (Supabase Auth) to use the admin panel.
+    try {
+      const { data: { session } } = await db.auth.getSession();
+      if (!session) { window.location.replace('login.html'); return; }
+    } catch (e) {
+      window.location.replace('login.html');
+      return;
+    }
 
     // Initial data load (packages load after the catalog so names/cores resolve).
     loadSettings();
