@@ -906,6 +906,37 @@ FROM categories c, (VALUES
 WHERE c.name = 'Other Equipment';
 
 -- ----------------------------------------------------------------------------
+-- Service Packages: bundles of sub-services at a discount, grouped by CORE
+-- (MET / MMARK / M-TECH). discount_value = fraction for 'percentage'
+-- (0.10 = 10% off) or a fixed PHP selling price for 'fixed'.
+-- ----------------------------------------------------------------------------
+DROP TABLE IF EXISTS package_services CASCADE;
+DROP TABLE IF EXISTS packages CASCADE;
+
+CREATE TABLE packages (
+    id             SERIAL PRIMARY KEY,
+    core           TEXT NOT NULL,                 -- MET | MMARK | M-TECH
+    name           TEXT NOT NULL,
+    description    TEXT,
+    discount_type  TEXT NOT NULL CHECK (discount_type IN ('percentage', 'fixed')),
+    discount_value DECIMAL(10,2) NOT NULL,        -- fraction (0.10) OR fixed PHP price
+    is_active      BOOLEAN NOT NULL DEFAULT true,
+    sort_order     INT NOT NULL DEFAULT 0,
+    created_at     TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+
+CREATE TABLE package_services (
+    id         SERIAL PRIMARY KEY,
+    package_id INT NOT NULL REFERENCES packages(id) ON DELETE CASCADE,
+    service_id INT NOT NULL REFERENCES services(id) ON DELETE CASCADE,
+    quantity   INT NOT NULL DEFAULT 1,
+    sort_order INT NOT NULL DEFAULT 0
+);
+
+ALTER TABLE packages         DISABLE ROW LEVEL SECURITY;
+ALTER TABLE package_services DISABLE ROW LEVEL SECURITY;
+
+-- ----------------------------------------------------------------------------
 -- RLS REMINDER: keep Row Level Security DISABLED for this demo (the admin panel
 -- writes with the public anon key), OR enable RLS and add permissive anon
 -- policies, e.g.:

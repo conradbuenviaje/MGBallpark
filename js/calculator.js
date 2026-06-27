@@ -41,6 +41,17 @@
   // This is the only place base_rate lives; it is never written to the DOM.
   var serviceState = new Map();
 
+  // Service rows by id (from DB) -- used to price/label packages regardless
+  // of DOM render order. id -> service object.
+  var serviceById = {};
+
+  // Active packages fetched from DB, each with an .items array
+  //   { id, core, name, description, discount_type, discount_value, items:[{service_id, quantity}] }
+  var packages = [];
+
+  // Currently selected package per core: { 'MET': pkgId, ... }. One per core.
+  var selectedPackages = {};
+
   /* -------------------------------------------------------------------
    * Cached DOM references (populated on DOMContentLoaded)
    * ------------------------------------------------------------------- */
@@ -156,6 +167,104 @@
   function fxRate() {
     var r = Number(settings.usd_php_rate);
     return r > 0 ? r : DEFAULT_USD_PHP;
+  }
+
+  /* ---- Package helpers ---------------------------------------------- */
+
+  // Current quantity for a service id (reads its qty input).
+  function qtyOf(serviceId) {
+    var inp = els.servicesContainer.querySelector(
+      '.qty-input[data-service-id="' + serviceId + '"]');
+    return inp ? parseQty(inp.value) : 0;
+  }
+
+  // Set the quantity input for a service id (if present).
+  function setQtyOf(serviceId, q) {
+    var inp = els.servicesContainer.querySelector(
+      '.qty-input[data-service-id="' + serviceId + '"]');
+    if (inp) inp.value = String(q);
+  }
+
+  // Selling unit price for a service id, honoring the Non-VAT toggle.
+  function unitPriceOf(serviceId, nonVat, vatRate) {
+    var s = serviceById[serviceId];
+    var selling = (s ? Number(s.base_rate) || 0 : 0) * MARKUP;
+    return nonVat ? selling * (1 + vatRate) : selling;
+  }
+
+  // Original (undiscounted) selling subtotal of a package's items.
+  function packageOriginal(pkg, nonVat, vatRate) {
+    var sum = 0;
+    (pkg.items || []).forEach(function (it) {
+      sum += it.quantity * unitPriceOf(it.service_id, nonVat, vatRate);
+    });
+    return sum;
+  }
+
+  // Discounted package price. 'percentage' -> original*(1-value);
+  // 'fixed' -> the fixed PHP value (VAT-adjusted in Non-VAT mode).
+  function packagePrice(pkg, original, nonVat, vatRate) {
+    if (pkg.discount_type === 'fixed') {
+      var fixed = Number(pkg.discount_value) || 0;
+      return nonVat ? fixed * (1 + vatRate) : fixed;
+    }
+    var d = Number(pkg.discount_value) || 0; // fraction, e.g. 0.10
+    return original * (1 - d);
+  }
+
+  function findPackage(id) {
+    for (var i = 0; i < packages.length; i++) {
+      if (packages[i].id === id) return packages[i];
+    }
+    return null;
+  }
+
+  // A selected package is "intact" only if every included service still has
+  // qty >= the package quantity. Reducing below it voids the discount.
+  function packageIntact(pkg) {
+    return (pkg.items || []).every(function (it) {
+      return qtyOf(it.service_id) >= it.quantity;
+    });
+  }
+
+  // Select a package: clears any previously selected package in the same core
+  // (resetting its qtys), then sets this package's service quantities.
+  function selectPackage(pkg) {
+    var prevId = selectedPackages[pkg.core];
+    if (prevId && prevId !== pkg.id) {
+      var prev = findPackage(prevId);
+      if (prev) prev.items.forEach(function (it) { setQtyOf(it.service_id, 0); });
+    }
+    selectedPackages[pkg.core] = pkg.id;
+    pkg.items.forEach(function (it) { setQtyOf(it.service_id, it.quantity); });
+    syncPackageUI(pkg.core);
+    updateFabBadge();
+  }
+
+  // Deselect the active package in a core (resets its service quantities).
+  function deselectPackage(core) {
+    var id = selectedPackages[core];
+    if (id) {
+      var pkg = findPackage(id);
+      if (pkg) pkg.items.forEach(function (it) { setQtyOf(it.service_id, 0); });
+    }
+    selectedPackages[core] = null;
+    syncPackageUI(core);
+    updateFabBadge();
+  }
+
+  // Reflect the selected package in the card UI (highlight + radio state).
+  function syncPackageUI(core) {
+    var card = els.servicesContainer.querySelector('.core-card[data-core="' + core + '"]');
+    if (!card) return;
+    var sel = selectedPackages[core] || null;
+    var pkgCards = card.querySelectorAll('.package-card');
+    Array.prototype.forEach.call(pkgCards, function (pc) {
+      var on = String(pc.getAttribute('data-package-id')) === String(sel);
+      pc.classList.toggle('package-selected', on);
+      var radio = pc.querySelector('.package-radio');
+      if (radio) radio.checked = on;
+    });
   }
 
   // Filter the (large) service catalog by the search box text. While a query
@@ -301,15 +410,22 @@
         card.appendChild(desc);
       }
 
-      // Collapsible body: flat list of sub-services (hidden until checked).
+      // Collapsible body: package options (if any) + flat sub-service list.
       var body = document.createElement('div');
-      body.className = 'core-body service-list';
+      body.className = 'core-body';
       body.hidden = true;
-      list.forEach(function (svc) {
-        body.appendChild(renderServiceRow(svc));
-      });
-      card.appendChild(body);
 
+      var pkgSection = renderPackageSection(core.code);
+      if (pkgSection) body.appendChild(pkgSection);
+
+      var listWrap = document.createElement('div');
+      listWrap.className = 'service-list';
+      list.forEach(function (svc) {
+        listWrap.appendChild(renderServiceRow(svc));
+      });
+      body.appendChild(listWrap);
+
+      card.appendChild(body);
       els.servicesContainer.appendChild(card);
     });
   }
@@ -368,6 +484,115 @@
     return row;
   }
 
+  // Render the "Package Options" block for a core (or null if no packages).
+  function renderPackageSection(coreCode) {
+    var list = packages.filter(function (p) { return p.core === coreCode; });
+    if (!list.length) return null;
+
+    var nonVat = isNonVat();
+    var vatRate = Number(settings.vat_rate) || 0;
+
+    var section = document.createElement('div');
+    section.className = 'package-section';
+
+    var h = document.createElement('h4');
+    h.className = 'package-section-title';
+    h.textContent = '📦 Package Options';
+    section.appendChild(h);
+
+    var grid = document.createElement('div');
+    grid.className = 'package-grid';
+
+    list.forEach(function (pkg) {
+      var original = packageOriginal(pkg, nonVat, vatRate);
+      var price = packagePrice(pkg, original, nonVat, vatRate);
+      var savePct = original > 0 ? Math.round((1 - price / original) * 100) : 0;
+
+      var card = document.createElement('div');
+      card.className = 'package-card';
+      card.setAttribute('data-package-id', String(pkg.id));
+
+      var header = document.createElement('div');
+      header.className = 'package-header';
+      var radio = document.createElement('input');
+      radio.type = 'radio';
+      radio.className = 'package-radio';
+      radio.name = 'package-' + coreCode;
+      radio.addEventListener('change', function () { selectPackage(pkg); });
+      var nm = document.createElement('h5');
+      nm.className = 'package-name';
+      nm.textContent = pkg.name;
+      header.appendChild(radio);
+      header.appendChild(nm);
+      if (savePct > 0) {
+        var badge = document.createElement('span');
+        badge.className = 'package-badge';
+        badge.textContent = 'Save ' + savePct + '%';
+        header.appendChild(badge);
+      }
+      card.appendChild(header);
+
+      if (pkg.description) {
+        var d = document.createElement('p');
+        d.className = 'package-description';
+        d.textContent = pkg.description;
+        card.appendChild(d);
+      }
+
+      if (pkg.items && pkg.items.length) {
+        var inc = document.createElement('div');
+        inc.className = 'package-includes';
+        var small = document.createElement('small');
+        small.textContent = 'Includes:';
+        inc.appendChild(small);
+        var ul = document.createElement('ul');
+        pkg.items.forEach(function (it) {
+          var s = serviceById[it.service_id];
+          var li = document.createElement('li');
+          li.textContent = it.quantity + '× ' + (s ? s.name : ('Service #' + it.service_id));
+          ul.appendChild(li);
+        });
+        inc.appendChild(ul);
+        card.appendChild(inc);
+      }
+
+      var pricing = document.createElement('div');
+      pricing.className = 'package-pricing';
+      if (price < original) {
+        var op = document.createElement('span');
+        op.className = 'original-price';
+        op.textContent = peso(original);
+        pricing.appendChild(op);
+      }
+      var dp = document.createElement('span');
+      dp.className = 'discounted-price';
+      dp.textContent = peso(price);
+      pricing.appendChild(dp);
+      card.appendChild(pricing);
+
+      var actions = document.createElement('div');
+      actions.className = 'package-actions';
+      var selBtn = document.createElement('button');
+      selBtn.type = 'button';
+      selBtn.className = 'btn btn-primary select-package-btn';
+      selBtn.textContent = 'Select Package';
+      selBtn.addEventListener('click', function () { selectPackage(pkg); });
+      var delBtn = document.createElement('button');
+      delBtn.type = 'button';
+      delBtn.className = 'btn btn-ghost deselect-package-btn';
+      delBtn.textContent = 'Deselect';
+      delBtn.addEventListener('click', function () { deselectPackage(coreCode); });
+      actions.appendChild(selBtn);
+      actions.appendChild(delBtn);
+      card.appendChild(actions);
+
+      grid.appendChild(card);
+    });
+
+    section.appendChild(grid);
+    return section;
+  }
+
   // Keep the user-facing footnote percentages in sync with the business-rule
   // constants (config.js) and the live settings, so static copy can never
   // drift from the actual computation. Uses the pct() helper from config.js.
@@ -403,9 +628,40 @@
     var asfRate = Number(settings.asf_rate) || 0;
 
     var lineItems = [];
+    var notes = [];
     var subtotal = 0;
 
-    // Walk every qty input; include only services with qty > 0.
+    // 1) Active packages (selected AND intact) bill at their discounted price.
+    //    Track how much of each service is "covered" so extra qty bills as add-on.
+    var pkgBase = {}; // serviceId -> qty covered by active packages
+    Object.keys(selectedPackages).forEach(function (core) {
+      var id = selectedPackages[core];
+      if (!id) return;
+      var pkg = findPackage(id);
+      if (!pkg) return;
+
+      if (packageIntact(pkg)) {
+        var original = packageOriginal(pkg, nonVat, vatRate);
+        var price = packagePrice(pkg, original, nonVat, vatRate);
+        subtotal += price;
+        lineItems.push({
+          name: '📦 ' + pkg.name,
+          qty: 1,
+          unitPrice: price,
+          amount: price,
+          isPackage: true,
+          original: original,
+        });
+        pkg.items.forEach(function (it) {
+          pkgBase[it.service_id] = (pkgBase[it.service_id] || 0) + it.quantity;
+        });
+      } else {
+        // Customized below package quantities -> discount voided (individual rates).
+        notes.push('Package "' + pkg.name + '" was customized — individual pricing applied.');
+      }
+    });
+
+    // 2) Individual lines: bill qty NOT covered by an active package.
     var inputs = els.servicesContainer.querySelectorAll('.qty-input');
     Array.prototype.forEach.call(inputs, function (input) {
       var qty = parseQty(input.value);
@@ -415,18 +671,18 @@
       var state = serviceState.get(id);
       if (!state) return;
 
-      var baseRate = Number(state.base_rate) || 0;
+      var covered = pkgBase[id] || 0;
+      var billable = qty - Math.min(qty, covered);
+      if (billable <= 0) return; // fully covered by a package
 
-      // --- core formula (hidden markup applied here) ---
-      var sellingRate = baseRate * MARKUP;
+      var sellingRate = (Number(state.base_rate) || 0) * MARKUP;
       var unitPrice = nonVat ? sellingRate * (1 + vatRate) : sellingRate;
-      var amount = qty * unitPrice;
+      var amount = billable * unitPrice;
 
       subtotal += amount;
-
       lineItems.push({
-        name: state.name,
-        qty: qty,
+        name: state.name + (covered > 0 ? ' (add-on)' : ''),
+        qty: billable,
         unitPrice: unitPrice,
         amount: amount,
       });
@@ -450,6 +706,7 @@
 
     return {
       lineItems: lineItems,
+      notes: notes,
       subtotal: subtotal,
       asf: asf,
       discount: discount,
@@ -494,6 +751,7 @@
     } else {
       est.lineItems.forEach(function (item) {
         var tr = document.createElement('tr');
+        if (item.isPackage) tr.className = 'package-line';
 
         var nameTd = document.createElement('td');
         nameTd.textContent = item.name;
@@ -504,7 +762,20 @@
 
         var priceTd = document.createElement('td');
         priceTd.className = 'num';
-        priceTd.textContent = peso(item.unitPrice);
+        if (item.isPackage && item.original > item.amount) {
+          // Package: original price crossed out, discounted price beside it.
+          var orig = document.createElement('span');
+          orig.className = 'original-price';
+          orig.textContent = peso(item.original);
+          var disc = document.createElement('span');
+          disc.className = 'discounted-price';
+          disc.textContent = peso(item.unitPrice);
+          priceTd.appendChild(orig);
+          priceTd.appendChild(document.createTextNode(' '));
+          priceTd.appendChild(disc);
+        } else {
+          priceTd.textContent = peso(item.unitPrice);
+        }
 
         var amtTd = document.createElement('td');
         amtTd.className = 'num';
@@ -514,6 +785,17 @@
         tr.appendChild(qtyTd);
         tr.appendChild(priceTd);
         tr.appendChild(amtTd);
+        els.resultsTableBody.appendChild(tr);
+      });
+
+      // Customization notes (e.g. a package whose discount was voided).
+      (est.notes || []).forEach(function (n) {
+        var tr = document.createElement('tr');
+        var td = document.createElement('td');
+        td.colSpan = 4;
+        td.className = 'muted package-note';
+        td.textContent = '⚠ ' + n;
+        tr.appendChild(td);
         els.resultsTableBody.appendChild(tr);
       });
     }
@@ -613,6 +895,35 @@
       .order('sort_order', { ascending: true });
     if (svcRes.error) throw svcRes.error;
     services = svcRes.data || [];
+    serviceById = {};
+    services.forEach(function (s) { serviceById[s.id] = s; });
+
+    // Packages (optional). Resilient: if the tables don't exist yet, skip
+    // silently so the rest of the catalog still loads.
+    packages = [];
+    try {
+      var pkgRes = await db
+        .from('packages')
+        .select('id, core, name, description, discount_type, discount_value, is_active, sort_order')
+        .eq('is_active', true)
+        .order('sort_order', { ascending: true });
+      if (!pkgRes.error && pkgRes.data && pkgRes.data.length) {
+        var psRes = await db
+          .from('package_services')
+          .select('package_id, service_id, quantity, sort_order')
+          .order('sort_order', { ascending: true });
+        var items = (!psRes.error && psRes.data) ? psRes.data : [];
+        pkgRes.data.forEach(function (p) {
+          p.items = items
+            .filter(function (i) { return i.package_id === p.id; })
+            .map(function (i) { return { service_id: i.service_id, quantity: i.quantity }; });
+        });
+        packages = pkgRes.data;
+      }
+    } catch (e) {
+      console.warn('Packages unavailable:', e);
+      packages = [];
+    }
 
     return true;
   }

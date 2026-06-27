@@ -37,6 +37,12 @@
   let newCategoryName;
   let newCategoryDescription;
 
+  /* Captured catalog (set on each load) + package working state. */
+  let allCategories = [];
+  let allServices = [];
+  let packagesData = [];
+  let editingPackageItems = []; // [{service_id, quantity, name}] for the open form
+
   /* Auto-hide timer handle for the status bar. */
   let statusTimer = null;
 
@@ -182,7 +188,9 @@
       if (catRes.error) throw catRes.error;
       if (svcRes.error) throw svcRes.error;
 
-      renderCategories(catRes.data || [], svcRes.data || []);
+      allCategories = catRes.data || [];
+      allServices = svcRes.data || [];
+      renderCategories(allCategories, allServices);
     } catch (err) {
       console.error('loadCategoriesAndServices failed:', err);
       categoriesContainer.innerHTML =
@@ -626,6 +634,257 @@
    * Small DOM helpers
    * ================================================================= */
 
+  /* ===================================================================
+   * Packages: fetch, render, CRUD
+   * ================================================================= */
+
+  // Core code for a service (via its category's core).
+  function coreOfService(svc) {
+    for (var i = 0; i < allCategories.length; i++) {
+      if (allCategories[i].id === svc.category_id) return allCategories[i].core || 'MET';
+    }
+    return 'MET';
+  }
+
+  function serviceName(id) {
+    for (var i = 0; i < allServices.length; i++) {
+      if (allServices[i].id === id) return allServices[i].name;
+    }
+    return 'Service #' + id;
+  }
+
+  async function loadPackages() {
+    if (typeof db === 'undefined' || !db) return;
+    try {
+      const [pkgRes, psRes] = await Promise.all([
+        db.from('packages').select('*')
+          .order('sort_order', { ascending: true }).order('id', { ascending: true }),
+        db.from('package_services').select('package_id, service_id, quantity, sort_order')
+          .order('sort_order', { ascending: true }),
+      ]);
+      if (pkgRes.error) throw pkgRes.error;
+      const items = (!psRes.error && psRes.data) ? psRes.data : [];
+      packagesData = (pkgRes.data || []).map(function (p) {
+        p.items = items.filter(function (i) { return i.package_id === p.id; });
+        return p;
+      });
+      renderPackagesList();
+    } catch (err) {
+      console.error('loadPackages failed:', err);
+      const list = document.getElementById('packagesList');
+      if (list) {
+        list.innerHTML = '<p class="notice notice-error">Could not load packages: ' +
+          escapeHtml(err.message || String(err)) +
+          '. Make sure the packages SQL has been run.</p>';
+      }
+    }
+  }
+
+  function renderPackagesList() {
+    const wrap = document.getElementById('packagesList');
+    if (!wrap) return;
+    const filter = (document.getElementById('packageCoreFilter') || {}).value || '';
+    const list = packagesData.filter(function (p) { return !filter || p.core === filter; });
+    wrap.innerHTML = '';
+    if (!list.length) {
+      wrap.innerHTML = '<p class="muted">No packages yet. Click &ldquo;Add Package&rdquo;.</p>';
+      return;
+    }
+    list.forEach(function (p) {
+      const card = document.createElement('div');
+      card.className = 'package-admin-item';
+
+      const disc = p.discount_type === 'percentage'
+        ? ((Number(p.discount_value) * 100).toFixed(2).replace(/\.?0+$/, '') + '% off')
+        : ('₱' + Number(p.discount_value).toLocaleString('en-PH'));
+
+      const head = document.createElement('div');
+      head.className = 'package-admin-head';
+      const title = document.createElement('strong');
+      title.textContent = p.name;
+      const status = document.createElement('span');
+      status.className = 'package-status ' + (p.is_active ? 'active' : 'inactive');
+      status.textContent = p.is_active ? 'Active' : 'Inactive';
+      head.appendChild(title);
+      head.appendChild(status);
+      card.appendChild(head);
+
+      const meta = document.createElement('div');
+      meta.className = 'muted';
+      meta.style.fontSize = '0.85rem';
+      meta.textContent = 'Core: ' + p.core + '  ·  ' + disc + '  ·  ' + (p.items ? p.items.length : 0) + ' services';
+      card.appendChild(meta);
+
+      const inc = document.createElement('div');
+      inc.className = 'muted';
+      inc.style.fontSize = '0.8rem';
+      inc.textContent = (p.items || []).map(function (it) {
+        return it.quantity + '× ' + serviceName(it.service_id);
+      }).join(', ');
+      card.appendChild(inc);
+
+      const act = document.createElement('div');
+      act.className = 'field-action';
+      const e = makeButton('✏️ Edit', 'btn btn-primary');
+      e.addEventListener('click', function () { openPackageForm(p); });
+      const t = makeButton(p.is_active ? 'Deactivate' : 'Activate', 'btn btn-ghost');
+      t.addEventListener('click', function () { togglePackage(p); });
+      const d = makeButton('🗑️ Delete', 'btn btn-danger');
+      d.addEventListener('click', function () { deletePackage(p); });
+      act.appendChild(e);
+      act.appendChild(t);
+      act.appendChild(d);
+      card.appendChild(act);
+
+      wrap.appendChild(card);
+    });
+  }
+
+  function populatePackageServiceSelect(core) {
+    const sel = document.getElementById('packageServiceSelect');
+    if (!sel) return;
+    sel.innerHTML = '';
+    allServices
+      .filter(function (s) { return coreOfService(s) === core; })
+      .slice()
+      .sort(function (a, b) { return a.name.toUpperCase() < b.name.toUpperCase() ? -1 : 1; })
+      .forEach(function (s) {
+        const o = document.createElement('option');
+        o.value = s.id;
+        o.textContent = s.name;
+        sel.appendChild(o);
+      });
+  }
+
+  function renderEditingItems() {
+    const ul = document.getElementById('packageItemsList');
+    if (!ul) return;
+    ul.innerHTML = '';
+    editingPackageItems.forEach(function (it, idx) {
+      const li = document.createElement('li');
+      li.textContent = it.quantity + '× ' + (it.name || serviceName(it.service_id)) + ' ';
+      const x = makeButton('remove', 'btn btn-ghost');
+      x.style.minHeight = '28px';
+      x.style.padding = '0.1rem 0.5rem';
+      x.addEventListener('click', function () {
+        editingPackageItems.splice(idx, 1);
+        renderEditingItems();
+      });
+      li.appendChild(x);
+      ul.appendChild(li);
+    });
+  }
+
+  function openPackageForm(pkg) {
+    const form = document.getElementById('packageForm');
+    if (!form) return;
+    form.hidden = false;
+    document.getElementById('packageId').value = pkg ? pkg.id : '';
+    document.getElementById('packageCore').value = pkg ? pkg.core : 'MET';
+    document.getElementById('packageName').value = pkg ? pkg.name : '';
+    document.getElementById('packageDescription').value = pkg ? (pkg.description || '') : '';
+    document.getElementById('packageDiscountType').value = pkg ? pkg.discount_type : 'percentage';
+    document.getElementById('packageActive').checked = pkg ? !!pkg.is_active : true;
+    let dv = '';
+    if (pkg) dv = pkg.discount_type === 'percentage' ? Number(pkg.discount_value) * 100 : Number(pkg.discount_value);
+    document.getElementById('packageDiscountValue').value = dv === '' ? '' : +Number(dv).toFixed(4);
+    editingPackageItems = pkg
+      ? (pkg.items || []).map(function (it) { return { service_id: it.service_id, quantity: it.quantity, name: serviceName(it.service_id) }; })
+      : [];
+    populatePackageServiceSelect(document.getElementById('packageCore').value);
+    renderEditingItems();
+    form.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  function closePackageForm() {
+    const f = document.getElementById('packageForm');
+    if (f) f.hidden = true;
+    editingPackageItems = [];
+  }
+
+  function addServiceToPackage() {
+    const sel = document.getElementById('packageServiceSelect');
+    const qtyEl = document.getElementById('packageServiceQty');
+    if (!sel || !sel.value) return;
+    const id = parseInt(sel.value, 10);
+    let q = parseInt(qtyEl.value, 10);
+    if (!q || q < 1) q = 1;
+    const existing = editingPackageItems.find(function (it) { return it.service_id === id; });
+    if (existing) existing.quantity = q;
+    else editingPackageItems.push({ service_id: id, quantity: q, name: sel.options[sel.selectedIndex].textContent });
+    renderEditingItems();
+  }
+
+  async function savePackage() {
+    const id = document.getElementById('packageId').value;
+    const core = document.getElementById('packageCore').value;
+    const name = (document.getElementById('packageName').value || '').trim();
+    const description = (document.getElementById('packageDescription').value || '').trim();
+    const dtype = document.getElementById('packageDiscountType').value;
+    const dvalRaw = parseFloat(document.getElementById('packageDiscountValue').value);
+    const active = document.getElementById('packageActive').checked;
+
+    if (!name) { showStatus('Package name is required.', 'error'); return; }
+    if (isNaN(dvalRaw) || dvalRaw < 0) { showStatus('Enter a valid discount value.', 'error'); return; }
+    if (!editingPackageItems.length) { showStatus('Add at least one service to the package.', 'error'); return; }
+    // percentage stored as fraction (10 -> 0.10); fixed stored as PHP amount.
+    const dvalue = dtype === 'percentage' ? dvalRaw / 100 : dvalRaw;
+
+    try {
+      let pkgId;
+      if (id) {
+        const up = await db.from('packages')
+          .update({ core: core, name: name, description: description, discount_type: dtype, discount_value: dvalue, is_active: active })
+          .eq('id', id);
+        if (up.error) throw up.error;
+        pkgId = parseInt(id, 10);
+        const del = await db.from('package_services').delete().eq('package_id', pkgId);
+        if (del.error) throw del.error;
+      } else {
+        const ins = await db.from('packages')
+          .insert({ core: core, name: name, description: description, discount_type: dtype, discount_value: dvalue, is_active: active })
+          .select('id').single();
+        if (ins.error) throw ins.error;
+        pkgId = ins.data.id;
+      }
+      const rows = editingPackageItems.map(function (it, i) {
+        return { package_id: pkgId, service_id: it.service_id, quantity: it.quantity, sort_order: i + 1 };
+      });
+      const insPs = await db.from('package_services').insert(rows);
+      if (insPs.error) throw insPs.error;
+
+      showStatus('Package saved.', 'success');
+      closePackageForm();
+      await loadPackages();
+    } catch (err) {
+      console.error('savePackage failed:', err);
+      showStatus('Could not save package: ' + (err.message || err), 'error');
+    }
+  }
+
+  async function togglePackage(p) {
+    try {
+      const r = await db.from('packages').update({ is_active: !p.is_active }).eq('id', p.id);
+      if (r.error) throw r.error;
+      showStatus(p.is_active ? 'Package deactivated.' : 'Package activated.', 'success');
+      await loadPackages();
+    } catch (err) {
+      showStatus('Could not update package: ' + (err.message || err), 'error');
+    }
+  }
+
+  async function deletePackage(p) {
+    if (!window.confirm('Delete package "' + p.name + '"?\nThis cannot be undone.')) return;
+    try {
+      const r = await db.from('packages').delete().eq('id', p.id);
+      if (r.error) throw r.error;
+      showStatus('Package deleted.', 'success');
+      await loadPackages();
+    } catch (err) {
+      showStatus('Could not delete package: ' + (err.message || err), 'error');
+    }
+  }
+
   /** Create a labelled field wrapper around a control. */
   function makeField(labelText, control) {
     const field = document.createElement('div');
@@ -752,9 +1011,23 @@
       return;
     }
 
-    // Initial data load.
+    // Package controls.
+    const addPackageBtn = document.getElementById('addPackageBtn');
+    if (addPackageBtn) addPackageBtn.addEventListener('click', function () { openPackageForm(null); });
+    const cancelPackageBtn = document.getElementById('cancelPackageBtn');
+    if (cancelPackageBtn) cancelPackageBtn.addEventListener('click', closePackageForm);
+    const packageForm = document.getElementById('packageForm');
+    if (packageForm) packageForm.addEventListener('submit', function (e) { e.preventDefault(); savePackage(); });
+    const packageAddServiceBtn = document.getElementById('packageAddServiceBtn');
+    if (packageAddServiceBtn) packageAddServiceBtn.addEventListener('click', addServiceToPackage);
+    const packageCore = document.getElementById('packageCore');
+    if (packageCore) packageCore.addEventListener('change', function () { populatePackageServiceSelect(packageCore.value); });
+    const packageCoreFilter = document.getElementById('packageCoreFilter');
+    if (packageCoreFilter) packageCoreFilter.addEventListener('change', renderPackagesList);
+
+    // Initial data load (packages load after the catalog so names/cores resolve).
     loadSettings();
-    loadCategoriesAndServices();
+    loadCategoriesAndServices().then(loadPackages);
   }
 
   // Run after the DOM is ready.

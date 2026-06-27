@@ -100,6 +100,84 @@
       </div>
     </section>
 
+    <!-- ===== Service Packages ===== -->
+    <section class="card" aria-labelledby="packagesHeading">
+      <div class="card-head">
+        <h2 id="packagesHeading">📦 Service Packages</h2>
+        <button type="button" id="addPackageBtn" class="btn btn-primary">+ Add Package</button>
+      </div>
+
+      <div class="field" style="max-width: 16rem;">
+        <label for="packageCoreFilter">Filter by core</label>
+        <select id="packageCoreFilter" class="text-input">
+          <option value="">All cores</option>
+          <option value="MET">MET</option>
+          <option value="MMARK">MMARK</option>
+          <option value="M-TECH">M-TECH</option>
+        </select>
+      </div>
+
+      <!-- Add / edit package form (hidden until used) -->
+      <form id="packageForm" class="inline-form" hidden>
+        <input type="hidden" id="packageId" />
+        <div class="field-row">
+          <div class="field">
+            <label for="packageCore">Core</label>
+            <select id="packageCore" class="text-input">
+              <option value="MET">MET</option>
+              <option value="MMARK">MMARK</option>
+              <option value="M-TECH">M-TECH</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="packageName">Name</label>
+            <input type="text" id="packageName" class="text-input" placeholder="Package name" />
+          </div>
+        </div>
+        <div class="field">
+          <label for="packageDescription">Description</label>
+          <input type="text" id="packageDescription" class="text-input"
+                 placeholder="What's included / pitch (optional)" />
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="packageDiscountType">Discount type</label>
+            <select id="packageDiscountType" class="text-input">
+              <option value="percentage">Percentage (%)</option>
+              <option value="fixed">Fixed price (₱)</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="packageDiscountValue">Value</label>
+            <input type="number" id="packageDiscountValue" class="text-input"
+                   step="0.01" min="0" inputmode="decimal"
+                   placeholder="e.g. 10 (%) or 7500 (₱)" />
+          </div>
+          <div class="field field-check">
+            <label><input type="checkbox" id="packageActive" checked /> Active</label>
+          </div>
+        </div>
+        <div class="field">
+          <label>Included services (from the chosen core)</label>
+          <div class="field-row">
+            <select id="packageServiceSelect" class="text-input"></select>
+            <input type="number" id="packageServiceQty" class="text-input"
+                   min="1" step="1" value="1" aria-label="Quantity" />
+            <button type="button" id="packageAddServiceBtn" class="btn btn-accent">+ Add</button>
+          </div>
+          <ul id="packageItemsList" class="package-items-list"></ul>
+        </div>
+        <div class="field field-action">
+          <button type="submit" class="btn btn-primary">Save Package</button>
+          <button type="button" id="cancelPackageBtn" class="btn btn-ghost">Cancel</button>
+        </div>
+      </form>
+
+      <div id="packagesList" class="categories-container">
+        <p class="muted">Loading&hellip;</p>
+      </div>
+    </section>
+
     <footer class="admin-footer">
       <a class="back-link" href="index.html">&larr; Back to Calculator</a>
     </footer>
