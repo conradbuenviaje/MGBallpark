@@ -98,6 +98,64 @@ const LOGISTICS = [
 ];
 
 /* ---------------------------------------------------------------------
+ * Core services. The catalog is grouped under these 3 cores: the client
+ * picks a core (checkbox), which reveals its sub-services. Each category
+ * maps to one core via CATEGORY_CORE below (by category name).
+ * ------------------------------------------------------------------- */
+const CORES = [
+  {
+    code: 'MET',
+    name: 'MET — Event Management & Production',
+    description:
+      'End-to-end event management and technical operations: single accountable ' +
+      'team, contingency + tech redundancy, talent logistics, hospitality, security ' +
+      'and post-event leisure — polished, compliant, on-time and on-budget.',
+  },
+  {
+    code: 'MMARK',
+    name: 'MMARK — Marketing (Make your MARK)',
+    description:
+      'Integrated creative + marketing: film / physical / OOH production, plus ' +
+      'digital — influencer marketing, social & community management, PR and media ' +
+      'planning/buying. Cohesive content, synchronized distribution, performance-driven.',
+  },
+  {
+    code: 'M-TECH',
+    name: 'M-TECH — AI, Software, Hardware & Innovation',
+    description:
+      'Immersive, interactive installations: AI automation, 2D/3D billboards, ' +
+      'projection mapping, AR/VR, CGI/VFX and FOOH — end-to-end tech design, ' +
+      'deployment and live support that differentiates brands.',
+  },
+];
+
+// Category name -> core code. Categories not listed fall back to FALLBACK_CORE.
+const FALLBACK_CORE = 'MET';
+const CATEGORY_CORE = {
+  // MET — Event Management & Production
+  'Manpower (Crew Day Rates)': 'MET',
+  'Venue & Spaces': 'MET',
+  'Permits & Safety': 'MET',
+  'Power & Electrical': 'MET',
+  'Lighting': 'MET',
+  'Audio': 'MET',
+  'Truss, Stage & Rigging': 'MET',
+  'Fabrication & Signage': 'MET',
+  'Transport & Logistics': 'MET',
+  'Furniture & Decor': 'MET',
+  'Special Effects': 'MET',
+  'Other Equipment': 'MET',
+  // MMARK — Marketing
+  'Camera & Grip': 'MMARK',
+  'Awards & Print Collateral': 'MMARK',
+  'Merchandise & Apparel': 'MMARK',
+  // M-TECH — AI, Software, Hardware & Innovation
+  'Internet & Network': 'M-TECH',
+  'LED & Display': 'M-TECH',
+  'IT & Computing': 'M-TECH',
+};
+
+/* ---------------------------------------------------------------------
  * Formatting helpers
  * ------------------------------------------------------------------- */
 

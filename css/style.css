@@ -444,6 +444,73 @@ code {
   border-color: var(--primary);
 }
 
+/* ---------------------------------------------------------------------
+ * Core service groups (MET / MMARK / M-TECH) -- collapsible.
+ * Header checkbox reveals a flat list of the core's sub-services.
+ * ------------------------------------------------------------------- */
+.core-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  margin-bottom: 1rem;
+  overflow: hidden;
+}
+
+.core-header {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 1rem 1.25rem;
+  min-height: 56px;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.core-header .core-toggle {
+  width: 1.4rem;
+  height: 1.4rem;
+  flex: 0 0 auto;
+  accent-color: var(--primary);
+  cursor: pointer;
+}
+
+.core-title {
+  flex: 1 1 auto;
+  font-size: 1.05rem;
+  color: var(--text);
+  line-height: 1.25;
+}
+
+.core-count {
+  flex: 0 0 auto;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--primary-dark);
+  background: color-mix(in srgb, var(--primary) 12%, var(--surface));
+  border: 1px solid color-mix(in srgb, var(--primary) 25%, transparent);
+  padding: 0.25rem 0.5rem;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.core-desc {
+  margin: -0.25rem 1.25rem 0.5rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+/* Open state: tint the header so the active core stands out. */
+.core-card.core-open .core-header {
+  background: color-mix(in srgb, var(--primary) 6%, var(--surface));
+  border-bottom: 1px solid var(--border);
+}
+
+/* Collapsible body: flat service list (also has .service-list spacing). */
+.core-body {
+  padding: 0.75rem 1.25rem 1.25rem;
+}
+
 .loading-msg {
   text-align: center;
   color: var(--muted);

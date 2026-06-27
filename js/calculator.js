@@ -158,12 +158,13 @@
     return r > 0 ? r : DEFAULT_USD_PHP;
   }
 
-  // Filter the (large) service catalog by the search box text. Hides
-  // non-matching service rows and any category whose rows all hid.
+  // Filter the (large) service catalog by the search box text. While a query
+  // is present, auto-expand cores that have matches; when cleared, restore
+  // each core to its checkbox (collapsed/expanded) state.
   function filterServices() {
     if (!els.servicesContainer) return;
     var q = els.serviceSearch ? els.serviceSearch.value.trim().toLowerCase() : '';
-    var cards = els.servicesContainer.querySelectorAll('.category-card');
+    var cards = els.servicesContainer.querySelectorAll('.core-card');
     Array.prototype.forEach.call(cards, function (card) {
       var rows = card.querySelectorAll('.service-row');
       var anyVisible = false;
@@ -174,8 +175,14 @@
         row.hidden = !match;
         if (match) anyVisible = true;
       });
-      // Hide the whole category card when nothing in it matches.
-      card.hidden = !anyVisible;
+      if (q) {
+        card.hidden = !anyVisible;
+        setCoreOpen(card, anyVisible); // expand to reveal matches
+      } else {
+        card.hidden = false;
+        var cb = card.querySelector('.core-toggle');
+        setCoreOpen(card, !!(cb && cb.checked)); // restore manual state
+      }
     });
   }
 
@@ -212,13 +219,31 @@
     });
   }
 
-  // Render categories + their services into #servicesContainer.
-  // Stores hidden base_rate / is_fabrication in serviceState (NOT the DOM).
+  // Resolve a category id to its core code (via CATEGORY_CORE by name).
+  function coreForCategoryId(catId) {
+    for (var i = 0; i < categories.length; i++) {
+      if (categories[i].id === catId) {
+        return CATEGORY_CORE[categories[i].name] || FALLBACK_CORE;
+      }
+    }
+    return FALLBACK_CORE;
+  }
+
+  // Show/hide a core's body (the flat service list).
+  function setCoreOpen(card, open) {
+    var body = card.querySelector('.core-body');
+    if (body) body.hidden = !open;
+    card.classList.toggle('core-open', open);
+  }
+
+  // Render services grouped under the 3 CORES. Each core is a collapsible
+  // checkbox; checking it reveals a FLAT list of all its sub-services.
+  // Hidden base_rate / is_fabrication live in serviceState (NOT the DOM).
   function renderServices() {
     if (!els.servicesContainer) return;
     els.servicesContainer.innerHTML = '';
 
-    if (!categories.length) {
+    if (!services.length) {
       var empty = document.createElement('p');
       empty.className = 'loading-msg';
       empty.textContent = 'No services are available right now.';
@@ -226,45 +251,65 @@
       return;
     }
 
-    categories.forEach(function (cat) {
-      var section = document.createElement('section');
-      section.className = 'category-card';
+    // Group services by core code.
+    var byCore = {};
+    services.forEach(function (svc) {
+      var code = coreForCategoryId(svc.category_id);
+      (byCore[code] = byCore[code] || []).push(svc);
+    });
 
-      // Category heading + description.
-      var h2 = document.createElement('h2');
-      h2.className = 'category-name';
-      h2.textContent = cat.name || 'Category';
-      section.appendChild(h2);
+    // Render one collapsible card per core, in CORES order.
+    CORES.forEach(function (core) {
+      var list = (byCore[core.code] || []).slice().sort(function (a, b) {
+        return String(a.name).toUpperCase() < String(b.name).toUpperCase() ? -1 : 1;
+      });
+      if (!list.length) return; // skip empty cores
 
-      if (cat.description) {
-        var desc = document.createElement('p');
-        desc.className = 'category-desc';
-        desc.textContent = cat.description;
-        section.appendChild(desc);
-      }
+      var card = document.createElement('section');
+      card.className = 'core-card';
+      card.setAttribute('data-core', core.code);
 
-      // Services belonging to this category (already sorted by sort_order).
-      var catServices = services.filter(function (s) {
-        return s.category_id === cat.id;
+      // Header = checkbox + core name + count (acts as the disclosure).
+      var header = document.createElement('label');
+      header.className = 'core-header';
+
+      var cb = document.createElement('input');
+      cb.type = 'checkbox';
+      cb.className = 'core-toggle';
+      cb.addEventListener('change', function () {
+        setCoreOpen(card, cb.checked);
       });
 
-      if (!catServices.length) {
-        var none = document.createElement('p');
-        none.className = 'muted';
-        none.textContent = 'No services in this category yet.';
-        section.appendChild(none);
-      } else {
-        var list = document.createElement('div');
-        list.className = 'service-list';
+      var title = document.createElement('span');
+      title.className = 'core-title';
+      title.textContent = core.name;
 
-        catServices.forEach(function (svc) {
-          list.appendChild(renderServiceRow(svc));
-        });
+      var count = document.createElement('span');
+      count.className = 'core-count';
+      count.textContent = list.length + ' services';
 
-        section.appendChild(list);
+      header.appendChild(cb);
+      header.appendChild(title);
+      header.appendChild(count);
+      card.appendChild(header);
+
+      if (core.description) {
+        var desc = document.createElement('p');
+        desc.className = 'core-desc';
+        desc.textContent = core.description;
+        card.appendChild(desc);
       }
 
-      els.servicesContainer.appendChild(section);
+      // Collapsible body: flat list of sub-services (hidden until checked).
+      var body = document.createElement('div');
+      body.className = 'core-body service-list';
+      body.hidden = true;
+      list.forEach(function (svc) {
+        body.appendChild(renderServiceRow(svc));
+      });
+      card.appendChild(body);
+
+      els.servicesContainer.appendChild(card);
     });
   }
 
