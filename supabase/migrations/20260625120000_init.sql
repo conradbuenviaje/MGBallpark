@@ -26,7 +26,8 @@ CREATE TABLE categories (
     id          SERIAL PRIMARY KEY,
     name        TEXT   NOT NULL,
     description TEXT,
-    sort_order  INT    NOT NULL DEFAULT 0
+    sort_order  INT    NOT NULL DEFAULT 0,
+    core        TEXT   NOT NULL DEFAULT 'MET'   -- core service: MET | MMARK | M-TECH
 );
 
 CREATE TABLE services (
@@ -69,6 +70,12 @@ INSERT INTO categories (name, description, sort_order) VALUES
   ('Merchandise & Apparel', 'Merch, apparel & giveaways', 16),
   ('IT & Computing', 'Computers, servers, capture & IT gear', 17),
   ('Other Equipment', 'Other rate-card items (uncategorized)', 18);
+
+-- Assign categories to core services (rest default to 'MET').
+UPDATE categories SET core = 'MMARK'
+  WHERE name IN ('Camera & Grip', 'Awards & Print Collateral', 'Merchandise & Apparel');
+UPDATE categories SET core = 'M-TECH'
+  WHERE name IN ('Internet & Network', 'LED & Display', 'IT & Computing');
 
 -- Manpower (Crew Day Rates) (24)
 INSERT INTO services (category_id, name, base_rate, unit, is_fabrication, sort_order)

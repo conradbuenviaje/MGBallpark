@@ -170,7 +170,7 @@
     try {
       const [catRes, svcRes] = await Promise.all([
         db.from('categories')
-          .select('id, name, description, sort_order')
+          .select('id, name, description, sort_order, core')
           .order('sort_order', { ascending: true })
           .order('id', { ascending: true }),
         db.from('services')
@@ -242,6 +242,7 @@
     head.appendChild(
       makeField('Description', makeInput('text', cat.description || '', 'cat-description'))
     );
+    head.appendChild(makeField('Core', makeCoreSelect(cat.core, 'cat-core')));
 
     const headActions = document.createElement('div');
     headActions.className = 'field field-action';
@@ -416,6 +417,8 @@
   async function addCategory() {
     const name = (newCategoryName.value || '').trim();
     const description = (newCategoryDescription.value || '').trim();
+    const coreEl = document.getElementById('newCategoryCore');
+    const core = coreEl ? coreEl.value : 'MET';
 
     if (!name) {
       showStatus('Category name is required.', 'error');
@@ -425,7 +428,7 @@
     try {
       const { error } = await db
         .from('categories')
-        .insert({ name: name, description: description });
+        .insert({ name: name, description: description, core: core });
 
       if (error) throw error;
 
@@ -450,6 +453,8 @@
   async function saveCategory(categoryId, card) {
     const name = (card.querySelector('.cat-name').value || '').trim();
     const description = (card.querySelector('.cat-description').value || '').trim();
+    const coreEl = card.querySelector('.cat-core');
+    const core = coreEl ? coreEl.value : 'MET';
 
     if (!name) {
       showStatus('Category name is required.', 'error');
@@ -459,7 +464,7 @@
     try {
       const { error } = await db
         .from('categories')
-        .update({ name: name, description: description })
+        .update({ name: name, description: description, core: core })
         .eq('id', categoryId);
 
       if (error) throw error;
@@ -643,6 +648,21 @@
     input.className = 'text-input ' + className;
     if (value !== null && value !== undefined) input.value = value;
     return input;
+  }
+
+  /** Create a core <select> (MET / MMARK / M-TECH) from CORES config. */
+  function makeCoreSelect(current, className) {
+    const sel = document.createElement('select');
+    sel.className = 'text-input ' + className;
+    const cores = (typeof CORES !== 'undefined' && CORES) ? CORES : [{ code: 'MET' }];
+    cores.forEach(function (core) {
+      const o = document.createElement('option');
+      o.value = core.code;
+      o.textContent = core.code;
+      if ((current || 'MET') === core.code) o.selected = true;
+      sel.appendChild(o);
+    });
+    return sel;
   }
 
   /** Create a button element. */

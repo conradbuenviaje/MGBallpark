@@ -1066,9 +1066,9 @@ code {
     grid-template-columns: 1fr 1fr 1fr auto;
   }
 
-  /* Add-category: name / description with the action column hugging right. */
+  /* Add-category: name / description / core with action hugging right. */
   #addCategoryForm .field-row {
-    grid-template-columns: 1fr 1fr auto;
+    grid-template-columns: 1fr 1fr auto auto;
   }
 
   /* Action columns size to content, not stretched. */
@@ -1080,9 +1080,9 @@ code {
     flex: 0 0 auto;
   }
 
-  /* Editable category header: name / description / actions. */
+  /* Editable category header: name / description / core / actions. */
   .category-edit {
-    grid-template-columns: 1fr 1fr auto;
+    grid-template-columns: 1.4fr 1.4fr auto auto;
   }
 
   /* Editable service rows: name | rate | unit | fab | actions. */

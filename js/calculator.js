@@ -219,11 +219,12 @@
     });
   }
 
-  // Resolve a category id to its core code (via CATEGORY_CORE by name).
+  // Resolve a category id to its core code. Prefer the DB `core` column
+  // (admin-managed); fall back to the config map, then FALLBACK_CORE.
   function coreForCategoryId(catId) {
     for (var i = 0; i < categories.length; i++) {
       if (categories[i].id === catId) {
-        return CATEGORY_CORE[categories[i].name] || FALLBACK_CORE;
+        return categories[i].core || CATEGORY_CORE[categories[i].name] || FALLBACK_CORE;
       }
     }
     return FALLBACK_CORE;
@@ -600,7 +601,7 @@
     // Categories, ordered by sort_order.
     var catRes = await db
       .from('categories')
-      .select('id, name, description, sort_order')
+      .select('id, name, description, sort_order, core')
       .order('sort_order', { ascending: true });
     if (catRes.error) throw catRes.error;
     categories = catRes.data || [];
