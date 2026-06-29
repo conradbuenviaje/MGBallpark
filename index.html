@@ -3,15 +3,44 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Service Package Calculator</title>
+  <title>Ballpark Calculator · Mineski Global PH</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo+Black&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
   <script src="js/theme.js"></script>
 </head>
 <body>
-  <main class="container">
-    <div class="topbar">
-      <button class="theme-toggle" type="button" aria-label="Toggle dark mode">🌙</button>
+  <!-- ===================== MINESKI BRAND HEADER ==================== -->
+  <header class="mnsk-header">
+    <div class="mnsk-ticker" aria-hidden="true">
+      <div class="mnsk-ticker-track">
+        <span>EST. 2004 ★</span><span>22 YRS IN GAMING ★</span><span>6 OFFICES · SEA ★</span><span>400+ IN-HOUSE EXPERTS ★</span><span>200M+ GAMERS REACHED ★</span><span>70+ AAA EVENTS ★</span><span>MNSK ⟶ GLOBAL ⟶ PH ★</span><span>EST. 2004 ★</span><span>22 YRS IN GAMING ★</span><span>6 OFFICES · SEA ★</span><span>400+ IN-HOUSE EXPERTS ★</span><span>200M+ GAMERS REACHED ★</span><span>70+ AAA EVENTS ★</span><span>MNSK ⟶ GLOBAL ⟶ PH ★</span>
+      </div>
     </div>
+    <nav class="mnsk-nav">
+      <div class="mnsk-nav-inner">
+        <a class="mnsk-brand" href="https://conradbuenviaje.github.io/mineskiph/">
+          <img src="https://conradbuenviaje.github.io/mineskiph/assets/mineski/mineski-logo.svg" alt="Mineski" />
+          <span class="mnsk-brand-tag">Mineski / Global / PH</span>
+        </a>
+        <div class="mnsk-nav-links">
+          <a href="https://conradbuenviaje.github.io/mineskiph/#who">Who</a>
+          <a href="https://conradbuenviaje.github.io/mineskiph/#work">Work</a>
+          <a href="https://conradbuenviaje.github.io/mineskiph/#solutions">Solutions</a>
+          <a href="https://conradbuenviaje.github.io/mineskiph/#network">Network</a>
+          <a href="https://conradbuenviaje.github.io/mineskiph/#contact">Contact</a>
+        </div>
+        <div class="mnsk-nav-right">
+          <span class="mnsk-tool-chip">● Ballpark Calculator</span>
+          <button class="theme-toggle" type="button" aria-label="Toggle dark mode">🌙</button>
+          <a class="mnsk-cta" href="https://conradbuenviaje.github.io/mineskiph/#contact">Start a project →</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container">
     <!-- ============================ HEADER ============================ -->
     <header class="page-header">
       <h1>📋 Service Package Calculator</h1>
@@ -224,10 +253,31 @@
     <div id="errorBanner" class="error-banner" role="alert" hidden></div>
 
     <!-- ============================ FOOTER =========================== -->
-    <footer class="page-footer">
-      <a href="admin.html" class="admin-link">Admin</a>
-    </footer>
   </main>
+
+  <!-- ===================== MINESKI BRAND FOOTER ==================== -->
+  <footer class="mnsk-footer">
+    <div class="mnsk-footer-inner">
+      <div>
+        <a class="mnsk-brand" href="https://conradbuenviaje.github.io/mineskiph/">
+          <img src="https://conradbuenviaje.github.io/mineskiph/assets/mineski/mineski-logo.svg" alt="Mineski" />
+        </a>
+        <div class="mnsk-foot-brand" style="margin-top:.5rem">Mineski / Global</div>
+        <div style="margin-top:.4rem">Manila · Jakarta · KL · SG · Bangkok · HCMC</div>
+        <div style="margin-top:.7rem"><a href="https://conradbuenviaje.github.io/mineskiph/">← Back to mineski.ph</a></div>
+      </div>
+      <div>
+        <div style="color:#f3f3ee">Ballpark Calculator</div>
+        <p class="normal" style="margin-top:.5rem">Indicative cost estimates only — not a quotation. For a formal proposal, start a project.</p>
+        <div style="margin-top:.7rem"><a href="admin.html">Admin</a></div>
+      </div>
+      <div>
+        <div>FILE · MNSK-PH-001</div>
+        <div class="mnsk-foot-online" style="margin-top:.3rem">● SYSTEM ONLINE</div>
+        <p class="normal" style="margin-top:.7rem">© Mineski Global. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
 
   <!-- ===================== SCRIPTS (load order) ==================== -->
   <!-- 1) Supabase CDN  2) config.js  3) page script -->

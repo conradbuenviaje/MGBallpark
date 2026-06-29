@@ -20,57 +20,64 @@
 /* ---------------------------------------------------------------------
  * Design tokens (CSS CONTRACT)
  * ------------------------------------------------------------------- */
-:root {
-  /* Brand: confident indigo/violet primary with strong contrast. */
-  --primary: #4f46e5;        /* main brand action color            */
-  --primary-dark: #3730a3;   /* hover / active / emphasis           */
-  --accent: #0d9488;         /* teal accent for secondary actions   */
-
-  /* Surfaces & text */
-  --bg: #f4f5fb;             /* page background (soft tint)         */
-  --surface: #ffffff;        /* cards / panels                      */
-  --text: #1e2433;           /* primary text (near-black, warm)     */
-  --muted: #6b7280;          /* secondary / helper text             */
-  --border: #e2e5ee;         /* hairline borders & dividers         */
-
-  /* Feedback */
-  --danger: #dc2626;         /* destructive (delete) actions        */
-  --warning-bg: #fef9c3;     /* yellow info notice background       */
-  --warning-border: #fde047; /* yellow info notice border           */
-
-  /* Shape & depth */
-  --radius: 12px;            /* default corner radius               */
-  --shadow: 0 1px 2px rgba(16, 24, 40, 0.04),
-            0 8px 24px rgba(16, 24, 40, 0.08);
-
-  /* Internal spacing scale (not part of the contract). */
-  --space: 1rem;
-  --maxw: 880px;
-}
-
 /* ---------------------------------------------------------------------
- * Dark theme — token overrides (toggled via data-theme="dark" on <html>).
- * Everything else uses var(...) so it adapts automatically.
+ * Mineski Global brand palette. Dark is the default/brand look; a "paper"
+ * light variant is available via data-theme="light". Accent = signal yellow,
+ * secondary glow = teal. (Mirrors conradbuenviaje.github.io/mineskiph)
  * ------------------------------------------------------------------- */
+:root,
 :root[data-theme="dark"] {
-  --primary: #818cf8;
-  --primary-dark: #a5b4fc;
-  --accent: #2dd4bf;
-  --bg: #0f1117;
-  --surface: #181b24;
-  --text: #e6e8ee;
-  --muted: #9aa3b2;
-  --border: #2a2f3a;
-  --danger: #f87171;
-  --warning-bg: #3b3000;
-  --warning-border: #6b5800;
-  --shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 8px 24px rgba(0, 0, 0, 0.5);
+  --primary: oklch(0.85 0.22 90);        /* signal yellow accent     */
+  --primary-dark: oklch(0.90 0.20 95);   /* brighter yellow (hover)  */
+  --on-primary: oklch(0.13 0 0);         /* dark text on yellow      */
+  --accent: oklch(0.92 0.16 175);        /* teal "glow"              */
+
+  --bg: oklch(0.13 0 0);                 /* near-black background    */
+  --surface: oklch(0.16 0 0);            /* cards / panels           */
+  --text: oklch(0.96 0.01 90);           /* off-white                */
+  --muted: oklch(0.65 0.01 90);          /* secondary text           */
+  --border: oklch(0.30 0 0);             /* hairline "line"          */
+
+  --danger: oklch(0.70 0.19 25);
+  --warning-bg: oklch(0.30 0.06 95);
+  --warning-border: oklch(0.45 0.11 95);
+
+  --radius: 4px;                         /* sharp, editorial         */
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 10px 30px rgba(0, 0, 0, 0.5);
+
+  --space: 1rem;
+  --maxw: 1100px;
 }
 
-/* Hard-coded amber text needs a lighter tone on dark surfaces. */
+/* Paper / light variant. */
+:root[data-theme="light"] {
+  --primary: oklch(0.80 0.20 90);
+  --primary-dark: oklch(0.62 0.16 90);
+  --on-primary: oklch(0.13 0 0);
+  --accent: oklch(0.62 0.12 175);
+
+  --bg: oklch(0.95 0.015 90);
+  --surface: oklch(0.99 0.005 90);
+  --text: oklch(0.18 0 0);
+  --muted: oklch(0.45 0.01 90);
+  --border: oklch(0.85 0.012 90);
+
+  --danger: #dc2626;
+  --warning-bg: #fef9c3;
+  --warning-border: #fde047;
+  --shadow: 0 1px 2px rgba(16, 24, 40, 0.05), 0 8px 24px rgba(16, 24, 40, 0.08);
+}
+
+/* Amber notice text needs a lighter tone on dark surfaces. */
 :root[data-theme="dark"] .notice-warning,
-:root[data-theme="dark"] .venue-note {
+:root[data-theme="dark"] .venue-note,
+:root .notice-warning,
+:root .venue-note {
   color: #fde68a;
+}
+:root[data-theme="light"] .notice-warning,
+:root[data-theme="light"] .venue-note {
+  color: #713f12;
 }
 
 /* Theme toggle button + its top bar. */
@@ -103,6 +110,129 @@
 }
 
 /* ---------------------------------------------------------------------
+ * Mineski brand chrome (header ticker + nav + footer). Always dark,
+ * independent of the page theme, so it matches mineskiph.
+ * ------------------------------------------------------------------- */
+.mnsk-ticker {
+  overflow: hidden;
+  background: var(--primary);
+  color: #141414;
+  border-bottom: 1px solid #000;
+}
+.mnsk-ticker-track {
+  display: inline-block;
+  white-space: nowrap;
+  padding: 0.45rem 0;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  animation: mnsk-marquee 40s linear infinite;
+}
+.mnsk-ticker-track span { padding: 0 1.4rem; }
+@keyframes mnsk-marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) { .mnsk-ticker-track { animation: none; } }
+
+.mnsk-nav {
+  background: #0a0a0a;
+  border-bottom: 1px solid #242424;
+}
+.mnsk-nav-inner {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.7rem 1rem;
+}
+.mnsk-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: #f3f3ee;
+  text-decoration: none;
+}
+.mnsk-brand img { height: 24px; width: auto; filter: brightness(0) invert(1); }
+.mnsk-brand-tag {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.28em;
+  color: #cfcfca;
+}
+.mnsk-nav-links {
+  display: none;
+  align-items: center;
+  gap: 1.4rem;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.26em;
+}
+.mnsk-nav-links a { color: #cfcfca; text-decoration: none; }
+.mnsk-nav-links a:hover { color: var(--primary); }
+.mnsk-nav-right { display: inline-flex; align-items: center; gap: 0.6rem; }
+.mnsk-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  border: 1px solid var(--primary);
+  background: var(--primary);
+  color: #141414;
+  padding: 0.45rem 0.8rem;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.24em;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.mnsk-cta:hover { background: transparent; color: var(--primary); }
+.mnsk-tool-chip {
+  display: none;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--primary);
+  border: 1px solid var(--primary);
+  padding: 0.2rem 0.5rem;
+}
+@media (min-width: 860px) {
+  .mnsk-nav-links { display: inline-flex; }
+  .mnsk-tool-chip { display: inline-block; }
+}
+/* The brand chrome's own theme toggle sits on the dark bar. */
+.mnsk-nav-right .theme-toggle {
+  width: 34px; height: 34px; min-height: 34px;
+  background: transparent; color: #f3f3ee; border-color: #3a3a3a;
+}
+
+.mnsk-footer {
+  background: #0a0a0a;
+  color: #9a9a95;
+  border-top: 1px solid #242424;
+  margin-top: 2.5rem;
+}
+.mnsk-footer-inner {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.24em;
+}
+.mnsk-footer a { color: #cfcfca; text-decoration: none; }
+.mnsk-footer a:hover { color: var(--primary); }
+.mnsk-footer .mnsk-foot-brand { font-family: "Anton", system-ui, sans-serif; font-size: 1.25rem; letter-spacing: 0.02em; color: #f3f3ee; text-transform: uppercase; }
+.mnsk-footer .normal { text-transform: none; letter-spacing: normal; line-height: 1.5; }
+.mnsk-footer .mnsk-foot-online { color: var(--primary); }
+@media (min-width: 768px) { .mnsk-footer-inner { grid-template-columns: repeat(3, 1fr); } }
+
+/* ---------------------------------------------------------------------
  * Reset / base
  * ------------------------------------------------------------------- */
 *,
@@ -128,12 +258,34 @@ body {
   padding: 0;
   background: var(--bg);
   color: var(--text);
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica,
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica,
     Arial, "Apple Color Emoji", "Segoe UI Emoji", sans-serif;
   font-size: 1rem;          /* 16px base */
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
   transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Brand display + mono families (Mineski). */
+.page-header h1,
+.results-title,
+.budget-range,
+.mnsk-brand-word {
+  font-family: "Anton", "Archivo Black", system-ui, sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+
+.mono,
+.core-count,
+.subcat-count,
+.mnsk-ticker,
+.mnsk-nav-links,
+.mnsk-cta,
+.fab-badge-row,
+.budget-range-label {
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
 h1,
@@ -356,7 +508,7 @@ code {
 
 /* Highlighted state when fabrication is active (badge-fab). */
 .badge.badge-fab {
-  color: #fff;
+  color: var(--on-primary);
   background: var(--accent);
   border-color: var(--accent);
 }
@@ -424,7 +576,7 @@ code {
 
 .btn-primary {
   background: var(--primary);
-  color: #fff;
+  color: var(--on-primary);
   border-color: var(--primary);
 }
 
@@ -436,7 +588,7 @@ code {
 
 .btn-accent {
   background: var(--accent);
-  color: #fff;
+  color: var(--on-primary);
   border-color: var(--accent);
 }
 
@@ -730,7 +882,7 @@ code {
   flex: 0 0 auto;
   font-size: 0.7rem;
   font-weight: 700;
-  color: #fff;
+  color: var(--on-primary);
   background: var(--accent);
   padding: 0.2rem 0.5rem;
   border-radius: 999px;

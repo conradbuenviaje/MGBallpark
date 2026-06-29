@@ -10,7 +10,8 @@
   var KEY = 'mgb-theme';
 
   function stored() {
-    try { return localStorage.getItem(KEY) || 'auto'; } catch (e) { return 'auto'; }
+    // Brand default is dark (Mineski). Users can still toggle to light.
+    try { return localStorage.getItem(KEY) || 'dark'; } catch (e) { return 'dark'; }
   }
   function systemDark() {
     return !!(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
