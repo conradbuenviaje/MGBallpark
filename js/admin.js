@@ -826,7 +826,12 @@
 
     if (!name) { showStatus('Package name is required.', 'error'); return; }
     if (isNaN(dvalRaw) || dvalRaw < 0) { showStatus('Enter a valid discount value.', 'error'); return; }
-    if (!editingPackageItems.length) { showStatus('Add at least one service to the package.', 'error'); return; }
+    // Percentage packages need services (to compute the discount); fixed-price
+    // packages (project-type tiers) may have none — the price is set directly.
+    if (dtype === 'percentage' && !editingPackageItems.length) {
+      showStatus('Percentage packages need at least one service (to compute the discount).', 'error');
+      return;
+    }
     // percentage stored as fraction (10 -> 0.10); fixed stored as PHP amount.
     const dvalue = dtype === 'percentage' ? dvalRaw / 100 : dvalRaw;
 
