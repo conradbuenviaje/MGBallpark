@@ -63,7 +63,7 @@
     <!-- ===== Categories & Services ===== -->
     <section class="card" aria-labelledby="categoriesHeading">
       <div class="card-head">
-        <h2 id="categoriesHeading">Categories &amp; Services</h2>
+        <h2 id="categoriesHeading">Categories</h2>
         <button type="button" id="addCategoryBtn" class="btn btn-primary">
           + Add Category
         </button>
@@ -101,6 +101,64 @@
 
       <!-- admin.js renders the list of categories (each with its services) here -->
       <div id="categoriesContainer" class="categories-container">
+        <p class="muted">Loading&hellip;</p>
+      </div>
+    </section>
+
+    <!-- ===== Services (data table: filter / sort / bulk / edit) ===== -->
+    <section class="card" aria-labelledby="servicesHeading">
+      <div class="card-head">
+        <h2 id="servicesHeading">Services</h2>
+        <span id="svcResultCount" class="muted"></span>
+      </div>
+
+      <!-- Toolbar: search + filters + sort -->
+      <div class="svc-toolbar">
+        <input type="search" id="svcSearch" class="text-input" placeholder="🔎 Search services…" aria-label="Search services" />
+        <select id="svcCoreFilter" class="text-input" aria-label="Filter by core">
+          <option value="">All cores</option>
+          <option value="MET">MET</option>
+          <option value="MMARK">MMARK</option>
+          <option value="M-TECH">M-TECH</option>
+        </select>
+        <select id="svcCategoryFilter" class="text-input" aria-label="Filter by category">
+          <option value="">All categories</option>
+        </select>
+        <select id="svcStatusFilter" class="text-input" aria-label="Filter by status">
+          <option value="">All statuses</option>
+          <option value="active">Active only</option>
+          <option value="inactive">Disabled only</option>
+        </select>
+        <select id="svcSort" class="text-input" aria-label="Sort">
+          <option value="name-asc">Name A–Z</option>
+          <option value="name-desc">Name Z–A</option>
+          <option value="rate-asc">Rate low→high</option>
+          <option value="rate-desc">Rate high→low</option>
+        </select>
+      </div>
+
+      <!-- Bulk action bar (shown when rows are selected) -->
+      <div id="svcBulkBar" class="svc-bulk-bar" hidden>
+        <span id="svcBulkCount" class="svc-bulk-count">0 selected</span>
+        <button type="button" id="svcBulkEnable" class="btn btn-accent btn-sm">Enable</button>
+        <button type="button" id="svcBulkDisable" class="btn btn-ghost btn-sm">Disable</button>
+        <button type="button" id="svcBulkDelete" class="btn btn-danger btn-sm">Delete</button>
+        <button type="button" id="svcBulkClear" class="btn btn-ghost btn-sm">Clear</button>
+      </div>
+
+      <!-- Add service -->
+      <form id="addServiceForm" class="inline-form">
+        <div class="svc-add-row">
+          <select id="newServiceCategory" class="text-input" aria-label="Category"></select>
+          <input type="text" id="newServiceName" class="text-input" placeholder="Service name" />
+          <input type="number" id="newServiceRate" class="text-input" min="0" step="0.01" inputmode="decimal" placeholder="Base rate" />
+          <input type="text" id="newServiceUnit" class="text-input" placeholder="Unit (e.g. per day)" />
+          <label class="svc-add-fab"><input type="checkbox" id="newServiceFab" /> Fab</label>
+          <button type="submit" class="btn btn-accent">+ Add Service</button>
+        </div>
+      </form>
+
+      <div id="servicesTableWrap" class="svc-table-wrap">
         <p class="muted">Loading&hellip;</p>
       </div>
     </section>

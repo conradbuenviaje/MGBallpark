@@ -37,6 +37,7 @@ CREATE TABLE services (
     base_rate      DECIMAL(10,2) NOT NULL DEFAULT 0,
     unit           TEXT,
     is_fabrication BOOLEAN NOT NULL DEFAULT false,
+    is_active      BOOLEAN NOT NULL DEFAULT true,   -- disabled services are hidden on the client
     sort_order     INT     NOT NULL DEFAULT 0
 );
 

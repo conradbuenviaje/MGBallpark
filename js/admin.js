@@ -42,6 +42,7 @@
   let allServices = [];
   let packagesData = [];
   let editingPackageItems = []; // [{service_id, quantity, name}] for the open form
+  const selectedServiceIds = new Set(); // bulk selection in the services table
 
   /* Auto-hide timer handle for the status bar. */
   let statusTimer = null;
@@ -180,7 +181,7 @@
           .order('sort_order', { ascending: true })
           .order('id', { ascending: true }),
         db.from('services')
-          .select('id, category_id, name, base_rate, unit, is_fabrication, sort_order')
+          .select('*')
           .order('sort_order', { ascending: true })
           .order('id', { ascending: true }),
       ]);
@@ -191,6 +192,7 @@
       allCategories = catRes.data || [];
       allServices = svcRes.data || [];
       renderCategories(allCategories, allServices);
+      renderServicesTable();
     } catch (err) {
       console.error('loadCategoriesAndServices failed:', err);
       categoriesContainer.innerHTML =
@@ -269,152 +271,221 @@
     headActions.appendChild(delCatBtn);
     head.appendChild(headActions);
     card.appendChild(head);
+    return card; // services are managed in the dedicated Services table below
+  }
 
-    /* ---- Services list ---- */
-    const svcWrap = document.createElement('div');
-    svcWrap.className = 'services-list';
+  /* ===================================================================
+   * Services data table (filter / sort / bulk / inline edit)
+   * ================================================================= */
 
-    const svcTitle = document.createElement('h3');
-    svcTitle.className = 'services-title';
-    svcTitle.textContent = 'Services';
-    svcWrap.appendChild(svcTitle);
+  function categoryName(id) {
+    for (var i = 0; i < allCategories.length; i++) {
+      if (allCategories[i].id === id) return allCategories[i].name;
+    }
+    return '';
+  }
 
-    if (svcList.length) {
-      svcList.forEach(function (svc) {
-        svcWrap.appendChild(buildServiceRow(svc));
+  // Fill the category filter (once) and the add-service category select.
+  function populateServiceFilterDropdowns() {
+    var catFilter = document.getElementById('svcCategoryFilter');
+    var addCat = document.getElementById('newServiceCategory');
+    if (catFilter && catFilter.dataset.filled !== '1') {
+      var opts = '<option value="">All categories</option>';
+      allCategories.forEach(function (c) {
+        opts += '<option value="' + c.id + '">' + escapeHtml(c.name) + '</option>';
       });
-    } else {
-      const empty = document.createElement('p');
-      empty.className = 'muted';
-      empty.textContent = 'No services in this category yet.';
-      svcWrap.appendChild(empty);
+      catFilter.innerHTML = opts;
+      catFilter.dataset.filled = '1';
+    }
+    if (addCat) {
+      var a = '';
+      allCategories.forEach(function (c) {
+        a += '<option value="' + c.id + '">' + escapeHtml(c.name) + ' (' + (c.core || 'MET') + ')</option>';
+      });
+      addCat.innerHTML = a;
+    }
+  }
+
+  function getFilteredServices() {
+    var q = ((document.getElementById('svcSearch') || {}).value || '').trim().toLowerCase();
+    var core = (document.getElementById('svcCoreFilter') || {}).value || '';
+    var cat = (document.getElementById('svcCategoryFilter') || {}).value || '';
+    var status = (document.getElementById('svcStatusFilter') || {}).value || '';
+    var sort = (document.getElementById('svcSort') || {}).value || 'name-asc';
+
+    var list = allServices.filter(function (s) {
+      if (q && String(s.name).toLowerCase().indexOf(q) === -1) return false;
+      if (core && coreOfService(s) !== core) return false;
+      if (cat && String(s.category_id) !== String(cat)) return false;
+      if (status === 'active' && s.is_active === false) return false;
+      if (status === 'inactive' && s.is_active !== false) return false;
+      return true;
+    });
+    list.sort(function (a, b) {
+      var an = String(a.name).toUpperCase(), bn = String(b.name).toUpperCase();
+      switch (sort) {
+        case 'name-desc': return an < bn ? 1 : (an > bn ? -1 : 0);
+        case 'rate-asc': return (Number(a.base_rate) || 0) - (Number(b.base_rate) || 0);
+        case 'rate-desc': return (Number(b.base_rate) || 0) - (Number(a.base_rate) || 0);
+        default: return an < bn ? -1 : (an > bn ? 1 : 0);
+      }
+    });
+    return list;
+  }
+
+  function renderServicesTable() {
+    var wrap = document.getElementById('servicesTableWrap');
+    if (!wrap) return;
+    populateServiceFilterDropdowns();
+
+    // Drop selections for services that no longer exist.
+    var liveIds = {};
+    allServices.forEach(function (s) { liveIds[s.id] = true; });
+    Array.from(selectedServiceIds).forEach(function (id) { if (!liveIds[id]) selectedServiceIds.delete(id); });
+
+    var list = getFilteredServices();
+    var countEl = document.getElementById('svcResultCount');
+    if (countEl) countEl.textContent = list.length + ' service' + (list.length === 1 ? '' : 's');
+
+    if (!list.length) {
+      wrap.innerHTML = '<p class="muted">No services match the filters.</p>';
+      updateBulkBar();
+      return;
     }
 
-    card.appendChild(svcWrap);
+    var table = document.createElement('table');
+    table.className = 'svc-table';
+    table.innerHTML =
+      '<thead><tr>' +
+      '<th class="col-check"><input type="checkbox" id="svcSelectAll" aria-label="Select all shown"></th>' +
+      '<th>Name</th><th>Core</th><th>Category</th><th class="num">Base Rate</th>' +
+      '<th>Unit</th><th class="col-c">Fab</th><th class="col-c">Active</th><th>Actions</th>' +
+      '</tr></thead>';
+    var tbody = document.createElement('tbody');
+    list.forEach(function (svc) { tbody.appendChild(buildServiceTableRow(svc)); });
+    table.appendChild(tbody);
+    wrap.innerHTML = '';
+    wrap.appendChild(table);
 
-    /* ---- Add-service form for this category ---- */
-    card.appendChild(buildAddServiceForm(cat.id));
-
-    return card;
+    var selAll = document.getElementById('svcSelectAll');
+    if (selAll) {
+      selAll.addEventListener('change', function () {
+        Array.prototype.forEach.call(tbody.querySelectorAll('.svc-select'), function (c) {
+          c.checked = selAll.checked;
+          var id = parseInt(c.getAttribute('data-id'), 10);
+          if (selAll.checked) selectedServiceIds.add(id); else selectedServiceIds.delete(id);
+        });
+        updateBulkBar();
+      });
+    }
+    updateBulkBar();
   }
 
-  /* ===================================================================
-   * Service row builder (editable)
-   * ================================================================= */
+  function buildServiceTableRow(svc) {
+    var tr = document.createElement('tr');
+    tr.dataset.serviceId = svc.id;
+    if (svc.is_active === false) tr.classList.add('svc-inactive');
 
-  /**
-   * Build one editable service row (name, base rate, unit, fabrication
-   * checkbox + save/delete).
-   * @param {Object} svc
-   * @returns {HTMLElement}
-   */
-  function buildServiceRow(svc) {
-    const row = document.createElement('div');
-    row.className = 'service-row field-row';
-    row.dataset.serviceId = svc.id;
-
-    row.appendChild(makeField('Name', makeInput('text', svc.name || '', 'svc-name')));
-
-    const rateInput = makeInput('number', svc.base_rate != null ? svc.base_rate : '', 'svc-base-rate');
-    rateInput.min = '0';
-    rateInput.step = '0.01';
-    rateInput.inputMode = 'decimal';
-    row.appendChild(makeField('Base Rate (cost)', rateInput));
-
-    row.appendChild(makeField('Unit', makeInput('text', svc.unit || '', 'svc-unit')));
-
-    /* Fabrication checkbox in its own labelled field. */
-    const fabField = document.createElement('div');
-    fabField.className = 'field field-check';
-    const fabLabel = document.createElement('label');
-    const fabInput = document.createElement('input');
-    fabInput.type = 'checkbox';
-    fabInput.className = 'svc-is-fabrication';
-    fabInput.checked = !!svc.is_fabrication;
-    fabLabel.appendChild(fabInput);
-    fabLabel.appendChild(document.createTextNode(' Is Fabrication?'));
-    fabField.appendChild(fabLabel);
-    row.appendChild(fabField);
-
-    /* Save / Delete actions. */
-    const actions = document.createElement('div');
-    actions.className = 'field field-action';
-
-    const saveBtn = makeButton('Save', 'btn btn-primary');
-    saveBtn.addEventListener('click', function () {
-      saveService(svc.id, row);
+    var tdC = document.createElement('td'); tdC.className = 'col-check';
+    var chk = document.createElement('input');
+    chk.type = 'checkbox'; chk.className = 'svc-select'; chk.setAttribute('data-id', svc.id);
+    chk.checked = selectedServiceIds.has(svc.id);
+    chk.addEventListener('change', function () {
+      if (chk.checked) selectedServiceIds.add(svc.id); else selectedServiceIds.delete(svc.id);
+      updateBulkBar();
     });
+    tdC.appendChild(chk); tr.appendChild(tdC);
 
-    const delBtn = makeButton('Delete', 'btn btn-danger');
-    delBtn.addEventListener('click', function () {
-      deleteService(svc.id, svc.name);
-    });
+    var tdN = document.createElement('td');
+    tdN.appendChild(makeInput('text', svc.name || '', 'svc-name')); tr.appendChild(tdN);
 
-    actions.appendChild(saveBtn);
-    actions.appendChild(delBtn);
-    row.appendChild(actions);
+    var tdCore = document.createElement('td'); tdCore.textContent = coreOfService(svc); tr.appendChild(tdCore);
 
-    return row;
+    var tdCat = document.createElement('td'); tdCat.className = 'muted';
+    tdCat.textContent = categoryName(svc.category_id); tr.appendChild(tdCat);
+
+    var tdR = document.createElement('td'); tdR.className = 'num';
+    var rIn = makeInput('number', svc.base_rate != null ? svc.base_rate : '', 'svc-base-rate');
+    rIn.min = '0'; rIn.step = '0.01'; rIn.inputMode = 'decimal';
+    tdR.appendChild(rIn); tr.appendChild(tdR);
+
+    var tdU = document.createElement('td');
+    tdU.appendChild(makeInput('text', svc.unit || '', 'svc-unit')); tr.appendChild(tdU);
+
+    var tdF = document.createElement('td'); tdF.className = 'col-c';
+    var fIn = document.createElement('input'); fIn.type = 'checkbox'; fIn.className = 'svc-is-fabrication';
+    fIn.checked = !!svc.is_fabrication; tdF.appendChild(fIn); tr.appendChild(tdF);
+
+    var tdA = document.createElement('td'); tdA.className = 'col-c';
+    var aIn = document.createElement('input'); aIn.type = 'checkbox'; aIn.className = 'svc-active';
+    aIn.checked = svc.is_active !== false; tdA.appendChild(aIn); tr.appendChild(tdA);
+
+    var tdAct = document.createElement('td');
+    var save = makeButton('Save', 'btn btn-primary btn-sm');
+    save.addEventListener('click', function () { saveService(svc.id, tr); });
+    var del = makeButton('Del', 'btn btn-danger btn-sm');
+    del.addEventListener('click', function () { deleteService(svc.id, svc.name); });
+    tdAct.appendChild(save); tdAct.appendChild(del); tr.appendChild(tdAct);
+
+    return tr;
   }
 
-  /* ===================================================================
-   * Add-service form builder
-   * ================================================================= */
+  function updateBulkBar() {
+    var bar = document.getElementById('svcBulkBar');
+    if (!bar) return;
+    var n = selectedServiceIds.size;
+    bar.hidden = n === 0;
+    var c = document.getElementById('svcBulkCount');
+    if (c) c.textContent = n + ' selected';
+  }
 
-  /**
-   * Build the "add a new service" form for a given category.
-   * @param {number} categoryId
-   * @returns {HTMLElement}
-   */
-  function buildAddServiceForm(categoryId) {
-    const form = document.createElement('form');
-    form.className = 'inline-form add-service-form';
+  async function bulkSetActive(active) {
+    if (!selectedServiceIds.size) return;
+    var ids = Array.from(selectedServiceIds);
+    try {
+      var r = await db.from('services').update({ is_active: active }).in('id', ids);
+      if (r.error) throw r.error;
+      showStatus((active ? 'Enabled ' : 'Disabled ') + ids.length + ' service(s).', 'success');
+      selectedServiceIds.clear();
+      await loadCategoriesAndServices();
+    } catch (err) { showStatus('Bulk update failed: ' + (err.message || err), 'error'); }
+  }
 
-    const row = document.createElement('div');
-    row.className = 'field-row';
+  async function bulkDeleteServices() {
+    if (!selectedServiceIds.size) return;
+    var ids = Array.from(selectedServiceIds);
+    if (!window.confirm('Delete ' + ids.length + ' selected service(s)? This cannot be undone.')) return;
+    try {
+      var r = await db.from('services').delete().in('id', ids);
+      if (r.error) throw r.error;
+      showStatus('Deleted ' + ids.length + ' service(s).', 'success');
+      selectedServiceIds.clear();
+      await loadCategoriesAndServices();
+    } catch (err) { showStatus('Bulk delete failed: ' + (err.message || err), 'error'); }
+  }
 
-    const nameInput = makeInput('text', '', 'new-svc-name');
-    nameInput.placeholder = 'Service name';
-    row.appendChild(makeField('Name', nameInput));
-
-    const rateInput = makeInput('number', '', 'new-svc-base-rate');
-    rateInput.min = '0';
-    rateInput.step = '0.01';
-    rateInput.inputMode = 'decimal';
-    rateInput.placeholder = '0.00';
-    row.appendChild(makeField('Base Rate (cost)', rateInput));
-
-    const unitInput = makeInput('text', '', 'new-svc-unit');
-    unitInput.placeholder = 'e.g. per day';
-    row.appendChild(makeField('Unit', unitInput));
-
-    const fabField = document.createElement('div');
-    fabField.className = 'field field-check';
-    const fabLabel = document.createElement('label');
-    const fabInput = document.createElement('input');
-    fabInput.type = 'checkbox';
-    fabInput.className = 'new-svc-is-fabrication';
-    fabLabel.appendChild(fabInput);
-    fabLabel.appendChild(document.createTextNode(' Is Fabrication?'));
-    fabField.appendChild(fabLabel);
-    fabField.classList.add('field-check');
-    row.appendChild(fabField);
-
-    const actions = document.createElement('div');
-    actions.className = 'field field-action';
-    const addBtn = makeButton('+ Add Service', 'btn btn-accent');
-    addBtn.type = 'submit';
-    actions.appendChild(addBtn);
-    row.appendChild(actions);
-
-    form.appendChild(row);
-
-    form.addEventListener('submit', function (evt) {
-      evt.preventDefault();
-      addService(categoryId, form);
-    });
-
-    return form;
+  async function addServiceFromForm() {
+    var catEl = document.getElementById('newServiceCategory');
+    var nameEl = document.getElementById('newServiceName');
+    var rateEl = document.getElementById('newServiceRate');
+    var unitEl = document.getElementById('newServiceUnit');
+    var fabEl = document.getElementById('newServiceFab');
+    var categoryId = catEl ? parseInt(catEl.value, 10) : NaN;
+    var name = (nameEl.value || '').trim();
+    var baseRate = parseFloat(rateEl.value);
+    if (!categoryId) { showStatus('Pick a category for the new service.', 'error'); return; }
+    if (!name) { showStatus('Service name is required.', 'error'); return; }
+    if (isNaN(baseRate) || baseRate < 0) { showStatus('Base rate must be a valid, non-negative number.', 'error'); return; }
+    try {
+      var r = await db.from('services').insert({
+        category_id: categoryId, name: name, base_rate: baseRate,
+        unit: (unitEl.value || '').trim(), is_fabrication: fabEl.checked, is_active: true,
+      });
+      if (r.error) throw r.error;
+      nameEl.value = ''; rateEl.value = ''; unitEl.value = ''; fabEl.checked = false;
+      showStatus('Service added.', 'success');
+      await loadCategoriesAndServices();
+    } catch (err) { showStatus('Could not add service: ' + (err.message || err), 'error'); }
   }
 
   /* ===================================================================
@@ -571,6 +642,8 @@
     const baseRateRaw = row.querySelector('.svc-base-rate').value;
     const unit = (row.querySelector('.svc-unit').value || '').trim();
     const isFab = row.querySelector('.svc-is-fabrication').checked;
+    const activeEl = row.querySelector('.svc-active');
+    const isActive = activeEl ? activeEl.checked : true;
 
     const baseRate = parseFloat(baseRateRaw);
 
@@ -591,6 +664,7 @@
           base_rate: baseRate,
           unit: unit,
           is_fabrication: isFab,
+          is_active: isActive,
         })
         .eq('id', serviceId);
 
@@ -1015,6 +1089,22 @@
       }
       return;
     }
+
+    // Services table: filters, sort, add, bulk.
+    ['svcSearch', 'svcCoreFilter', 'svcCategoryFilter', 'svcStatusFilter', 'svcSort'].forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el) el.addEventListener(id === 'svcSearch' ? 'input' : 'change', renderServicesTable);
+    });
+    const addServiceForm = document.getElementById('addServiceForm');
+    if (addServiceForm) addServiceForm.addEventListener('submit', function (e) { e.preventDefault(); addServiceFromForm(); });
+    const svcBulkEnable = document.getElementById('svcBulkEnable');
+    if (svcBulkEnable) svcBulkEnable.addEventListener('click', function () { bulkSetActive(true); });
+    const svcBulkDisable = document.getElementById('svcBulkDisable');
+    if (svcBulkDisable) svcBulkDisable.addEventListener('click', function () { bulkSetActive(false); });
+    const svcBulkDelete = document.getElementById('svcBulkDelete');
+    if (svcBulkDelete) svcBulkDelete.addEventListener('click', bulkDeleteServices);
+    const svcBulkClear = document.getElementById('svcBulkClear');
+    if (svcBulkClear) svcBulkClear.addEventListener('click', function () { selectedServiceIds.clear(); renderServicesTable(); });
 
     // Package controls.
     const addPackageBtn = document.getElementById('addPackageBtn');
