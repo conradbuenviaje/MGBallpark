@@ -111,6 +111,13 @@
   box-sizing: border-box;
 }
 
+/* The hidden attribute must always win, even over display:flex/grid classes
+   (e.g. .service-list, .summary-line). Without this, hidden+flex elements
+   stay visible. */
+[hidden] {
+  display: none !important;
+}
+
 html {
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
