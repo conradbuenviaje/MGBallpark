@@ -61,7 +61,7 @@
     els.nonVatToggle      = document.getElementById('nonVatToggle');
     els.fabricationToggle = document.getElementById('fabricationToggle');
     els.fabBadge          = document.getElementById('fabBadge');
-    els.logisticsRadios   = document.getElementById('logisticsRadios');
+    els.logisticsSelect   = document.getElementById('logisticsSelect');
     els.discountInput     = document.getElementById('discountInput');
     els.serviceSearch     = document.getElementById('serviceSearch');
     els.serviceSort       = document.getElementById('serviceSort');
@@ -134,10 +134,9 @@
   }
 
   // Read the currently selected logistics entry ({value, label}); defaults
-  // to the first LOGISTICS entry if nothing is checked.
+  // to the first LOGISTICS entry.
   function selectedLogistics() {
-    var checked = document.querySelector('input[name="logistics"]:checked');
-    var value = checked ? checked.value : (LOGISTICS[0] && LOGISTICS[0].value);
+    var value = els.logisticsSelect ? els.logisticsSelect.value : (LOGISTICS[0] && LOGISTICS[0].value);
     for (var i = 0; i < LOGISTICS.length; i++) {
       if (LOGISTICS[i].value === value) return LOGISTICS[i];
     }
@@ -291,22 +290,34 @@
     var q = els.serviceSearch ? els.serviceSearch.value.trim().toLowerCase() : '';
     var cards = els.servicesContainer.querySelectorAll('.core-card');
     Array.prototype.forEach.call(cards, function (card) {
-      var rows = card.querySelectorAll('.service-row');
-      var anyVisible = false;
-      Array.prototype.forEach.call(rows, function (row) {
-        var nameEl = row.querySelector('.service-name');
-        var name = nameEl ? nameEl.textContent.toLowerCase() : '';
-        var match = !q || name.indexOf(q) !== -1;
-        row.hidden = !match;
-        if (match) anyVisible = true;
+      var coreHasMatch = false;
+      var subs = card.querySelectorAll('.subcat');
+      Array.prototype.forEach.call(subs, function (sub) {
+        var rows = sub.querySelectorAll('.service-row');
+        var subMatch = false;
+        Array.prototype.forEach.call(rows, function (row) {
+          var nameEl = row.querySelector('.service-name');
+          var name = nameEl ? nameEl.textContent.toLowerCase() : '';
+          var m = !q || name.indexOf(q) !== -1;
+          row.hidden = !m;
+          if (m) subMatch = true;
+        });
+        if (q) {
+          sub.hidden = !subMatch;
+          setSubcatOpen(sub, subMatch);       // auto-expand matches
+          if (subMatch) coreHasMatch = true;
+        } else {
+          sub.hidden = false;
+          setSubcatOpen(sub, sub.dataset.userOpen === '1'); // restore manual state
+        }
       });
       if (q) {
-        card.hidden = !anyVisible;
-        setCoreOpen(card, anyVisible); // expand to reveal matches
+        card.hidden = !coreHasMatch;
+        setCoreOpen(card, coreHasMatch);
       } else {
         card.hidden = false;
         var cb = card.querySelector('.core-toggle');
-        setCoreOpen(card, !!(cb && cb.checked)); // restore manual state
+        setCoreOpen(card, !!(cb && cb.checked));
       }
     });
   }
@@ -334,32 +345,16 @@
    * Rendering
    * ------------------------------------------------------------------- */
 
-  // Render the logistics radio buttons from the LOGISTICS config.
-  // First entry (metro-manila) is checked by default.
+  // Populate the logistics dropdown from the LOGISTICS config.
   function renderLogistics() {
-    if (!els.logisticsRadios) return;
-    els.logisticsRadios.innerHTML = '';
-
+    if (!els.logisticsSelect) return;
+    els.logisticsSelect.innerHTML = '';
     LOGISTICS.forEach(function (opt, idx) {
-      var id = 'logistics-' + opt.value;
-
-      var label = document.createElement('label');
-      label.className = 'radio-label';
-      label.setAttribute('for', id);
-
-      var input = document.createElement('input');
-      input.type = 'radio';
-      input.name = 'logistics';
-      input.id = id;
-      input.value = opt.value;
-      if (idx === 0) input.checked = true; // metro-manila default
-
-      var span = document.createElement('span');
-      span.textContent = opt.label;
-
-      label.appendChild(input);
-      label.appendChild(span);
-      els.logisticsRadios.appendChild(label);
+      var o = document.createElement('option');
+      o.value = opt.value;
+      o.textContent = opt.label;
+      if (idx === 0) o.selected = true;
+      els.logisticsSelect.appendChild(o);
     });
   }
 
@@ -453,16 +448,53 @@
       var pkgSection = renderPackageSection(core.code);
       if (pkgSection) body.appendChild(pkgSection);
 
-      var listWrap = document.createElement('div');
-      listWrap.className = 'service-list';
-      list.forEach(function (svc) {
-        listWrap.appendChild(renderServiceRow(svc));
+      // Sub-accordion per category (collapsed) -> avoids one giant scroll.
+      var cats = categories.filter(function (c) {
+        return (c.core || CATEGORY_CORE[c.name] || FALLBACK_CORE) === core.code;
       });
-      body.appendChild(listWrap);
+      cats.forEach(function (cat) {
+        var catSvcs = list.filter(function (s) { return s.category_id === cat.id; });
+        if (catSvcs.length) body.appendChild(buildSubcat(cat, catSvcs));
+      });
 
       card.appendChild(body);
       els.servicesContainer.appendChild(card);
     });
+  }
+
+  // Show/hide a category sub-accordion body.
+  function setSubcatOpen(sub, open) {
+    var b = sub.querySelector('.subcat-body');
+    if (b) b.hidden = !open;
+    sub.classList.toggle('subcat-open', open);
+  }
+
+  // Build one collapsed category sub-accordion (header + service rows).
+  function buildSubcat(cat, svcs) {
+    var sub = document.createElement('div');
+    sub.className = 'subcat';
+    sub.setAttribute('data-category-id', cat.id);
+
+    var head = document.createElement('button');
+    head.type = 'button';
+    head.className = 'subcat-header';
+    var caret = document.createElement('span'); caret.className = 'subcat-caret'; caret.textContent = '▸';
+    var nm = document.createElement('span'); nm.className = 'subcat-name'; nm.textContent = cat.name;
+    var cnt = document.createElement('span'); cnt.className = 'subcat-count'; cnt.textContent = svcs.length;
+    head.appendChild(caret); head.appendChild(nm); head.appendChild(cnt);
+    head.addEventListener('click', function () {
+      var open = !sub.classList.contains('subcat-open');
+      sub.dataset.userOpen = open ? '1' : '0';
+      setSubcatOpen(sub, open);
+    });
+    sub.appendChild(head);
+
+    var listWrap = document.createElement('div');
+    listWrap.className = 'subcat-body service-list';
+    listWrap.hidden = true;
+    svcs.forEach(function (svc) { listWrap.appendChild(renderServiceRow(svc)); });
+    sub.appendChild(listWrap);
+    return sub;
   }
 
   // Render a single service row: visible name + unit + qty input.

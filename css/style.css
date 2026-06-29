@@ -597,6 +597,70 @@ code {
   padding: 0.75rem 1.25rem 1.25rem;
 }
 
+/* Category sub-accordion inside a core (keeps long lists from one big scroll). */
+.subcat {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  margin-bottom: 0.5rem;
+  overflow: hidden;
+  background: var(--bg);
+}
+
+.subcat-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  padding: 0.65rem 0.85rem;
+  background: transparent;
+  border: 0;
+  font: inherit;
+  font-weight: 600;
+  color: var(--text);
+  text-align: left;
+  cursor: pointer;
+}
+
+.subcat-header:hover {
+  background: color-mix(in srgb, var(--primary) 6%, transparent);
+}
+
+.subcat-caret {
+  flex: 0 0 auto;
+  color: var(--muted);
+  transition: transform 0.15s ease;
+}
+
+.subcat-open .subcat-caret { transform: rotate(90deg); }
+
+.subcat-name { flex: 1 1 auto; }
+
+.subcat-count {
+  flex: 0 0 auto;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--primary-dark);
+  background: color-mix(in srgb, var(--primary) 12%, var(--surface));
+  border: 1px solid color-mix(in srgb, var(--primary) 25%, transparent);
+  padding: 0.1rem 0.5rem;
+  border-radius: 999px;
+}
+
+.subcat-body {
+  padding: 0.5rem 0.85rem 0.85rem;
+  background: var(--surface);
+}
+
+/* Label above the logistics dropdown. */
+.option-label {
+  display: block;
+  font-weight: 700;
+  font-size: 0.95rem;
+  margin-bottom: 0.4rem;
+  color: var(--text);
+}
+
 /* ---------------------------------------------------------------------
  * Package options (client) -- bundles shown above a core's sub-services.
  * ------------------------------------------------------------------- */
