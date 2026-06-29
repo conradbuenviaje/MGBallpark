@@ -49,6 +49,60 @@
 }
 
 /* ---------------------------------------------------------------------
+ * Dark theme — token overrides (toggled via data-theme="dark" on <html>).
+ * Everything else uses var(...) so it adapts automatically.
+ * ------------------------------------------------------------------- */
+:root[data-theme="dark"] {
+  --primary: #818cf8;
+  --primary-dark: #a5b4fc;
+  --accent: #2dd4bf;
+  --bg: #0f1117;
+  --surface: #181b24;
+  --text: #e6e8ee;
+  --muted: #9aa3b2;
+  --border: #2a2f3a;
+  --danger: #f87171;
+  --warning-bg: #3b3000;
+  --warning-border: #6b5800;
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 8px 24px rgba(0, 0, 0, 0.5);
+}
+
+/* Hard-coded amber text needs a lighter tone on dark surfaces. */
+:root[data-theme="dark"] .notice-warning,
+:root[data-theme="dark"] .venue-note {
+  color: #fde68a;
+}
+
+/* Theme toggle button + its top bar. */
+.topbar {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0.25rem 0 0;
+}
+
+.theme-toggle {
+  width: 40px;
+  height: 40px;
+  min-height: 40px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  font-size: 1.1rem;
+  line-height: 1;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+}
+
+.theme-toggle:hover,
+.theme-toggle:focus-visible {
+  border-color: var(--primary);
+}
+
+/* ---------------------------------------------------------------------
  * Reset / base
  * ------------------------------------------------------------------- */
 *,
@@ -72,6 +126,7 @@ body {
   font-size: 1rem;          /* 16px base */
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 h1,
@@ -434,13 +489,33 @@ code {
   display: block;
 }
 
-/* Catalog search/filter box (the seed catalog is large). */
+/* Catalog search/filter + sort row (the seed catalog is large). */
 .search-row {
   margin: 0.5rem 0 1rem;
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.sort-select {
+  min-height: 48px;
+  padding: 0.6rem 0.7rem;
+  font-size: 0.95rem;
+  font-family: inherit;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  flex: 0 0 auto;
+}
+
+.sort-select:focus-visible {
+  border-color: var(--primary);
 }
 
 #serviceSearch {
-  width: 100%;
+  flex: 1 1 12rem;
+  min-width: 0;
   min-height: 48px;
   padding: 0.6rem 0.9rem;
   font-size: 1rem;

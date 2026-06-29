@@ -64,6 +64,7 @@
     els.logisticsRadios   = document.getElementById('logisticsRadios');
     els.discountInput     = document.getElementById('discountInput');
     els.serviceSearch     = document.getElementById('serviceSearch');
+    els.serviceSort       = document.getElementById('serviceSort');
     els.servicesContainer = document.getElementById('servicesContainer');
     els.generateBtn       = document.getElementById('generateBtn');
     els.errorBanner       = document.getElementById('errorBanner');
@@ -292,6 +293,25 @@
         var cb = card.querySelector('.core-toggle');
         setCoreOpen(card, !!(cb && cb.checked)); // restore manual state
       }
+    });
+  }
+
+  // Re-order service rows within each core's list per the sort dropdown.
+  // Reorders DOM nodes in place so quantity inputs / state are preserved.
+  function sortServices() {
+    if (!els.servicesContainer) return;
+    var mode = els.serviceSort ? els.serviceSort.value : 'name-asc';
+    var lists = els.servicesContainer.querySelectorAll('.core-body .service-list');
+    Array.prototype.forEach.call(lists, function (list) {
+      var rows = Array.prototype.slice.call(list.querySelectorAll('.service-row'));
+      rows.sort(function (a, b) {
+        var an = ((a.querySelector('.service-name') || {}).textContent || '').toUpperCase();
+        var bn = ((b.querySelector('.service-name') || {}).textContent || '').toUpperCase();
+        if (an === bn) return 0;
+        if (mode === 'name-desc') return an > bn ? -1 : 1;
+        return an < bn ? -1 : 1;
+      });
+      rows.forEach(function (r) { list.appendChild(r); });
     });
   }
 
@@ -889,12 +909,15 @@
     categories = catRes.data || [];
 
     // Services, ordered by sort_order.
+    // select('*') is resilient to the is_active column not existing yet.
     var svcRes = await db
       .from('services')
-      .select('id, category_id, name, base_rate, unit, is_fabrication, sort_order')
+      .select('*')
       .order('sort_order', { ascending: true });
     if (svcRes.error) throw svcRes.error;
-    services = svcRes.data || [];
+    // Hide services the admin disabled (is_active === false). Missing column
+    // (undefined) is treated as active.
+    services = (svcRes.data || []).filter(function (s) { return s.is_active !== false; });
     serviceById = {};
     services.forEach(function (s) { serviceById[s.id] = s; });
 
@@ -947,6 +970,9 @@
     }
     if (els.serviceSearch) {
       els.serviceSearch.addEventListener('input', filterServices);
+    }
+    if (els.serviceSort) {
+      els.serviceSort.addEventListener('change', sortServices);
     }
 
     // Guard: missing Supabase credentials -> friendly message, no crash.

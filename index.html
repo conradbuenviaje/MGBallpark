@@ -5,9 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Service Package Calculator</title>
   <link rel="stylesheet" href="css/style.css" />
+  <script src="js/theme.js"></script>
 </head>
 <body>
   <main class="container">
+    <div class="topbar">
+      <button class="theme-toggle" type="button" aria-label="Toggle dark mode">🌙</button>
+    </div>
     <!-- ============================ HEADER ============================ -->
     <header class="page-header">
       <h1>📋 Service Package Calculator</h1>
@@ -65,6 +69,10 @@
       <input type="search" id="serviceSearch"
              placeholder="🔎 Search services (e.g. LED, camera, manager)…"
              aria-label="Search services" />
+      <select id="serviceSort" class="sort-select" aria-label="Sort services">
+        <option value="name-asc">Name A–Z</option>
+        <option value="name-desc">Name Z–A</option>
+      </select>
     </div>
 
     <!-- calculator.js renders categories + services here -->
