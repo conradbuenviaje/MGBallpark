@@ -80,11 +80,25 @@
     els.sumDiscount       = document.getElementById('sumDiscount');
     els.vatRow            = document.getElementById('vatRow');
     els.sumVat            = document.getElementById('sumVat');
+    els.allInRow          = document.getElementById('allInRow');
+    els.sumAllIn          = document.getElementById('sumAllIn');
     els.sumTotal          = document.getElementById('sumTotal');
     els.sumTotalUsd       = document.getElementById('sumTotalUsd');
     els.budgetRange       = document.getElementById('budgetRange');
     els.budgetRangeUsd    = document.getElementById('budgetRangeUsd');
+
+    // Export / share
+    els.downloadPdfBtn    = document.getElementById('downloadPdfBtn');
+    els.emailEstimateBtn  = document.getElementById('emailEstimateBtn');
+    els.emailModal        = document.getElementById('emailModal');
+    els.emailForm         = document.getElementById('emailForm');
+    els.emailTo           = document.getElementById('emailTo');
+    els.emailStatus       = document.getElementById('emailStatus');
+    els.emailCancelBtn    = document.getElementById('emailCancelBtn');
   }
+
+  // Most recent computed estimate (for PDF / email).
+  var lastEstimate = null;
 
   /* -------------------------------------------------------------------
    * Small UI helpers
@@ -240,6 +254,7 @@
     pkg.items.forEach(function (it) { setQtyOf(it.service_id, it.quantity); });
     syncPackageUI(pkg.core);
     updateFabBadge();
+    track('select_package', { core: pkg.core, name: pkg.name });
   }
 
   // Deselect the active package in a core (resets its service quantities).
@@ -650,6 +665,7 @@
     var lineItems = [];
     var notes = [];
     var subtotal = 0;
+    var allInTotal = 0; // all-in package prices: final, bypass ASF/VAT/range
 
     // 1) Active packages (selected AND intact) bill at their discounted price.
     //    Track how much of each service is "covered" so extra qty bills as add-on.
@@ -663,14 +679,16 @@
       if (packageIntact(pkg)) {
         var original = packageOriginal(pkg, nonVat, vatRate);
         var price = packagePrice(pkg, original, nonVat, vatRate);
-        subtotal += price;
+        var allIn = pkg.all_in === true;
+        if (allIn) allInTotal += price; else subtotal += price;
         lineItems.push({
-          name: '📦 ' + pkg.name,
+          name: '📦 ' + pkg.name + (allIn ? ' (all-in)' : ''),
           qty: 1,
           unitPrice: price,
           amount: price,
           isPackage: true,
           original: original,
+          allIn: allIn,
         });
         pkg.items.forEach(function (it) {
           pkgBase[it.service_id] = (pkgBase[it.service_id] || 0) + it.quantity;
@@ -716,11 +734,13 @@
 
     var preVatBase = subtotal + asf - discount;
     var vat = nonVat ? 0 : preVatBase * vatRate;
-    var total = preVatBase + vat;
+    var ballpark = preVatBase + vat;          // ASF/VAT-able portion
+    var total = ballpark + allInTotal;        // all-in added as-is (final)
 
     var fab = fabricationIncluded();
     var low = total;
-    var high = total * (1 + (fab ? FAB_MULTIPLIER : STD_MULTIPLIER));
+    // Range multiplier applies only to the ballpark part; all-in is firm.
+    var high = ballpark * (1 + (fab ? FAB_MULTIPLIER : STD_MULTIPLIER)) + allInTotal;
 
     var fx = fxRate();
 
@@ -728,6 +748,7 @@
       lineItems: lineItems,
       notes: notes,
       subtotal: subtotal,
+      allInTotal: allInTotal,
       asf: asf,
       discount: discount,
       vat: vat,
@@ -829,6 +850,11 @@
     if (els.discountRow) els.discountRow.hidden = !(est.discount > 0);
 
     if (els.sumVat) els.sumVat.textContent = peso(est.vat);
+
+    // All-in packages line (final prices that bypass ASF/VAT).
+    if (els.sumAllIn) els.sumAllIn.textContent = peso(est.allInTotal || 0);
+    if (els.allInRow) els.allInRow.hidden = !(est.allInTotal > 0);
+
     if (els.sumTotal) els.sumTotal.textContent = peso(est.total);
     if (els.sumTotalUsd) els.sumTotalUsd.textContent = '≈ ' + usd(est.totalUsd);
 
@@ -856,11 +882,162 @@
       clearError();
       updateFabBadge();
       var est = computeEstimate();
+      lastEstimate = est;
       renderResults(est);
+      track('generate_estimate', {
+        value: Math.round(est.total),
+        currency: 'PHP',
+        fabrication: est.fabricationIncluded,
+        location: est.location.value,
+        line_items: est.lineItems.length,
+      });
     } catch (err) {
       // Defensive: never let a calculation error crash the page.
       console.error('Failed to generate estimate:', err);
       showError('Sorry, something went wrong generating your estimate. Please try again.');
+    }
+  }
+
+  /* -------------------------------------------------------------------
+   * Export: PDF + Email
+   * ------------------------------------------------------------------- */
+
+  function estimateNumber() {
+    var d = new Date();
+    var p = function (n) { return (n < 10 ? '0' : '') + n; };
+    var ymd = '' + d.getFullYear() + p(d.getMonth() + 1) + p(d.getDate());
+    return 'MGB-' + ymd + '-' + Math.floor(1000 + Math.random() * 9000);
+  }
+
+  // Generate a clean, text-based PDF of the current estimate (jsPDF).
+  function buildPdf() {
+    if (!lastEstimate) { showError('Generate an estimate first.'); return; }
+    if (!window.jspdf || !window.jspdf.jsPDF) {
+      showError('PDF library did not load. Check your connection and try again.');
+      return;
+    }
+    var est = lastEstimate;
+    var doc = new window.jspdf.jsPDF({ unit: 'pt', format: 'a4' });
+    var W = doc.internal.pageSize.getWidth();
+    var M = 40, y = 50;
+    function txt(s, x, opts) { doc.text(String(s), x, y, opts); }
+
+    doc.setFont('helvetica', 'bold'); doc.setFontSize(18); doc.setTextColor(30, 36, 51);
+    txt(COMPANY_NAME, M); y += 20;
+    doc.setFont('helvetica', 'normal'); doc.setFontSize(10); doc.setTextColor(120, 120, 120);
+    txt('Service Package Estimate', M); y += 16;
+    var num = estimateNumber();
+    var dateStr = new Date().toLocaleDateString('en-PH', { year: 'numeric', month: 'long', day: 'numeric' });
+    txt('Estimate #: ' + num, M); txt('Date: ' + dateStr, W - M, { align: 'right' }); y += 14;
+    txt('Logistics: ' + (est.location.label || '-'), M); y += 14;
+    txt('Fabrication: ' + (est.fabricationIncluded ? 'Included' : 'Not included'), M); y += 14;
+    txt('Pricing: ' + (est.nonVat ? 'Non-VAT (VAT in rates)' : 'VAT-registered'), M); y += 18;
+
+    doc.setDrawColor(220); doc.line(M, y - 8, W - M, y - 8);
+    doc.setFont('helvetica', 'bold'); doc.setFontSize(9); doc.setTextColor(120, 120, 120);
+    txt('Service', M); txt('Qty', W - M - 210, { align: 'right' });
+    txt('Unit Price', W - M - 110, { align: 'right' }); txt('Amount', W - M, { align: 'right' }); y += 14;
+    doc.setFont('helvetica', 'normal'); doc.setTextColor(30, 36, 51);
+    est.lineItems.forEach(function (it) {
+      if (y > 780) { doc.addPage(); y = 50; }
+      var nm = it.name; if (nm.length > 52) nm = nm.slice(0, 50) + '…';
+      txt(nm, M); txt(it.qty, W - M - 210, { align: 'right' });
+      txt(peso(it.unitPrice), W - M - 110, { align: 'right' }); txt(peso(it.amount), W - M, { align: 'right' });
+      y += 14;
+    });
+    y += 6; doc.line(M, y - 8, W - M, y - 8);
+    function sum(label, val, bold) {
+      doc.setFont('helvetica', bold ? 'bold' : 'normal');
+      txt(label, W - M - 150, { align: 'right' }); txt(val, W - M, { align: 'right' }); y += 15;
+    }
+    sum('Subtotal', peso(est.subtotal));
+    sum('ASF', peso(est.asf));
+    if (est.discount > 0) sum('Discount', '-' + peso(est.discount));
+    if (!est.nonVat) sum('VAT', peso(est.vat));
+    if (est.allInTotal > 0) sum('All-in packages', peso(est.allInTotal));
+    sum('Total', peso(est.total), true);
+    y += 8;
+    doc.setFont('helvetica', 'bold'); doc.setFontSize(12); doc.setTextColor(79, 70, 229);
+    txt('Estimated Budget Range', M); y += 16;
+    txt(peso(est.low) + '  —  ' + peso(est.high), M); y += 14;
+    doc.setFont('helvetica', 'normal'); doc.setFontSize(8); doc.setTextColor(120, 120, 120);
+    txt('USD approx (@ PHP ' + est.fx.toFixed(2) + '/$): ' + usd(est.lowUsd) + ' — ' + usd(est.highUsd), M); y += 16;
+    var note = doc.splitTextToSize(
+      'Venue rental is not included; the venue\'s published rate + ASF + VAT applies separately. ' +
+      'Figures are indicative ballpark estimates and may change after detailed scoping.', W - 2 * M);
+    doc.text(note, M, y);
+
+    doc.save(num + '.pdf');
+    track('download_pdf', { value: Math.round(est.total) });
+  }
+
+  // Plain-text estimate body (used by the email).
+  function estimateText(est) {
+    var L = [];
+    L.push(COMPANY_NAME + ' — Service Package Estimate');
+    L.push('Date: ' + new Date().toLocaleDateString('en-PH'));
+    L.push('Logistics: ' + (est.location.label || '-'));
+    L.push('Fabrication: ' + (est.fabricationIncluded ? 'Included' : 'Not included'));
+    L.push('Pricing: ' + (est.nonVat ? 'Non-VAT' : 'VAT-registered'));
+    L.push('');
+    est.lineItems.forEach(function (it) { L.push(it.qty + 'x ' + it.name + ' — ' + peso(it.amount)); });
+    L.push('');
+    L.push('Subtotal: ' + peso(est.subtotal));
+    L.push('ASF: ' + peso(est.asf));
+    if (est.discount > 0) L.push('Discount: -' + peso(est.discount));
+    if (!est.nonVat) L.push('VAT: ' + peso(est.vat));
+    if (est.allInTotal > 0) L.push('All-in packages: ' + peso(est.allInTotal));
+    L.push('Total: ' + peso(est.total));
+    L.push('Budget Range: ' + peso(est.low) + ' — ' + peso(est.high));
+    L.push('');
+    L.push('Note: Venue rental not included (venue rate + ASF + VAT separate). Indicative estimate.');
+    return L.join('\n');
+  }
+
+  function openEmailModal() {
+    if (!lastEstimate) { showError('Generate an estimate first.'); return; }
+    if (els.emailStatus) {
+      els.emailStatus.textContent = emailjsConfigured()
+        ? '' : 'Note: email is not configured yet (set EmailJS keys in js/config.js).';
+    }
+    if (els.emailModal) els.emailModal.hidden = false;
+    if (els.emailTo) els.emailTo.focus();
+  }
+  function closeEmailModal() { if (els.emailModal) els.emailModal.hidden = true; }
+
+  async function sendEmail() {
+    if (!lastEstimate) return;
+    if (!emailjsConfigured()) {
+      if (els.emailStatus) els.emailStatus.textContent = 'Email is not configured (EmailJS keys in js/config.js).';
+      return;
+    }
+    if (!window.emailjs) {
+      if (els.emailStatus) els.emailStatus.textContent = 'Email library did not load.';
+      return;
+    }
+    var to = (els.emailTo.value || '').trim();
+    if (!to) { els.emailStatus.textContent = 'Enter a client email address.'; return; }
+    els.emailStatus.textContent = 'Sending…';
+    try {
+      window.emailjs.init({ publicKey: EMAILJS.publicKey });
+      var est = lastEstimate;
+      await window.emailjs.send(EMAILJS.serviceId, EMAILJS.templateId, {
+        to_email: to,
+        company: COMPANY_NAME,
+        estimate_number: estimateNumber(),
+        date: new Date().toLocaleDateString('en-PH'),
+        location: est.location.label,
+        fabrication: est.fabricationIncluded ? 'Included' : 'Not included',
+        total: peso(est.total),
+        budget_range: peso(est.low) + ' — ' + peso(est.high),
+        details: estimateText(est),
+      });
+      els.emailStatus.textContent = 'Sent ✓';
+      track('email_estimate', { value: Math.round(est.total) });
+      setTimeout(closeEmailModal, 1200);
+    } catch (err) {
+      console.error('Email failed:', err);
+      els.emailStatus.textContent = 'Send failed: ' + (err.text || err.message || 'unknown error');
     }
   }
 
@@ -927,7 +1104,7 @@
     try {
       var pkgRes = await db
         .from('packages')
-        .select('id, core, name, description, discount_type, discount_value, is_active, sort_order')
+        .select('*')
         .eq('is_active', true)
         .order('sort_order', { ascending: true });
       if (!pkgRes.error && pkgRes.data && pkgRes.data.length) {
@@ -965,6 +1142,11 @@
     if (els.generateBtn) {
       els.generateBtn.addEventListener('click', onGenerate);
     }
+    if (els.downloadPdfBtn) els.downloadPdfBtn.addEventListener('click', buildPdf);
+    if (els.emailEstimateBtn) els.emailEstimateBtn.addEventListener('click', openEmailModal);
+    if (els.emailCancelBtn) els.emailCancelBtn.addEventListener('click', closeEmailModal);
+    if (els.emailForm) els.emailForm.addEventListener('submit', function (e) { e.preventDefault(); sendEmail(); });
+    if (els.emailModal) els.emailModal.addEventListener('click', function (e) { if (e.target === els.emailModal) closeEmailModal(); });
     if (els.fabricationToggle) {
       els.fabricationToggle.addEventListener('change', updateFabBadge);
     }

@@ -1003,6 +1003,39 @@ code {
   color: var(--text);
 }
 
+/* Results export/share actions. */
+.results-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.25rem;
+}
+.results-actions .btn { flex: 1 1 auto; }
+
+/* Modal (email estimate). */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  z-index: 100;
+}
+.modal-overlay[hidden] { display: none; }
+.modal {
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.5rem;
+  width: 100%;
+  max-width: 420px;
+}
+.modal h3 { margin: 0 0 1rem; }
+
 /* ---------------------------------------------------------------------
  * Error banner (index.html)
  * ------------------------------------------------------------------- */

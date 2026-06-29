@@ -136,6 +136,10 @@
           <dt>VAT</dt>
           <dd id="sumVat">₱0.00</dd>
         </div>
+        <div class="summary-line" id="allInRow" hidden>
+          <dt>All-in packages</dt>
+          <dd id="sumAllIn">₱0.00</dd>
+        </div>
         <div class="summary-line summary-total">
           <dt>Base Total</dt>
           <dd>
@@ -157,6 +161,12 @@
         📍 <strong>Venue rental is not included.</strong> If your event needs a
         venue, the venue's published rate + ASF + VAT applies on top of this estimate.
       </p>
+
+      <!-- Export / share actions -->
+      <div class="results-actions">
+        <button type="button" id="downloadPdfBtn" class="btn btn-primary">⬇️ Download PDF</button>
+        <button type="button" id="emailEstimateBtn" class="btn btn-accent">✉️ Email Estimate</button>
+      </div>
 
       <!-- Footnotes -->
       <footer class="footnotes">
@@ -192,6 +202,24 @@
       </footer>
     </section>
 
+    <!-- Email estimate modal -->
+    <div id="emailModal" class="modal-overlay" hidden>
+      <div class="modal" role="dialog" aria-modal="true" aria-labelledby="emailModalTitle">
+        <h3 id="emailModalTitle">✉️ Email Estimate</h3>
+        <form id="emailForm">
+          <div class="field">
+            <label for="emailTo">Client email</label>
+            <input type="email" id="emailTo" class="text-input" required placeholder="client@example.com" />
+          </div>
+          <div id="emailStatus" class="muted" aria-live="polite"></div>
+          <div class="field field-action">
+            <button type="submit" id="emailSendBtn" class="btn btn-primary">Send</button>
+            <button type="button" id="emailCancelBtn" class="btn btn-ghost">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
     <!-- Error / status message area -->
     <div id="errorBanner" class="error-banner" role="alert" hidden></div>
 
@@ -204,6 +232,8 @@
   <!-- ===================== SCRIPTS (load order) ==================== -->
   <!-- 1) Supabase CDN  2) config.js  3) page script -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <script src="js/config.js"></script>
   <script src="js/calculator.js"></script>
 </body>

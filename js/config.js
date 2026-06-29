@@ -197,3 +197,52 @@ const DEFAULT_USD_PHP = 55.89;
 function pct(rate) {
   return (Number(rate) * 100).toFixed(2).replace(/\.?0+$/, '') + '%';
 }
+
+/* ---------------------------------------------------------------------
+ * Branding + integrations (PDF / Email / Analytics)
+ * ------------------------------------------------------------------- */
+
+// Shown on the PDF estimate header.
+const COMPANY_NAME = 'MG Ballpark';
+
+// Google Analytics 4. Put your Measurement ID here (e.g. 'G-ABCD1234').
+// Leave as the placeholder to disable analytics.
+const GA_MEASUREMENT_ID = 'G-XXXXXXXXXX';
+
+// EmailJS (https://www.emailjs.com) for the "Email Estimate" button.
+// Fill all three from your EmailJS dashboard. Placeholders = email disabled.
+const EMAILJS = {
+  publicKey: 'YOUR_EMAILJS_PUBLIC_KEY',
+  serviceId: 'YOUR_EMAILJS_SERVICE_ID',
+  templateId: 'YOUR_EMAILJS_TEMPLATE_ID',
+};
+
+function gaEnabled() {
+  return typeof GA_MEASUREMENT_ID === 'string' && /^G-/.test(GA_MEASUREMENT_ID) &&
+    GA_MEASUREMENT_ID !== 'G-XXXXXXXXXX';
+}
+function emailjsConfigured() {
+  return EMAILJS && EMAILJS.publicKey && EMAILJS.serviceId && EMAILJS.templateId &&
+    EMAILJS.publicKey.indexOf('YOUR_') !== 0 &&
+    EMAILJS.serviceId.indexOf('YOUR_') !== 0 &&
+    EMAILJS.templateId.indexOf('YOUR_') !== 0;
+}
+
+// Fire a GA4 event if analytics is configured (safe no-op otherwise).
+function track(event, params) {
+  try { if (gaEnabled() && typeof window.gtag === 'function') window.gtag('event', event, params || {}); }
+  catch (e) { /* ignore */ }
+}
+
+// Load Google Analytics (gtag) once, if configured. Auto-sends page_view.
+(function loadGA() {
+  if (!gaEnabled()) return;
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_MEASUREMENT_ID;
+  document.head.appendChild(s);
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  window.gtag('js', new Date());
+  window.gtag('config', GA_MEASUREMENT_ID);
+})();

@@ -786,7 +786,8 @@
       const meta = document.createElement('div');
       meta.className = 'muted';
       meta.style.fontSize = '0.85rem';
-      meta.textContent = 'Core: ' + p.core + '  ·  ' + disc + '  ·  ' + (p.items ? p.items.length : 0) + ' services';
+      meta.textContent = 'Core: ' + p.core + '  ·  ' + disc + '  ·  ' +
+        (p.items ? p.items.length : 0) + ' services' + (p.all_in ? '  ·  ALL-IN' : '');
       card.appendChild(meta);
 
       const inc = document.createElement('div');
@@ -859,6 +860,7 @@
     document.getElementById('packageDescription').value = pkg ? (pkg.description || '') : '';
     document.getElementById('packageDiscountType').value = pkg ? pkg.discount_type : 'percentage';
     document.getElementById('packageActive').checked = pkg ? !!pkg.is_active : true;
+    document.getElementById('packageAllIn').checked = pkg ? !!pkg.all_in : false;
     let dv = '';
     if (pkg) dv = pkg.discount_type === 'percentage' ? Number(pkg.discount_value) * 100 : Number(pkg.discount_value);
     document.getElementById('packageDiscountValue').value = dv === '' ? '' : +Number(dv).toFixed(4);
@@ -897,6 +899,7 @@
     const dtype = document.getElementById('packageDiscountType').value;
     const dvalRaw = parseFloat(document.getElementById('packageDiscountValue').value);
     const active = document.getElementById('packageActive').checked;
+    const allIn = document.getElementById('packageAllIn').checked;
 
     if (!name) { showStatus('Package name is required.', 'error'); return; }
     if (isNaN(dvalRaw) || dvalRaw < 0) { showStatus('Enter a valid discount value.', 'error'); return; }
@@ -913,7 +916,7 @@
       let pkgId;
       if (id) {
         const up = await db.from('packages')
-          .update({ core: core, name: name, description: description, discount_type: dtype, discount_value: dvalue, is_active: active })
+          .update({ core: core, name: name, description: description, discount_type: dtype, discount_value: dvalue, is_active: active, all_in: allIn })
           .eq('id', id);
         if (up.error) throw up.error;
         pkgId = parseInt(id, 10);
@@ -921,7 +924,7 @@
         if (del.error) throw del.error;
       } else {
         const ins = await db.from('packages')
-          .insert({ core: core, name: name, description: description, discount_type: dtype, discount_value: dvalue, is_active: active })
+          .insert({ core: core, name: name, description: description, discount_type: dtype, discount_value: dvalue, is_active: active, all_in: allIn })
           .select('id').single();
         if (ins.error) throw ins.error;
         pkgId = ins.data.id;

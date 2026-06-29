@@ -928,6 +928,7 @@ CREATE TABLE packages (
     description    TEXT,
     discount_type  TEXT NOT NULL CHECK (discount_type IN ('percentage', 'fixed')),
     discount_value DECIMAL(10,2) NOT NULL,        -- fraction (0.10) OR fixed PHP price
+    all_in         BOOLEAN NOT NULL DEFAULT false, -- true = final price, skips ASF/VAT/range
     is_active      BOOLEAN NOT NULL DEFAULT true,
     sort_order     INT NOT NULL DEFAULT 0,
     created_at     TIMESTAMPTZ NOT NULL DEFAULT now()
