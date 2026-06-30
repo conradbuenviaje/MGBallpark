@@ -113,6 +113,11 @@
  * Mineski brand chrome (header ticker + nav + footer). Always dark,
  * independent of the page theme, so it matches mineskiph.
  * ------------------------------------------------------------------- */
+.mnsk-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
 .mnsk-ticker {
   overflow: hidden;
   background: var(--primary);
@@ -301,6 +306,20 @@
 }
 .bd-name { font-weight: 700; }
 .bd-role { color: var(--muted); font-size: 0.8rem; }
+.bd-phone {
+  margin-top: 0.4rem;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 0.78rem;
+  color: var(--text);
+}
+.bd-email {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 0.78rem;
+  color: var(--accent);
+  text-decoration: none;
+  word-break: break-all;
+}
+.bd-email:hover { color: var(--primary); text-decoration: underline; }
 
 @media (min-width: 680px) {
   .contact-leads { grid-template-columns: 1fr 1fr; }
