@@ -394,7 +394,7 @@
     // Group services by core code.
     var byCore = {};
     services.forEach(function (svc) {
-      var code = coreForCategoryId(svc.category_id);
+      var code = svc.core || CATEGORY_CORE[svc.category] || FALLBACK_CORE;
       (byCore[code] = byCore[code] || []).push(svc);
     });
 
@@ -453,7 +453,7 @@
         return (c.core || CATEGORY_CORE[c.name] || FALLBACK_CORE) === core.code;
       });
       cats.forEach(function (cat) {
-        var catSvcs = list.filter(function (s) { return s.category_id === cat.id; });
+        var catSvcs = list.filter(function (s) { return s.category === cat.name; });
         if (catSvcs.length) body.appendChild(buildSubcat(cat, catSvcs));
       });
 
@@ -1083,12 +1083,8 @@
     // invalid URL / CDN blocked). Treat any of those as "not configured".
     return (
       typeof db === 'undefined' || !db ||
-      typeof SUPABASE_URL === 'undefined' ||
-      typeof SUPABASE_ANON_KEY === 'undefined' ||
-      SUPABASE_URL === 'YOUR_SUPABASE_URL' ||
-      SUPABASE_ANON_KEY === 'YOUR_SUPABASE_ANON_KEY' ||
-      !SUPABASE_URL ||
-      !SUPABASE_ANON_KEY
+      typeof PB_URL === 'undefined' || !PB_URL ||
+      (typeof credentialsConfigured === 'function' && !credentialsConfigured())
     );
   }
 
@@ -1189,15 +1185,14 @@
       els.serviceSort.addEventListener('change', sortServices);
     }
 
-    // Guard: missing Supabase credentials -> friendly message, no crash.
+    // Guard: backend not configured / unreachable -> friendly message, no crash.
     if (credentialsMissing()) {
       if (els.servicesContainer) {
         els.servicesContainer.innerHTML =
           '<p class="loading-msg">Services are not configured yet.</p>';
       }
       showError(
-        'This calculator is not connected to a database yet. Please configure ' +
-        'Supabase credentials in js/config.js.'
+        'This calculator is not connected to its backend yet. Set PB_URL in js/config.js.'
       );
       return;
     }

@@ -292,7 +292,7 @@
     if (catFilter && catFilter.dataset.filled !== '1') {
       var opts = '<option value="">All categories</option>';
       allCategories.forEach(function (c) {
-        opts += '<option value="' + c.id + '">' + escapeHtml(c.name) + '</option>';
+        opts += '<option value="' + escapeHtml(c.name) + '">' + escapeHtml(c.name) + '</option>';
       });
       catFilter.innerHTML = opts;
       catFilter.dataset.filled = '1';
@@ -300,7 +300,7 @@
     if (addCat) {
       var a = '';
       allCategories.forEach(function (c) {
-        a += '<option value="' + c.id + '">' + escapeHtml(c.name) + ' (' + (c.core || 'MET') + ')</option>';
+        a += '<option value="' + escapeHtml(c.name) + '">' + escapeHtml(c.name) + ' (' + (c.core || 'MET') + ')</option>';
       });
       addCat.innerHTML = a;
     }
@@ -316,7 +316,7 @@
     var list = allServices.filter(function (s) {
       if (q && String(s.name).toLowerCase().indexOf(q) === -1) return false;
       if (core && coreOfService(s) !== core) return false;
-      if (cat && String(s.category_id) !== String(cat)) return false;
+      if (cat && s.category !== cat) return false;
       if (status === 'active' && s.is_active === false) return false;
       if (status === 'inactive' && s.is_active !== false) return false;
       return true;
@@ -402,7 +402,7 @@
     var tdCore = document.createElement('td'); tdCore.textContent = coreOfService(svc); tr.appendChild(tdCore);
 
     var tdCat = document.createElement('td'); tdCat.className = 'muted';
-    tdCat.textContent = categoryName(svc.category_id); tr.appendChild(tdCat);
+    tdCat.textContent = svc.category || ''; tr.appendChild(tdCat);
 
     var tdR = document.createElement('td'); tdR.className = 'num';
     var rIn = makeInput('number', svc.base_rate != null ? svc.base_rate : '', 'svc-base-rate');
@@ -470,15 +470,17 @@
     var rateEl = document.getElementById('newServiceRate');
     var unitEl = document.getElementById('newServiceUnit');
     var fabEl = document.getElementById('newServiceFab');
-    var categoryId = catEl ? parseInt(catEl.value, 10) : NaN;
+    var categoryName = catEl ? catEl.value : '';
     var name = (nameEl.value || '').trim();
     var baseRate = parseFloat(rateEl.value);
-    if (!categoryId) { showStatus('Pick a category for the new service.', 'error'); return; }
+    if (!categoryName) { showStatus('Pick a category for the new service.', 'error'); return; }
     if (!name) { showStatus('Service name is required.', 'error'); return; }
     if (isNaN(baseRate) || baseRate < 0) { showStatus('Base rate must be a valid, non-negative number.', 'error'); return; }
+    // Denormalized model: store the category name + its core on the service.
+    var catObj = allCategories.filter(function (c) { return c.name === categoryName; })[0] || {};
     try {
       var r = await db.from('services').insert({
-        category_id: categoryId, name: name, base_rate: baseRate,
+        category: categoryName, core: catObj.core || 'MET', name: name, base_rate: baseRate,
         unit: (unitEl.value || '').trim(), is_fabrication: fabEl.checked, is_active: true,
       });
       if (r.error) throw r.error;
@@ -714,10 +716,7 @@
 
   // Core code for a service (via its category's core).
   function coreOfService(svc) {
-    for (var i = 0; i < allCategories.length; i++) {
-      if (allCategories[i].id === svc.category_id) return allCategories[i].core || 'MET';
-    }
-    return 'MET';
+    return (svc && svc.core) ? svc.core : 'MET';
   }
 
   function serviceName(id) {
@@ -733,13 +732,15 @@
       const [pkgRes, psRes] = await Promise.all([
         db.from('packages').select('*')
           .order('sort_order', { ascending: true }).order('id', { ascending: true }),
-        db.from('package_services').select('package_id, service_id, quantity, sort_order')
+        db.from('package_services').select('*')
           .order('sort_order', { ascending: true }),
       ]);
       if (pkgRes.error) throw pkgRes.error;
       const items = (!psRes.error && psRes.data) ? psRes.data : [];
       packagesData = (pkgRes.data || []).map(function (p) {
-        p.items = items.filter(function (i) { return i.package_id === p.id; });
+        p.items = items
+          .filter(function (i) { return i.package === p.id; })
+          .map(function (i) { return { service_id: i.service, quantity: i.quantity }; });
         return p;
       });
       renderPackagesList();
@@ -882,7 +883,7 @@
     const sel = document.getElementById('packageServiceSelect');
     const qtyEl = document.getElementById('packageServiceQty');
     if (!sel || !sel.value) return;
-    const id = parseInt(sel.value, 10);
+    const id = sel.value; // PocketBase record id (string)
     let q = parseInt(qtyEl.value, 10);
     if (!q || q < 1) q = 1;
     const existing = editingPackageItems.find(function (it) { return it.service_id === id; });
@@ -919,8 +920,8 @@
           .update({ core: core, name: name, description: description, discount_type: dtype, discount_value: dvalue, is_active: active, all_in: allIn })
           .eq('id', id);
         if (up.error) throw up.error;
-        pkgId = parseInt(id, 10);
-        const del = await db.from('package_services').delete().eq('package_id', pkgId);
+        pkgId = id;
+        const del = await db.from('package_services').delete().eq('package', pkgId);
         if (del.error) throw del.error;
       } else {
         const ins = await db.from('packages')
@@ -930,7 +931,7 @@
         pkgId = ins.data.id;
       }
       const rows = editingPackageItems.map(function (it, i) {
-        return { package_id: pkgId, service_id: it.service_id, quantity: it.quantity, sort_order: i + 1 };
+        return { package: pkgId, service: it.service_id, quantity: it.quantity, sort_order: i + 1 };
       });
       const insPs = await db.from('package_services').insert(rows);
       if (insPs.error) throw insPs.error;
@@ -1080,7 +1081,7 @@
     // message but still prefill the settings inputs with defaults.
     if (typeof db === 'undefined' || !db) {
       showStatus(
-        'Supabase is not configured. Set SUPABASE_URL and SUPABASE_ANON_KEY in js/config.js.',
+        'Backend not configured / unreachable. Set PB_URL in js/config.js and make sure PocketBase + the tunnel are running.',
         'error'
       );
       asfRateInput.value = trimNum(0.125 * 100);
@@ -1088,7 +1089,7 @@
       usdRateInput.value = trimNum(55.89);
       if (categoriesContainer) {
         categoriesContainer.innerHTML =
-          '<p class="notice notice-warning">Connect Supabase (js/config.js) to manage categories and services.</p>';
+          '<p class="notice notice-warning">Connect PocketBase (PB_URL in js/config.js) to manage the catalog.</p>';
       }
       return;
     }
