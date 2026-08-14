@@ -2,147 +2,33 @@
  * config.js  --  Shared configuration & helpers for MG Ballpark
  * =====================================================================
  *
- *  Backend: PocketBase (self-hosted). Set PB_URL below to your PocketBase
- *  base URL — the public tunnel for the live site, or http://127.0.0.1:8090
- *  for local testing.
+ *  Backend: NONE. The catalog is a static file, data/catalog.json, committed
+ *  in the repo. The calculator fetches it directly; the admin edits it in the
+ *  browser and exports a new catalog.json to commit. No database, no server.
  *
  *  Load order (in every HTML page, at end of <body>):
- *    1) PocketBase SDK (CDN) -> defines window.PocketBase
- *    2) this file            -> defines `db` (a Supabase-compatible shim over
- *                               PocketBase) + constants + helpers
- *    3) page script          -> calculator.js / admin.js
+ *    1) this file      -> constants + helpers (+ supplier-lookup config)
+ *    2) page script    -> calculator.js / admin.js (each fetch catalog.json)
  * ===================================================================== */
 
 /* ---------------------------------------------------------------------
- * PocketBase base URL
+ * Static catalog location (relative to the page, so it works locally and on
+ * GitHub Pages). calculator.js and admin.js both read this.
  * ------------------------------------------------------------------- */
-const PB_URL = (location.hostname === '127.0.0.1' || location.hostname === 'localhost')
-  ? 'http://127.0.0.1:8090'                          // local dev (PocketBase on this PC)
-  : 'https://aids-apple-cornflake.ngrok-free.dev';   // live site via ngrok tunnel
-
-function credentialsConfigured() {
-  return typeof PB_URL === 'string' && /^https?:\/\//.test(PB_URL) &&
-    PB_URL.indexOf('YOUR_') === -1;
-}
+const CATALOG_PATH = 'data/catalog.json';
 
 /* ---------------------------------------------------------------------
- * PocketBase client (created defensively — never break the whole page).
+ * Supplier price reference (live) — reads a coworker's procurement data
+ * through his public Lark CORS proxy. Reference only; never feeds the
+ * ballpark math. See js/suppliers.js. Update these if he changes the proxy.
  * ------------------------------------------------------------------- */
-let pb = null;
-try {
-  if (typeof PocketBase === 'undefined') throw new Error('PocketBase SDK did not load (CDN blocked?).');
-  if (!credentialsConfigured()) throw new Error('PB_URL is not set in js/config.js.');
-  pb = new PocketBase(PB_URL);
-  pb.autoCancellation(false);
-  // ngrok free serves a browser-warning interstitial unless this header is set.
-  pb.beforeSend = function (url, options) {
-    options.headers = Object.assign({}, options.headers, { 'ngrok-skip-browser-warning': 'true' });
-    return { url: url, options: options };
-  };
-} catch (err) {
-  console.error('PocketBase client not created. Set PB_URL in js/config.js. Details:', err);
-}
+const SUPPLIER_PROXY = 'https://lark-proxy-dwiw.onrender.com';
+const LARK_APP_TOKEN = 'WW2pb1ht1aSTEDstV1qlTR2Igpe';
+const LARK_TABLE_ID = 'tblvHDMbE51scSwf';
 
-/* ---------------------------------------------------------------------
- * `db` — a minimal Supabase/PostgREST-compatible shim over PocketBase so the
- * existing page code keeps working. Supports only the subset this app uses:
- *   from().select().eq()/.in().order().maybeSingle()/.single()
- *   insert()[.select().single()], update().eq()/.in(), delete().eq()/.in(),
- *   upsert(), and auth.getSession()/signInWithPassword()/signOut().
- * Returns Supabase-style { data, error }.
- * ------------------------------------------------------------------- */
-const db = pb ? makePbShim(pb) : null;
-
-function makePbShim(pbClient) {
-  function quote(v) {
-    return (typeof v === 'number' || typeof v === 'boolean')
-      ? String(v) : ('"' + String(v).replace(/"/g, '\\"') + '"');
-  }
-  function q(collection) {
-    var st = { collection: collection, filters: [], sort: [], op: 'select', payload: null };
-    function filterStr() {
-      return st.filters.map(function (f) {
-        if (f.type === 'in') return '(' + f.vals.map(function (v) { return f.field + '=' + quote(v); }).join('||') + ')';
-        return f.field + '=' + quote(f.val);
-      }).join(' && ');
-    }
-    function idsFromFilters() {
-      var ids = [];
-      st.filters.forEach(function (f) {
-        if (f.field === 'id') { if (f.type === 'in') ids = ids.concat(f.vals); else ids.push(f.val); }
-      });
-      return ids;
-    }
-    async function run(single) {
-      try {
-        var coll = pbClient.collection(st.collection);
-        if (st.op === 'select') {
-          var opts = { requestKey: null };
-          if (st.sort.length) opts.sort = st.sort.join(',');
-          // settings has a random PocketBase id, so ignore id filters for it.
-          var f = (st.collection === 'settings') ? '' : filterStr();
-          if (f) opts.filter = f;
-          var list = await coll.getFullList(opts);
-          return single ? { data: list[0] || null, error: null } : { data: list, error: null };
-        }
-        if (st.op === 'insert') {
-          if (Array.isArray(st.payload)) {
-            var out = [];
-            for (var i = 0; i < st.payload.length; i++) out.push(await coll.create(st.payload[i]));
-            return { data: out, error: null };
-          }
-          var rec = await coll.create(st.payload);
-          return { data: single ? rec : [rec], error: null };
-        }
-        if (st.op === 'update') {
-          var uids = idsFromFilters(), ures = [];
-          for (var j = 0; j < uids.length; j++) ures.push(await coll.update(uids[j], st.payload));
-          return { data: ures, error: null };
-        }
-        if (st.op === 'delete') {
-          var dids = idsFromFilters();
-          for (var k = 0; k < dids.length; k++) await coll.delete(dids[k]);
-          return { data: null, error: null };
-        }
-        if (st.op === 'upsert') {
-          var p = Object.assign({}, st.payload); delete p.id;
-          var existing = await coll.getFullList({ requestKey: null });
-          if (existing.length) return { data: await coll.update(existing[0].id, p), error: null };
-          return { data: await coll.create(p), error: null };
-        }
-        return { data: null, error: new Error('unsupported op') };
-      } catch (e) { return { data: null, error: e }; }
-    }
-    var builder = {
-      select: function () { return builder; },
-      eq: function (field, val) { st.filters.push({ type: 'eq', field: field, val: val }); return builder; },
-      in: function (field, vals) { st.filters.push({ type: 'in', field: field, vals: vals }); return builder; },
-      order: function (field, opts) { st.sort.push(((opts && opts.ascending === false) ? '-' : '') + field); return builder; },
-      limit: function () { return builder; },
-      maybeSingle: function () { return run(true); },
-      single: function () { return run(true); },
-      insert: function (payload) { st.op = 'insert'; st.payload = payload; return builder; },
-      update: function (payload) { st.op = 'update'; st.payload = payload; return builder; },
-      delete: function () { st.op = 'delete'; return builder; },
-      upsert: function (payload) { st.op = 'upsert'; st.payload = payload; return builder; },
-      then: function (res, rej) { return run(false).then(res, rej); },
-    };
-    return builder;
-  }
-  return {
-    from: function (t) { return q(t); },
-    auth: {
-      getSession: async function () {
-        var valid = pbClient.authStore && pbClient.authStore.isValid;
-        return { data: { session: valid ? { token: pbClient.authStore.token } : null }, error: null };
-      },
-      signInWithPassword: async function (cred) {
-        try { await pbClient.collection('_superusers').authWithPassword(cred.email, cred.password); return { data: {}, error: null }; }
-        catch (e) { return { data: null, error: e }; }
-      },
-      signOut: async function () { try { pbClient.authStore.clear(); } catch (e) {} return { error: null }; },
-    },
-  };
+function supplierLookupConfigured() {
+  return typeof SUPPLIER_PROXY === 'string' && /^https?:\/\//.test(SUPPLIER_PROXY) &&
+    !!LARK_APP_TOKEN && !!LARK_TABLE_ID;
 }
 
 /* ---------------------------------------------------------------------

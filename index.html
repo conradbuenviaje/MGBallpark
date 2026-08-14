@@ -92,6 +92,31 @@
       </div>
     </section>
 
+    <!-- ================= SUPPLIER PRICE REFERENCE (live) ============= -->
+    <!-- Optional reference panel. Pulls real procurement prices from a
+         coworker's Lark base (via his proxy). Reference only — does NOT feed
+         the ballpark math. Lazy-loads on first open. -->
+    <details id="supplierPanel" class="supplier-panel">
+      <summary>
+        <span>&#128161; Supplier price reference <span class="supplier-live">live</span></span>
+        <span class="supplier-hint">real procurement prices — reference only</span>
+      </summary>
+      <div class="supplier-body">
+        <div class="search-row">
+          <input type="search" id="supplierSearch"
+                 placeholder="🔎 Search item or supplier (e.g. LED, catering, truss)…"
+                 aria-label="Search supplier prices" />
+          <button type="button" id="supplierRefresh" class="btn btn-ghost">↻ Refresh</button>
+        </div>
+        <p id="supplierStatus" class="muted supplier-status">Open to load live supplier prices…</p>
+        <div id="supplierResults" class="supplier-results"></div>
+        <p class="supplier-foot muted">
+          Source: internal procurement records (approved POs). Prices are historical
+          and exclude ASF/VAT. Not part of the ballpark total.
+        </p>
+      </div>
+    </details>
+
     <!-- ====================== SERVICES CONTAINER ===================== -->
     <!-- Search/filter (the catalog is large) -->
     <div class="search-row">
@@ -327,10 +352,10 @@
 
   <!-- ===================== SCRIPTS (load order) ==================== -->
   <!-- 1) Supabase CDN  2) config.js  3) page script -->
-  <script src="https://cdn.jsdelivr.net/npm/pocketbase@0.26/dist/pocketbase.umd.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <script src="js/config.js"></script>
+  <script src="js/suppliers.js"></script>
   <script src="js/calculator.js"></script>
 </body>
 </html>
