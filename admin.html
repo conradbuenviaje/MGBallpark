@@ -19,7 +19,10 @@
       <div class="admin-header-actions">
         <a class="back-link" href="index.html">&larr; Back to Calculator</a>
         <button class="theme-toggle" type="button" aria-label="Toggle dark mode">🌙</button>
-        <button type="button" id="logoutBtn" class="btn btn-ghost">Log out</button>
+        <label class="btn btn-ghost import-label" title="Load a catalog.json to edit">
+          &#8593; Import<input type="file" id="importCatalogInput" accept="application/json,.json" hidden />
+        </label>
+        <button type="button" id="exportCatalogBtn" class="btn btn-primary">&#8595; Export catalog.json</button>
       </div>
     </header>
 
@@ -27,6 +30,14 @@
     <p class="notice notice-warning">
       Base rates you enter here are <strong>costs</strong>. A hidden
       <span id="markupPct">30%</span> markup is applied on the client side.
+    </p>
+
+    <!-- ===== Static-workflow notice ===== -->
+    <p class="notice notice-info">
+      Edits are made <strong>in your browser only</strong>. Click
+      <strong>Export catalog.json</strong> when done, replace
+      <code>data/catalog.json</code> in the repo with the downloaded file, then
+      commit &amp; push to publish. <span id="dirtyFlag" hidden><strong>&#9679; Unsaved changes</strong></span>
     </p>
 
     <!-- ===== Status bar (success / error feedback) ===== -->
@@ -254,8 +265,8 @@
   </main>
 
   <!-- ===== Scripts: CDN -> config.js -> admin.js (order matters) ===== -->
-  <script src="https://cdn.jsdelivr.net/npm/pocketbase@0.26/dist/pocketbase.umd.js"></script>
   <script src="js/config.js"></script>
+  <script src="js/gate.js"></script>
   <script src="js/admin.js"></script>
 </body>
 </html>

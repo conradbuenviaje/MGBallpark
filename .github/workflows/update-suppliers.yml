@@ -1,0 +1,55 @@
+name: Update supplier data
+
+# Scrapes the Lark procurement base (via the public proxy) and commits
+# data/suppliers.json + data/rate-suggestions.json. Runs on a daily schedule
+# and can be triggered by hand from the Actions tab ("Run workflow").
+
+on:
+  schedule:
+    - cron: '30 20 * * *'   # 20:30 UTC daily = 04:30 Asia/Manila
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-suppliers
+  cancel-in-progress: false
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Scrape supplier data
+        id: scrape
+        run: |
+          set +e
+          python scripts/scrape_suppliers.py
+          code=$?
+          if [ "$code" = "3" ]; then
+            echo "Proxy returned too few records (asleep/down). Skipping commit."
+            echo "skip=1" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          exit $code
+
+      - name: Commit if changed
+        if: steps.scrape.outputs.skip != '1'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/suppliers.json data/rate-suggestions.json
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "chore: refresh supplier data + rate suggestions [skip ci]"
+            git push
+          fi

@@ -48,6 +48,201 @@
   let statusTimer = null;
 
   /* ===================================================================
+   * Static catalog store
+   * -------------------------------------------------------------------
+   * The admin edits data/catalog.json entirely in the browser — there is NO
+   * backend. `db` below is a tiny in-memory store exposing the same
+   * from().select()/insert()/update()/delete()/upsert() chain the CRUD code
+   * already used, so those functions did not have to change. Changes live in
+   * memory until the user clicks "Export catalog.json" and commits the file.
+   * ================================================================= */
+
+  const CATALOG_URL = (typeof CATALOG_PATH !== 'undefined' && CATALOG_PATH) ? CATALOG_PATH : 'data/catalog.json';
+  let db = null;          // in-memory store (assigned in init)
+  let MODEL = null;       // { settings:[{id:1,...}], categories:[], services:[], packages:[], package_services:[] }
+  let dirty = false;      // true once the user has made an unsaved change
+
+  function markDirty() {
+    dirty = true;
+    const f = document.getElementById('dirtyFlag');
+    if (f) f.hidden = false;
+  }
+
+  // Build the in-memory MODEL from a parsed catalog.json object.
+  function modelFromCatalog(cat) {
+    cat = cat || {};
+    const s = cat.settings || {};
+    const packages = (cat.packages || []).map(function (p) {
+      const c = Object.assign({}, p); delete c.items; return c;
+    });
+    const package_services = [];
+    let psId = 1;
+    (cat.packages || []).forEach(function (p) {
+      (p.items || []).forEach(function (it, i) {
+        package_services.push({
+          id: psId++, package: p.id, service: it.service_id,
+          quantity: it.quantity, sort_order: i + 1,
+        });
+      });
+    });
+    return {
+      settings: [{ id: 1, asf_rate: s.asf_rate, vat_rate: s.vat_rate, usd_php_rate: s.usd_php_rate }],
+      categories: (cat.categories || []).map(function (c) { return Object.assign({}, c); }),
+      services: (cat.services || []).map(function (c) { return Object.assign({}, c); }),
+      packages: packages,
+      package_services: package_services,
+    };
+  }
+
+  // Serialize the MODEL back into the catalog.json shape the calculator reads
+  // (settings as an object; packages carry a pre-joined `items` array).
+  function catalogFromModel() {
+    const s = (MODEL.settings && MODEL.settings[0]) || {};
+    return {
+      _generated: 'admin export',
+      settings: { asf_rate: s.asf_rate, vat_rate: s.vat_rate, usd_php_rate: s.usd_php_rate },
+      categories: MODEL.categories.map(function (c) { return Object.assign({}, c); }),
+      services: MODEL.services.map(function (c) { return Object.assign({}, c); }),
+      packages: MODEL.packages.map(function (p) {
+        const items = MODEL.package_services
+          .filter(function (ps) { return ps.package === p.id; })
+          .sort(function (a, b) { return (a.sort_order || 0) - (b.sort_order || 0); })
+          .map(function (ps) { return { service_id: ps.service, quantity: ps.quantity }; });
+        return Object.assign({}, p, { items: items });
+      }),
+    };
+  }
+
+  // Minimal Supabase/PostgREST-shaped shim over the in-memory MODEL.
+  function makeLocalStore(model) {
+    function clone(x) { return x == null ? x : JSON.parse(JSON.stringify(x)); }
+    function coll(name) { return model[name] || (model[name] = []); }
+    function nextIntId(name) {
+      let m = 0;
+      coll(name).forEach(function (r) { const n = parseInt(r.id, 10); if (!isNaN(n) && n > m) m = n; });
+      return m + 1;
+    }
+    function newId(name) {
+      if (name === 'packages') return 'pkg-' + Date.now() + '-' + Math.floor(Math.random() * 1e4);
+      return nextIntId(name);
+    }
+    function q(name) {
+      const st = { filters: [], sort: [], op: 'select', payload: null };
+      function matches(r) {
+        return st.filters.every(function (f) {
+          if (f.type === 'in') return f.vals.indexOf(r[f.field]) !== -1;
+          return r[f.field] === f.val;
+        });
+      }
+      function applySort(arr) {
+        if (!st.sort.length) return arr;
+        return arr.slice().sort(function (a, b) {
+          for (let i = 0; i < st.sort.length; i++) {
+            const s = st.sort[i], av = a[s.field], bv = b[s.field];
+            if (av < bv) return s.asc ? -1 : 1;
+            if (av > bv) return s.asc ? 1 : -1;
+          }
+          return 0;
+        });
+      }
+      function run(single) {
+        try {
+          const arr = coll(name);
+          if (st.op === 'select') {
+            // settings is a single implicit row — ignore id filters on it.
+            const filtered = (name === 'settings') ? arr.slice() : arr.filter(matches);
+            const sorted = applySort(filtered);
+            return Promise.resolve({ data: single ? clone(sorted[0] || null) : clone(sorted), error: null });
+          }
+          if (st.op === 'insert') {
+            const payloads = Array.isArray(st.payload) ? st.payload : [st.payload];
+            const created = [];
+            payloads.forEach(function (p) {
+              const rec = Object.assign({}, p);
+              if (rec.id == null) rec.id = newId(name);
+              arr.push(rec); created.push(rec);
+            });
+            markDirty();
+            return Promise.resolve({ data: single ? clone(created[0]) : clone(created), error: null });
+          }
+          if (st.op === 'update') {
+            const updated = [];
+            arr.forEach(function (r) { if (matches(r)) { Object.assign(r, st.payload); updated.push(r); } });
+            markDirty();
+            return Promise.resolve({ data: clone(updated), error: null });
+          }
+          if (st.op === 'delete') {
+            model[name] = arr.filter(function (r) { return !matches(r); });
+            markDirty();
+            return Promise.resolve({ data: null, error: null });
+          }
+          if (st.op === 'upsert') {
+            const p = Object.assign({}, st.payload);
+            if (arr.length) Object.assign(arr[0], p); else arr.push(p);
+            markDirty();
+            return Promise.resolve({ data: clone(arr[0]), error: null });
+          }
+          return Promise.resolve({ data: null, error: new Error('unsupported op') });
+        } catch (e) { return Promise.resolve({ data: null, error: e }); }
+      }
+      const builder = {
+        select: function () { return builder; },
+        eq: function (f, v) { st.filters.push({ type: 'eq', field: f, val: v }); return builder; },
+        in: function (f, v) { st.filters.push({ type: 'in', field: f, vals: v }); return builder; },
+        order: function (f, o) { st.sort.push({ field: f, asc: !(o && o.ascending === false) }); return builder; },
+        limit: function () { return builder; },
+        maybeSingle: function () { return run(true); },
+        single: function () { return run(true); },
+        insert: function (p) { st.op = 'insert'; st.payload = p; return builder; },
+        update: function (p) { st.op = 'update'; st.payload = p; return builder; },
+        delete: function () { st.op = 'delete'; return builder; },
+        upsert: function (p) { st.op = 'upsert'; st.payload = p; return builder; },
+        then: function (res, rej) { return run(false).then(res, rej); },
+      };
+      return builder;
+    }
+    return { from: function (n) { return q(n); } };
+  }
+
+  // Download the current MODEL as catalog.json.
+  function exportCatalog() {
+    try {
+      const json = JSON.stringify(catalogFromModel(), null, 1);
+      const blob = new Blob([json], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = 'catalog.json';
+      document.body.appendChild(a); a.click(); document.body.removeChild(a);
+      setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+      dirty = false;
+      const f = document.getElementById('dirtyFlag'); if (f) f.hidden = true;
+      showStatus('Exported catalog.json — replace data/catalog.json in the repo, then commit & push.', 'success');
+    } catch (err) {
+      showStatus('Export failed: ' + (err.message || err), 'error');
+    }
+  }
+
+  // Import a catalog.json chosen by the user; replaces the working MODEL.
+  function importCatalog(file) {
+    const reader = new FileReader();
+    reader.onload = function () {
+      try {
+        const cat = JSON.parse(reader.result);
+        MODEL = modelFromCatalog(cat);
+        db = makeLocalStore(MODEL);
+        dirty = false;
+        const f = document.getElementById('dirtyFlag'); if (f) f.hidden = true;
+        loadSettings();
+        loadCategoriesAndServices().then(loadPackages);
+        showStatus('Imported ' + (file.name || 'catalog.json') + '.', 'success');
+      } catch (err) {
+        showStatus('Import failed (invalid JSON): ' + (err.message || err), 'error');
+      }
+    };
+    reader.readAsText(file);
+  }
+
+  /* ===================================================================
    * Status / feedback helpers
    * ================================================================= */
 
@@ -1029,6 +1224,11 @@
    * ================================================================= */
 
   async function init() {
+    // Soft sign-in gate (see js/gate.js). Blocks until authenticated.
+    if (window.AdminGate && typeof AdminGate.require === 'function') {
+      await AdminGate.require();
+    }
+
     // Resolve element references.
     statusBar = document.getElementById('statusBar');
     asfRateInput = document.getElementById('asfRateInput');
@@ -1076,22 +1276,40 @@
       });
     }
 
-    // If config.js could not create the Supabase client (placeholder/invalid
-    // credentials or a blocked CDN), don't fire DB calls -- show a clear setup
-    // message but still prefill the settings inputs with defaults.
-    if (typeof db === 'undefined' || !db) {
-      showStatus(
-        'Backend not configured / unreachable. Set PB_URL in js/config.js and make sure PocketBase + the tunnel are running.',
-        'error'
-      );
+    // Export / Import controls.
+    const exportBtn = document.getElementById('exportCatalogBtn');
+    if (exportBtn) exportBtn.addEventListener('click', exportCatalog);
+    const importInput = document.getElementById('importCatalogInput');
+    if (importInput) importInput.addEventListener('change', function () {
+      if (this.files && this.files[0]) importCatalog(this.files[0]);
+      this.value = '';
+    });
+    // Warn before leaving with unsaved edits.
+    window.addEventListener('beforeunload', function (e) {
+      if (dirty) { e.preventDefault(); e.returnValue = ''; }
+    });
+
+    // Load the static catalog into the in-memory store. Everything downstream
+    // reads/writes this MODEL via `db`; nothing touches a backend.
+    try {
+      const resp = await fetch(CATALOG_URL, { cache: 'no-cache' });
+      if (!resp.ok) throw new Error('catalog.json HTTP ' + resp.status);
+      MODEL = modelFromCatalog(await resp.json());
+      db = makeLocalStore(MODEL);
+    } catch (err) {
+      console.error('Could not load catalog.json:', err);
+      showStatus('Could not load data/catalog.json. Use Import to load one.', 'error');
       asfRateInput.value = trimNum(0.125 * 100);
       vatRateInput.value = trimNum(0.12 * 100);
       usdRateInput.value = trimNum(55.89);
       if (categoriesContainer) {
         categoriesContainer.innerHTML =
-          '<p class="notice notice-warning">Connect PocketBase (PB_URL in js/config.js) to manage the catalog.</p>';
+          '<p class="notice notice-warning">data/catalog.json could not be loaded. ' +
+          'Click <strong>Import</strong> to load a catalog file to edit.</p>';
       }
-      return;
+      // Still start an empty store so Import works.
+      MODEL = modelFromCatalog({});
+      db = makeLocalStore(MODEL);
     }
 
     // Services table: filters, sort, add, bulk.
@@ -1123,24 +1341,6 @@
     if (packageCore) packageCore.addEventListener('change', function () { populatePackageServiceSelect(packageCore.value); });
     const packageCoreFilter = document.getElementById('packageCoreFilter');
     if (packageCoreFilter) packageCoreFilter.addEventListener('change', renderPackagesList);
-
-    // Log out.
-    const logoutBtn = document.getElementById('logoutBtn');
-    if (logoutBtn) {
-      logoutBtn.addEventListener('click', async function () {
-        try { await db.auth.signOut(); } catch (e) { /* ignore */ }
-        window.location.replace('login.html');
-      });
-    }
-
-    // Auth gate: must be signed in (Supabase Auth) to use the admin panel.
-    try {
-      const { data: { session } } = await db.auth.getSession();
-      if (!session) { window.location.replace('login.html'); return; }
-    } catch (e) {
-      window.location.replace('login.html');
-      return;
-    }
 
     // Initial data load (packages load after the catalog so names/cores resolve).
     loadSettings();

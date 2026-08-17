@@ -1078,80 +1078,53 @@
    * ------------------------------------------------------------------- */
 
   // Detect the unconfigured-credentials placeholder so we can warn nicely.
+  // The catalog is a static JSON file committed in the repo (data/catalog.json).
+  // Path is relative to the page, so it works both locally and on GitHub Pages.
+  var CATALOG_URL = (typeof CATALOG_PATH !== 'undefined' && CATALOG_PATH) ? CATALOG_PATH : 'data/catalog.json';
+
   function credentialsMissing() {
-    // db is null when config.js could not create the client (placeholder /
-    // invalid URL / CDN blocked). Treat any of those as "not configured".
-    return (
-      typeof db === 'undefined' || !db ||
-      typeof PB_URL === 'undefined' || !PB_URL ||
-      (typeof credentialsConfigured === 'function' && !credentialsConfigured())
-    );
+    // Static catalog: nothing to configure. The only failure mode is the JSON
+    // file not loading, which loadData() surfaces as a thrown error.
+    return false;
   }
 
-  // Fetch settings, categories and services. Returns true on success.
+  // Fetch settings, categories, services and packages from the static catalog.
+  // Returns true on success. Throws if the file can't be fetched/parsed.
   async function loadData() {
-    // Settings (single row, id = 1). Fall back to defaults if absent.
-    var settingsRes = await db
-      .from('settings')
-      .select('asf_rate, vat_rate, usd_php_rate')
-      .eq('id', 1)
-      .maybeSingle();
-    if (settingsRes.error) throw settingsRes.error;
-    if (settingsRes.data) {
-      settings = {
-        asf_rate: Number(settingsRes.data.asf_rate),
-        vat_rate: Number(settingsRes.data.vat_rate),
-        usd_php_rate: Number(settingsRes.data.usd_php_rate) || DEFAULT_USD_PHP,
-      };
-    }
+    var resp = await fetch(CATALOG_URL, { cache: 'no-cache' });
+    if (!resp.ok) throw new Error('catalog.json HTTP ' + resp.status);
+    var cat = await resp.json();
+
+    // Settings — fall back to defaults for any missing field.
+    var s = cat.settings || {};
+    settings = {
+      asf_rate: Number(s.asf_rate),
+      vat_rate: Number(s.vat_rate),
+      usd_php_rate: Number(s.usd_php_rate) || DEFAULT_USD_PHP,
+    };
 
     // Categories, ordered by sort_order.
-    var catRes = await db
-      .from('categories')
-      .select('id, name, description, sort_order, core')
-      .order('sort_order', { ascending: true });
-    if (catRes.error) throw catRes.error;
-    categories = catRes.data || [];
+    categories = (cat.categories || []).slice().sort(function (a, b) {
+      return (a.sort_order || 0) - (b.sort_order || 0);
+    });
 
-    // Services, ordered by sort_order.
-    // select('*') is resilient to the is_active column not existing yet.
-    var svcRes = await db
-      .from('services')
-      .select('*')
-      .order('sort_order', { ascending: true });
-    if (svcRes.error) throw svcRes.error;
-    // Hide services the admin disabled (is_active === false). Missing column
-    // (undefined) is treated as active.
-    services = (svcRes.data || []).filter(function (s) { return s.is_active !== false; });
+    // Services, ordered by sort_order. Hide admin-disabled (is_active === false).
+    services = (cat.services || [])
+      .slice()
+      .sort(function (a, b) { return (a.sort_order || 0) - (b.sort_order || 0); })
+      .filter(function (x) { return x.is_active !== false; });
     serviceById = {};
-    services.forEach(function (s) { serviceById[s.id] = s; });
+    services.forEach(function (x) { serviceById[x.id] = x; });
 
-    // Packages (optional). Resilient: if the tables don't exist yet, skip
-    // silently so the rest of the catalog still loads.
-    packages = [];
-    try {
-      var pkgRes = await db
-        .from('packages')
-        .select('*')
-        .eq('is_active', true)
-        .order('sort_order', { ascending: true });
-      if (!pkgRes.error && pkgRes.data && pkgRes.data.length) {
-        var psRes = await db
-          .from('package_services')
-          .select('package_id, service_id, quantity, sort_order')
-          .order('sort_order', { ascending: true });
-        var items = (!psRes.error && psRes.data) ? psRes.data : [];
-        pkgRes.data.forEach(function (p) {
-          p.items = items
-            .filter(function (i) { return i.package_id === p.id; })
-            .map(function (i) { return { service_id: i.service_id, quantity: i.quantity }; });
-        });
-        packages = pkgRes.data;
-      }
-    } catch (e) {
-      console.warn('Packages unavailable:', e);
-      packages = [];
-    }
+    // Packages — only active ones, ordered by sort_order. Each already carries
+    // its `items` array (pre-joined in the catalog).
+    packages = (cat.packages || [])
+      .filter(function (p) { return p.is_active !== false; })
+      .slice()
+      .sort(function (a, b) { return (a.sort_order || 0) - (b.sort_order || 0); })
+      .map(function (p) {
+        return Object.assign({}, p, { items: Array.isArray(p.items) ? p.items : [] });
+      });
 
     return true;
   }

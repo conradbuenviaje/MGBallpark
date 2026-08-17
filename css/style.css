@@ -1934,3 +1934,117 @@ code {
     scroll-behavior: auto !important;
   }
 }
+
+/* =====================================================================
+ * Notice: info variant (admin static-workflow banner)
+ * ===================================================================== */
+.notice-info {
+  border-left: 4px solid var(--accent);
+  background: color-mix(in srgb, var(--accent) 10%, var(--surface));
+}
+#dirtyFlag { color: var(--primary); margin-left: 0.4rem; }
+.import-label { cursor: pointer; }
+
+/* =====================================================================
+ * Supplier price reference panel (live, reference-only)
+ * ===================================================================== */
+.supplier-panel {
+  border: 1px solid var(--border);
+  background: var(--surface);
+  border-radius: 12px;
+  margin: 1rem 0 1.25rem;
+  overflow: hidden;
+}
+.supplier-panel > summary {
+  cursor: pointer;
+  list-style: none;
+  padding: 0.85rem 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  font-weight: 600;
+  user-select: none;
+}
+.supplier-panel > summary::-webkit-details-marker { display: none; }
+.supplier-panel > summary::after {
+  content: '▾';
+  color: var(--muted);
+  transition: transform 0.15s ease;
+}
+.supplier-panel[open] > summary::after { transform: rotate(180deg); }
+.supplier-live {
+  display: inline-block;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--on-primary);
+  background: var(--accent);
+  border-radius: 999px;
+  padding: 0.08rem 0.45rem;
+  margin-left: 0.35rem;
+  vertical-align: middle;
+}
+.supplier-hint { color: var(--muted); font-weight: 400; font-size: 0.82rem; }
+.supplier-body { padding: 0 1.1rem 1.1rem; }
+.supplier-status { font-size: 0.85rem; margin: 0.25rem 0 0.6rem; }
+.supplier-results { overflow-x: auto; }
+.supplier-foot { font-size: 0.75rem; margin-top: 0.6rem; }
+.supplier-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+.supplier-table th, .supplier-table td {
+  text-align: left;
+  padding: 0.4rem 0.6rem;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+.supplier-table th {
+  position: sticky;
+  top: 0;
+  background: var(--surface);
+  color: var(--muted);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.supplier-table td.num, .supplier-table th.num { text-align: right; white-space: nowrap; }
+.supplier-results { max-height: 420px; overflow-y: auto; }
+
+/* =====================================================================
+ * Admin sign-in gate (soft gate — see js/gate.js)
+ * ===================================================================== */
+.gate-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background: var(--bg);
+}
+.gate-card {
+  width: 100%;
+  max-width: 380px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.gate-card h1 { margin: 0 0 0.15rem; font-size: 1.35rem; }
+.gate-card label { font-size: 0.8rem; color: var(--muted); margin-top: 0.4rem; }
+.gate-card .btn-large { margin-top: 0.9rem; }
+.gate-error {
+  color: oklch(0.65 0.2 25);
+  font-size: 0.85rem;
+  margin: 0.3rem 0 0;
+}
+.gate-note { font-size: 0.72rem; margin-top: 0.6rem; }
+.gate-whoami { margin-left: 0.4rem; font-size: 0.85rem; }
