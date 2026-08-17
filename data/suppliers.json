@@ -1,6 +1,6 @@
 {
- "_generated": "2026-08-17T08:31:11Z",
- "count": 2907,
+ "_generated": "2026-08-17T09:14:11Z",
+ "count": 2916,
  "rows": [
   {
    "item": "1 Set 9ft x 12ft Complete LED Wall + Pro Audio and Pro Lighting Equipment Rental (Caloocan)",
@@ -381,6 +381,16 @@
    "project": "Add-Ons - PUBG Mobile 8th Anniversary Event",
    "status": "Approved",
    "date": "2026-03-26"
+  },
+  {
+   "item": "4.9ft x 11ft Tarpaulin with wooden frame and installation",
+   "unitPrice": 30000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "HDP PRINTING",
+   "project": "realme Mobile Legends Cup Season 10 (Campus Edition)",
+   "status": "Approved",
+   "date": "2026-08-17"
   },
   {
    "item": "40in Bubble Wrap Clear (per roll)",
@@ -7034,6 +7044,16 @@
   },
   {
    "item": "Outsourced Audio Engineer (RS & PO)",
+   "unitPrice": 78000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "James Alvin Christian P. Romero",
+   "project": "MPL PH S18",
+   "status": "Approved",
+   "date": "2026-08-17"
+  },
+  {
+   "item": "Outsourced Audio Engineer (RS & PO)",
    "unitPrice": 111000.0,
    "currency": "PHP",
    "qty": "1",
@@ -8461,6 +8481,16 @@
    "project": "MPL PH S17",
    "status": "Approved",
    "date": "2026-03-12"
+  },
+  {
+   "item": "Outsourced CG Dynamic Operator (RS & PO)",
+   "unitPrice": 114000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Jan Laurence Antonio",
+   "project": "MPL PH S18",
+   "status": "Approved",
+   "date": "2026-08-17"
   },
   {
    "item": "Outsourced CG OP/Game OBS",
@@ -12643,6 +12673,16 @@
    "date": "2025-09-04"
   },
   {
+   "item": "Outsourced Lead Stream Engineer (RS & PO)",
+   "unitPrice": 103600.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "SEAN JHONAS A. ARAGO",
+   "project": "MPL PH S18",
+   "status": "Approved",
+   "date": "2026-08-17"
+  },
+  {
    "item": "Outsourced Lead Stream Engineer (RS and PO/Grand Finals)",
    "unitPrice": 43200.0,
    "currency": "PHP",
@@ -13791,6 +13831,16 @@
    "project": "MPL PH S18",
    "status": "Approved",
    "date": "2026-08-14"
+  },
+  {
+   "item": "Outsourced Liaison Officer (RS)",
+   "unitPrice": 24750.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Lorenzo S. Joaquin",
+   "project": "MPL PH S18",
+   "status": "Approved",
+   "date": "2026-08-17"
   },
   {
    "item": "Outsourced Liaison Officer (RS)",
@@ -16603,6 +16653,16 @@
    "date": "2025-09-09"
   },
   {
+   "item": "Outsourced Main CG Operator",
+   "unitPrice": 87500.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Emir Ryan Concepcion",
+   "project": "MPL PH S18",
+   "status": "Approved",
+   "date": "2026-08-17"
+  },
+  {
    "item": "Outsourced Main CG Operator (RS & PO)",
    "unitPrice": 114800.0,
    "currency": "PHP",
@@ -16961,6 +17021,16 @@
    "project": "MPL PH S17",
    "status": "Approved",
    "date": "2026-03-25"
+  },
+  {
+   "item": "Outsourced Mic Check / POV Operator (RS & PO)",
+   "unitPrice": 94500.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Kenneth Bayona",
+   "project": "MPL PH S18",
+   "status": "Approved",
+   "date": "2026-08-17"
   },
   {
    "item": "Outsourced Mic Check Operator",
@@ -21011,6 +21081,16 @@
    "project": "MPL PH S16 - Regular Season",
    "status": "Approved",
    "date": "2025-09-11"
+  },
+  {
+   "item": "Outsourced Stream Engineer (RS & PO)",
+   "unitPrice": 66000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Annejeleeka Cherrell Ho",
+   "project": "MPL PH S18",
+   "status": "Approved",
+   "date": "2026-08-17"
   },
   {
    "item": "Outsourced Stream Engineer (RS & PO)",
@@ -25841,6 +25921,16 @@
    "project": "KIC 2025 - SB19 Tech and Security Rider (Playoffs)",
    "status": "Approved",
    "date": "2025-11-28"
+  },
+  {
+   "item": "Rental of Basic Sounds, Lights and LED (9x16ft) - 1 days",
+   "unitPrice": 33000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "J L AUDI0 LIGHTS AND SOUND RENTAL",
+   "project": "realme Mobile Legends Cup Season 10 (Campus Edition)",
+   "status": "Approved",
+   "date": "2026-08-17"
   },
   {
    "item": "Rental of Bean Bags (10 pcs / color ORANGE) - inclusive of delivery & pick-up",
