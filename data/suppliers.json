@@ -1,6 +1,6 @@
 {
- "_generated": "2026-08-17T20:50:18Z",
- "count": 2916,
+ "_generated": "2026-08-18T20:45:50Z",
+ "count": 2938,
  "rows": [
   {
    "item": "1 Set 9ft x 12ft Complete LED Wall + Pro Audio and Pro Lighting Equipment Rental (Caloocan)",
@@ -1433,6 +1433,16 @@
    "date": "2026-07-02"
   },
   {
+   "item": "Booth Fabrication (Backdrop, Logo, Platform + Carpet, Table with Lighted Signage, PUB - OPTION 2)",
+   "unitPrice": 115360.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "ILIGHT PRODUCTION",
+   "project": "Joytify - MPL PH S18 Regular Season Booth Activation",
+   "status": "Approved",
+   "date": "2026-08-18"
+  },
+  {
    "item": "Booth Rental / Fabrication (Jan. 30 to Feb. 8, 2026)",
    "unitPrice": 135520.0,
    "currency": "PHP",
@@ -2043,6 +2053,16 @@
    "date": "2025-02-06"
   },
   {
+   "item": "Crew IDs (PVC)",
+   "unitPrice": 72.8745,
+   "currency": "PHP",
+   "qty": "247",
+   "supplier": "ILIGHT PRODUCTION",
+   "project": "MPL PH S17 - Addendum 2",
+   "status": "Approved",
+   "date": "2026-08-18"
+  },
+  {
    "item": "Crew Meals (2 days / 3 Meals) - 372pax",
    "unitPrice": 48110.0,
    "currency": "PHP",
@@ -2551,6 +2571,16 @@
    "project": "SportsPlus MPBL Roadtrip Watchparty 2026",
    "status": "Approved",
    "date": "2026-04-06"
+  },
+  {
+   "item": "Customize Trophy (Material: Engineering plastic /  Size: 15\"x15\" / silver and gold) with Rush Fee",
+   "unitPrice": 15000.0,
+   "currency": "PHP",
+   "qty": "2",
+   "supplier": "Klan 3D Inc",
+   "project": "MPL PH S18",
+   "status": "Approved",
+   "date": "2026-08-18"
   },
   {
    "item": "Customized 3\" Medals Tanzo with Plates",
@@ -4411,6 +4441,16 @@
    "project": "2026 - Sandisk @ Northern Play Con",
    "status": "Approved",
    "date": "2026-08-03"
+  },
+  {
+   "item": "Flyers (Material: Glossy Paper 140gsm / A5 Size / Back to Back Print / Full Color) w/ Free 500 pcs",
+   "unitPrice": 7.5,
+   "currency": "PHP",
+   "qty": "1500",
+   "supplier": "TBY PRINTING SERVICES",
+   "project": "Joytify - MPL PH S18 Regular Season Booth Activation",
+   "status": "Approved",
+   "date": "2026-08-18"
   },
   {
    "item": "Focusrite Scarlett 2i2 USB-C Audio Interface (4th Generation)",
@@ -6511,6 +6551,16 @@
    "project": "MPL PH S17",
    "status": "Approved",
    "date": "2026-03-12"
+  },
+  {
+   "item": "Outsourced API Engineer (RS & PO)",
+   "unitPrice": 167000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Jay Lawrence Rivera",
+   "project": "MPL PH S18",
+   "status": "Approved",
+   "date": "2026-08-18"
   },
   {
    "item": "Outsourced API Operator",
@@ -9953,6 +10003,16 @@
    "date": "2025-08-29"
   },
   {
+   "item": "Outsourced Game Director (RS & PO)",
+   "unitPrice": 85000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Ralp Gabriel Garcia",
+   "project": "MPL PH S18",
+   "status": "Approved",
+   "date": "2026-08-18"
+  },
+  {
    "item": "Outsourced Game Director (RS and PO/Grand Finals)",
    "unitPrice": 40000.0,
    "currency": "PHP",
@@ -10301,6 +10361,16 @@
    "project": "MPL PH S17",
    "status": "Approved",
    "date": "2026-03-25"
+  },
+  {
+   "item": "Outsourced GFX Dynamic Designer (RS & PO)",
+   "unitPrice": 70000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Adrian Navarro",
+   "project": "MPL PH S18",
+   "status": "Approved",
+   "date": "2026-08-18"
   },
   {
    "item": "Outsourced Graphic Artist",
@@ -10713,6 +10783,16 @@
    "date": "2025-09-04"
   },
   {
+   "item": "Outsourced Head Referee (RS & PO)",
+   "unitPrice": 92000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Wilbert Rysher Dela Cruz Manabat",
+   "project": "MPL PH S18",
+   "status": "Approved",
+   "date": "2026-08-18"
+  },
+  {
    "item": "Outsourced Head Technical Director",
    "unitPrice": 60000.0,
    "currency": "PHP",
@@ -11121,6 +11201,16 @@
    "project": "MPL PH S17",
    "status": "Approved",
    "date": "2026-03-31"
+  },
+  {
+   "item": "Outsourced HMUA (RS)",
+   "unitPrice": 232800.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Grace Filomeno",
+   "project": "MPL PH S18",
+   "status": "Approved",
+   "date": "2026-08-18"
   },
   {
    "item": "Outsourced HMUA (RS)",
@@ -11751,6 +11841,26 @@
    "project": "MPL PH S17",
    "status": "Approved",
    "date": "2026-05-29"
+  },
+  {
+   "item": "Outsourced IT Associate (RS & PO)",
+   "unitPrice": 14500.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Jose Andrew A. Mazaredo",
+   "project": "MPL PH S18",
+   "status": "Approved",
+   "date": "2026-08-18"
+  },
+  {
+   "item": "Outsourced IT Associate (RS & PO)",
+   "unitPrice": 14500.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Lawrence Yaco",
+   "project": "MPL PH S18",
+   "status": "Approved",
+   "date": "2026-08-18"
   },
   {
    "item": "Outsourced IT Associate (RS & PO)",
@@ -17053,6 +17163,16 @@
    "date": "2025-11-07"
   },
   {
+   "item": "Outsourced Moderator (RS & PO)",
+   "unitPrice": 49500.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Wendell Yuri J Domasig",
+   "project": "MPL PH S18",
+   "status": "Approved",
+   "date": "2026-08-18"
+  },
+  {
    "item": "Outsourced Motion Graphic Artist",
    "unitPrice": 22250.0,
    "currency": "PHP",
@@ -19314,6 +19434,16 @@
   },
   {
    "item": "Outsourced Referee (RS & PO)",
+   "unitPrice": 43750.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Patrick B. Pablico",
+   "project": "MPL PH S18",
+   "status": "Approved",
+   "date": "2026-08-18"
+  },
+  {
+   "item": "Outsourced Referee (RS & PO)",
    "unitPrice": 54450.0,
    "currency": "PHP",
    "qty": "1",
@@ -19351,6 +19481,56 @@
    "project": "MPL PH S17",
    "status": "Approved",
    "date": "2026-03-31"
+  },
+  {
+   "item": "Outsourced Referee (RS & PO)",
+   "unitPrice": 57750.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Jefferson Serrano",
+   "project": "MPL PH S18",
+   "status": "Approved",
+   "date": "2026-08-18"
+  },
+  {
+   "item": "Outsourced Referee (RS & PO)",
+   "unitPrice": 57750.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Joshua Gabriel J. Huerta",
+   "project": "MPL PH S18",
+   "status": "Approved",
+   "date": "2026-08-18"
+  },
+  {
+   "item": "Outsourced Referee (RS & PO)",
+   "unitPrice": 57750.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "MIKO B SEVILLA",
+   "project": "MPL PH S18",
+   "status": "Approved",
+   "date": "2026-08-18"
+  },
+  {
+   "item": "Outsourced Referee (RS & PO)",
+   "unitPrice": 57750.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Mico Tabernilla",
+   "project": "MPL PH S18",
+   "status": "Approved",
+   "date": "2026-08-18"
+  },
+  {
+   "item": "Outsourced Referee (RS & PO)",
+   "unitPrice": 57750.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Jean Francois Dominique D. Galvez",
+   "project": "MPL PH S18",
+   "status": "Approved",
+   "date": "2026-08-18"
   },
   {
    "item": "Outsourced Referee (RS & PO)",
@@ -20641,6 +20821,36 @@
    "project": "MPL PH S17",
    "status": "Approved",
    "date": "2026-03-31"
+  },
+  {
+   "item": "Outsourced Sponsor Logistics Manpower (RS & PO)",
+   "unitPrice": 33350.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "RIC JACA",
+   "project": "MPL PH S18",
+   "status": "Approved",
+   "date": "2026-08-18"
+  },
+  {
+   "item": "Outsourced Sponsor Logistics Manpower (RS & PO)",
+   "unitPrice": 33350.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Zyrone Nery",
+   "project": "MPL PH S18",
+   "status": "Approved",
+   "date": "2026-08-18"
+  },
+  {
+   "item": "Outsourced Sponsors' Logistics Coordinator (RS)",
+   "unitPrice": 80000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Jesusquino Lim",
+   "project": "MPL PH S18",
+   "status": "Approved",
+   "date": "2026-08-18"
   },
   {
    "item": "Outsourced Stage Assistant (RS & PO)",
@@ -22991,6 +23201,16 @@
    "project": "HOK Philippine Kings League - Fall Season",
    "status": "Approved",
    "date": "2025-09-09"
+  },
+  {
+   "item": "Outsourced Talent Manager (RS & PO)",
+   "unitPrice": 87000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Matthew Militar",
+   "project": "MPL PH S18",
+   "status": "Approved",
+   "date": "2026-08-18"
   },
   {
    "item": "Outsourced Talent Manager / Floor Director",
