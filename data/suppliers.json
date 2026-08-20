@@ -1,6 +1,6 @@
 {
- "_generated": "2026-08-19T20:51:04Z",
- "count": 2938,
+ "_generated": "2026-08-20T20:53:26Z",
+ "count": 2942,
  "rows": [
   {
    "item": "1 Set 9ft x 12ft Complete LED Wall + Pro Audio and Pro Lighting Equipment Rental (Caloocan)",
@@ -821,6 +821,16 @@
    "project": "MPL PH S17",
    "status": "Approved",
    "date": "2026-03-17"
+  },
+  {
+   "item": "Additional Black Cloth (Katrina)",
+   "unitPrice": 2300.0,
+   "currency": "PHP",
+   "qty": "8",
+   "supplier": "KAI.ZEN R E ONLINE STORE",
+   "project": "MPL PH S17",
+   "status": "Approved",
+   "date": "2026-08-20"
   },
   {
    "item": "Additional Confetti (Loose Metallic Gold)",
@@ -1721,6 +1731,16 @@
    "project": "MPL PH S17",
    "status": "Approved",
    "date": "2026-03-12"
+  },
+  {
+   "item": "Cloth Banner Single Face with Print (Satin / 4x8ft / Full Sublimation)",
+   "unitPrice": 3449.6,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "GOLDEN ARTS PRINTING SERVICES",
+   "project": "MPL PH S17 - Addendum 2",
+   "status": "Approved",
+   "date": "2026-08-20"
   },
   {
    "item": "Collapsible Phototwall / Backdrop",
@@ -8084,6 +8104,16 @@
   },
   {
    "item": "Outsourced Camera Crew & Equipment (33 days)",
+   "unitPrice": 1120000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Maxi One Production Inc.",
+   "project": "MPL PH S18",
+   "status": "Approved",
+   "date": "2026-08-20"
+  },
+  {
+   "item": "Outsourced Camera Crew & Equipment (33 days)",
    "unitPrice": 1596000.0,
    "currency": "PHP",
    "qty": "1",
@@ -9661,6 +9691,16 @@
    "project": "GTCC Summer Showdown",
    "status": "Approved",
    "date": "2025-06-25"
+  },
+  {
+   "item": "Outsourced Facilitator (ASC Permits)",
+   "unitPrice": 7034.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Angelo M. Conwi",
+   "project": "BingoPlus Night Barangay Roadshow 2026 Sponsorship",
+   "status": "Approved",
+   "date": "2026-08-20"
   },
   {
    "item": "Outsourced Fansiklaban Observer",
