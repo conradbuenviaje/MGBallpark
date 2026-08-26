@@ -1,6 +1,6 @@
 {
- "_generated": "2026-08-25T20:52:36Z",
- "count": 2992,
+ "_generated": "2026-08-26T23:50:19Z",
+ "count": 2994,
  "rows": [
   {
    "item": "1 Set 9ft x 12ft Complete LED Wall + Pro Audio and Pro Lighting Equipment Rental (Caloocan)",
@@ -5721,6 +5721,16 @@
    "project": "MPL PH S16 - Playoffs",
    "status": "Approved",
    "date": "2025-11-04"
+  },
+  {
+   "item": "LEMONADE BOOTH (STICKER WITH MATTE LAMINATION)",
+   "unitPrice": 6000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "ILIGHT PRODUCTION",
+   "project": "2026 - SportsPlus MPBL Roadtrip Watchparty PHASE 2 - MONTALBAN ALL STAR",
+   "status": "Approved",
+   "date": "2026-08-25"
   },
   {
    "item": "Lenovo 3650 M5/2*E5-2620 v4(16c/32t)/64GB DDR4/8*1TB SAS/RAID DRIVER/4*1G LAN/Dual 550W",
@@ -28571,6 +28581,16 @@
    "project": "Crossfire Legends Public Test Launch",
    "status": "Approved",
    "date": "2025-12-12"
+  },
+  {
+   "item": "Stage Fabrication / Players' and Casters' Table",
+   "unitPrice": 300000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "SIGNFAB SIGN FABRICATION",
+   "project": "realme Mobile Legends Cup Season 10 (Campus Edition)",
+   "status": "Approved",
+   "date": "2026-08-25"
   },
   {
    "item": "Stage Fabrication and Upgrades",
