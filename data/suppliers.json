@@ -1,6 +1,6 @@
 {
- "_generated": "2026-08-26T23:50:19Z",
- "count": 2994,
+ "_generated": "2026-08-28T04:24:17Z",
+ "count": 2998,
  "rows": [
   {
    "item": "1 Set 9ft x 12ft Complete LED Wall + Pro Audio and Pro Lighting Equipment Rental (Caloocan)",
@@ -1673,6 +1673,16 @@
    "date": "2026-08-24"
   },
   {
+   "item": "CAP Navy Blue with DTF print / Size: Baseball Cap Size",
+   "unitPrice": 120.0,
+   "currency": "PHP",
+   "qty": "150",
+   "supplier": "",
+   "project": "2026 - SportsPlus MPBL Roadtrip Watchparty PHASE 2 Addendum 2",
+   "status": "Approved",
+   "date": "2026-08-26"
+  },
+  {
    "item": "CAP White with DTF print / Size: Baseball Cap Size",
    "unitPrice": 120.0,
    "currency": "PHP",
@@ -1691,6 +1701,16 @@
    "project": "2026 - SportsPlus MPBL Roadtrip Watchparty PHASE 2 Addendum 1",
    "status": "Approved",
    "date": "2026-08-24"
+  },
+  {
+   "item": "CAP White with DTF print / Size: Baseball Cap Size",
+   "unitPrice": 120.0,
+   "currency": "PHP",
+   "qty": "150",
+   "supplier": "HIPIVE PRINTING SERVICES",
+   "project": "2026 - SportsPlus MPBL Roadtrip Watchparty PHASE 2 Addendum 2",
+   "status": "Approved",
+   "date": "2026-08-26"
   },
   {
    "item": "CAP White with DTF print Size: Baseball Cap Size",
@@ -11163,6 +11183,16 @@
    "date": "2025-08-29"
   },
   {
+   "item": "Outsourced Highlights Operator (RS & PO)",
+   "unitPrice": 66000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Avin Francis Melendres Kais",
+   "project": "MPL PH S18",
+   "status": "Approved",
+   "date": "2026-08-26"
+  },
+  {
    "item": "Outsourced Highlights/ Replay Operator",
    "unitPrice": 3600.0,
    "currency": "PHP",
@@ -17391,6 +17421,16 @@
    "project": "SM Cyberzone Game Fest 2026",
    "status": "Approved",
    "date": "2026-06-09"
+  },
+  {
+   "item": "Outsourced Manpower - Various Roles (SM City Davao)",
+   "unitPrice": 60700.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Krizzy Joyce Daugdaug",
+   "project": "SM Cyberzone Game Fest 2026",
+   "status": "Approved",
+   "date": "2026-08-26"
   },
   {
    "item": "Outsourced Manpower for black cloth installation",
