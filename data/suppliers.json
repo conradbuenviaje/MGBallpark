@@ -1,6 +1,6 @@
 {
- "_generated": "2026-09-01T22:41:17Z",
- "count": 3018,
+ "_generated": "2026-09-02T22:44:02Z",
+ "count": 3028,
  "rows": [
   {
    "item": "1 Set 9ft x 12ft Complete LED Wall + Pro Audio and Pro Lighting Equipment Rental (Caloocan)",
@@ -4143,6 +4143,16 @@
    "date": "2026-08-24"
   },
   {
+   "item": "ENTERPRISE BROADBAND 200MBPS TEMPO SERVICE FEE w/ BRIDGE MODE FEE",
+   "unitPrice": 27800.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "PLDT",
+   "project": "realme Mobile Legends Cup Season 10 (Campus Edition)",
+   "status": "Approved",
+   "date": "2026-09-01"
+  },
+  {
    "item": "ENTERPRISE BROADBAND 500MBPS x2 TEMPO SERVICE FEE (May 21 to June 1, 2026)",
    "unitPrice": 90000.0,
    "currency": "PHP",
@@ -7633,6 +7643,26 @@
    "date": "2026-05-14"
   },
   {
+   "item": "Outsourced Brand Ambassador (Aug. 29 / Montalban)",
+   "unitPrice": 2800.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Michael Melchor M. Millendez",
+   "project": "2026 - SportsPlus MPBL Roadtrip Watchparty PHASE 2 - MONTALBAN ALL STAR",
+   "status": "Approved",
+   "date": "2026-09-01"
+  },
+  {
+   "item": "Outsourced Brand Ambassador (Aug. 29 / Montalban)",
+   "unitPrice": 4600.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "JASMINE DE GUZMAN DAVA",
+   "project": "Sportsplus FanZone Phase 2",
+   "status": "Approved",
+   "date": "2026-09-01"
+  },
+  {
    "item": "Outsourced Brand Ambassador (Caloocan & Laguna)",
    "unitPrice": 10000.0,
    "currency": "PHP",
@@ -7811,6 +7841,16 @@
    "project": "Joytify - MPL PH S18 Regular Season Booth Activation",
    "status": "Approved",
    "date": "2026-08-24"
+  },
+  {
+   "item": "Outsourced Brand Ambassadors (Weeks 2 & 3 / Aug. 28-30 / Sept. 4-6)",
+   "unitPrice": 24000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Michael Melchor M. Millendez",
+   "project": "Joytify - MPL PH S18 Regular Season Booth Activation",
+   "status": "Approved",
+   "date": "2026-09-01"
   },
   {
    "item": "Outsourced Brand Ambassadors / Ushers (Caloocan & Laguna)",
@@ -9681,6 +9721,16 @@
    "project": "SM Cyberzone Game Fest 2026",
    "status": "Approved",
    "date": "2026-05-14"
+  },
+  {
+   "item": "Outsourced Event Day Usher / Runner",
+   "unitPrice": 4500.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Mark Palmes",
+   "project": "realme Mobile Legends Cup Season 10 (Campus Edition)",
+   "status": "Approved",
+   "date": "2026-09-01"
   },
   {
    "item": "Outsourced Event Director",
@@ -12001,6 +12051,26 @@
    "project": "",
    "status": "Approved",
    "date": "2026-01-29"
+  },
+  {
+   "item": "Outsourced Ingress/Egress Logistics Associate",
+   "unitPrice": 3000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Froilan Aboga",
+   "project": "realme Mobile Legends Cup Season 10 (Campus Edition)",
+   "status": "Approved",
+   "date": "2026-09-01"
+  },
+  {
+   "item": "Outsourced Ingress/Egress Logistics Associate",
+   "unitPrice": 3000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Hilario V. Hernandez",
+   "project": "realme Mobile Legends Cup Season 10 (Campus Edition)",
+   "status": "Approved",
+   "date": "2026-09-01"
   },
   {
    "item": "Outsourced Interpreter (Bahasa Indonesia to English)",
@@ -20183,6 +20253,26 @@
    "date": "2026-02-27"
   },
   {
+   "item": "Outsourced Referee (SM San Lazaro)",
+   "unitPrice": 1500.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "LAQUISHA COLLET YACAT LICUANAN",
+   "project": "realme Mobile Legends Cup Season 10 (Campus Edition)",
+   "status": "Approved",
+   "date": "2026-09-01"
+  },
+  {
+   "item": "Outsourced Referee (SM San Lazaro)",
+   "unitPrice": 1500.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "MELVIN JR. TUPAZ",
+   "project": "realme Mobile Legends Cup Season 10 (Campus Edition)",
+   "status": "Approved",
+   "date": "2026-09-01"
+  },
+  {
    "item": "Outsourced Referees",
    "unitPrice": 10400.0,
    "currency": "PHP",
@@ -25991,6 +26081,16 @@
    "project": "HOK Philippine Kings League - Fall Season",
    "status": "Approved",
    "date": "2025-12-04"
+  },
+  {
+   "item": "Players' and Teams' Snacks (Week 1)",
+   "unitPrice": 8483.05,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Sharon Robins (Reimbursement)",
+   "project": "MPL PH S18",
+   "status": "Approved",
+   "date": "2026-09-01"
   },
   {
    "item": "Players' Meals (Aug. 21 to 22, 2025)",
