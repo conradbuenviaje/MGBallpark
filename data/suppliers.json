@@ -1,6 +1,6 @@
 {
- "_generated": "2026-09-02T22:44:02Z",
- "count": 3028,
+ "_generated": "2026-09-03T22:40:47Z",
+ "count": 3032,
  "rows": [
   {
    "item": "1 Set 9ft x 12ft Complete LED Wall + Pro Audio and Pro Lighting Equipment Rental (Caloocan)",
@@ -10123,6 +10123,16 @@
    "date": "2025-08-12"
   },
   {
+   "item": "Outsourced Floor Director/ Road Manager",
+   "unitPrice": 1800.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Zoe Monique Soliva",
+   "project": "realme Mobile Legends Cup Season 10 (Campus Edition)",
+   "status": "Approved",
+   "date": "2026-09-02"
+  },
+  {
    "item": "Outsourced Floor Manager",
    "unitPrice": 2700.0,
    "currency": "PHP",
@@ -19343,6 +19353,16 @@
    "date": "2025-06-18"
   },
   {
+   "item": "Outsourced Project Manager (Ingress / 5 Activations)",
+   "unitPrice": 10000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "John Benigno R. Magat",
+   "project": "BPI Perawise Caravan",
+   "status": "Approved",
+   "date": "2026-09-02"
+  },
+  {
    "item": "Outsourced Project Manager (Ingress)",
    "unitPrice": 2200.0,
    "currency": "PHP",
@@ -27473,6 +27493,16 @@
    "date": "2025-10-21"
   },
   {
+   "item": "Rental of Lifetime tables (16 days)",
+   "unitPrice": 4000.0,
+   "currency": "PHP",
+   "qty": "7",
+   "supplier": "SPE Events Management And Services Party Needs Rental",
+   "project": "HOK Philippine Kings League - Fall Season Addendum",
+   "status": "Approved",
+   "date": "2026-09-02"
+  },
+  {
    "item": "Rental of Lifetime Tables (Nov. 25 to 30 / 6 days)",
    "unitPrice": 1500.0,
    "currency": "PHP",
@@ -30041,6 +30071,16 @@
    "project": "MPL PH S17",
    "status": "Approved",
    "date": "2026-07-07"
+  },
+  {
+   "item": "Venue Parking (week 1 & 2)",
+   "unitPrice": 3400.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "VS HOTEL CORPORATION",
+   "project": "MPL PH S18",
+   "status": "Approved",
+   "date": "2026-09-02"
   },
   {
    "item": "Venue Rental (2 days / Robinsons Galleria)",
