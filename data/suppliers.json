@@ -1,6 +1,6 @@
 {
- "_generated": "2026-09-04T22:25:51Z",
- "count": 3032,
+ "_generated": "2026-09-05T22:08:05Z",
+ "count": 3039,
  "rows": [
   {
    "item": "1 Set 9ft x 12ft Complete LED Wall + Pro Audio and Pro Lighting Equipment Rental (Caloocan)",
@@ -1501,6 +1501,16 @@
    "project": "Mineski Outpost PGDX 2026",
    "status": "Approved",
    "date": "2026-07-24"
+  },
+  {
+   "item": "Booth storage fee ( July - August )",
+   "unitPrice": 10000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "STAGE ONE EVENT SERVICES CORP.",
+   "project": "Mineski Outpost PGDX 2026",
+   "status": "Approved",
+   "date": "2026-09-04"
   },
   {
    "item": "Bottled Water",
@@ -4173,6 +4183,16 @@
    "date": "2026-06-26"
   },
   {
+   "item": "Epson EcoTank L3520/L3350 Printer",
+   "unitPrice": 8325.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Sharon Robins (Reimbursement)",
+   "project": "",
+   "status": "Approved",
+   "date": "2026-09-04"
+  },
+  {
    "item": "Epson Printer (L5290)",
    "unitPrice": 13495.0,
    "currency": "PHP",
@@ -4581,6 +4601,26 @@
    "project": "MPL PH S17",
    "status": "Approved",
    "date": "2026-05-27"
+  },
+  {
+   "item": "Flights and Accoms (Cebu",
+   "unitPrice": 86358.01,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Sharon Robins (Reimbursement)",
+   "project": "realme Mobile Legends Cup Season 10 (Campus Edition)",
+   "status": "Approved",
+   "date": "2026-09-04"
+  },
+  {
+   "item": "Flights and Accoms (SM Davao)",
+   "unitPrice": 84905.85,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Sharon Robins (Reimbursement)",
+   "project": "Addendum - SM Cyberzone Game Fest 2026",
+   "status": "Approved",
+   "date": "2026-09-04"
   },
   {
    "item": "Flyers (Material: Glossy Paper 140gsm / 7.5 x 10.5inches / Back to Back Print)",
@@ -5331,6 +5371,16 @@
    "project": "BPI Perawise Caravan",
    "status": "Approved",
    "date": "2026-06-26"
+  },
+  {
+   "item": "Ingress Meal (Leg 2_INC Cover Court)",
+   "unitPrice": 1425.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Sharon Robins (Reimbursement)",
+   "project": "BPI Perawise Caravan",
+   "status": "Approved",
+   "date": "2026-09-04"
   },
   {
    "item": "INK-EPSON-C13T00V100 BLACK",
@@ -6571,6 +6621,16 @@
    "project": "BPI Wealth Summit 2025",
    "status": "Approved",
    "date": "2025-11-05"
+  },
+  {
+   "item": "Outsource Media Day Team (Manpower & Equipment)",
+   "unitPrice": 94080.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Jeric Angelo C. Asinas",
+   "project": "realme Mobile Legends Cup Season 10 (Campus Edition)",
+   "status": "Approved",
+   "date": "2026-09-04"
   },
   {
    "item": "Outsourced  Assistant Talent Manager",
@@ -26111,6 +26171,16 @@
    "project": "MPL PH S18",
    "status": "Approved",
    "date": "2026-09-01"
+  },
+  {
+   "item": "Players' and Teams' Snacks (Week 2 & 3)",
+   "unitPrice": 7040.55,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Sharon Robins (Reimbursement)",
+   "project": "MPL PH S18",
+   "status": "Approved",
+   "date": "2026-09-04"
   },
   {
    "item": "Players' Meals (Aug. 21 to 22, 2025)",
