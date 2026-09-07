@@ -1,6 +1,6 @@
 {
- "_generated": "2026-09-06T22:11:42Z",
- "count": 3039,
+ "_generated": "2026-09-07T22:54:15Z",
+ "count": 3040,
  "rows": [
   {
    "item": "1 Set 9ft x 12ft Complete LED Wall + Pro Audio and Pro Lighting Equipment Rental (Caloocan)",
@@ -6271,6 +6271,16 @@
    "project": "SportsPlus MPBL Fan Zone Opening Day",
    "status": "Approved",
    "date": "2026-04-23"
+  },
+  {
+   "item": "Mock Check - Sticker on Sintra / 2FT X 4FT",
+   "unitPrice": 1250.0,
+   "currency": "PHP",
+   "qty": "4",
+   "supplier": "Wraptor Enterprises",
+   "project": "realme Mobile Legends Cup Season 10 (Campus Edition)",
+   "status": "Approved",
+   "date": "2026-09-07"
   },
   {
    "item": "Mock Check SMDC MPlace Sticker on Sintra 2ft x 4ft (Rush)",
