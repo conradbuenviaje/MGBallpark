@@ -1,6 +1,6 @@
 {
- "_generated": "2026-09-07T22:54:15Z",
- "count": 3040,
+ "_generated": "2026-09-08T22:48:11Z",
+ "count": 3042,
  "rows": [
   {
    "item": "1 Set 9ft x 12ft Complete LED Wall + Pro Audio and Pro Lighting Equipment Rental (Caloocan)",
@@ -10623,6 +10623,16 @@
    "date": "2026-04-01"
   },
   {
+   "item": "Outsourced Game Observer (RS & PO)",
+   "unitPrice": 85000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "John Troy J. Berris",
+   "project": "MPL PH S18",
+   "status": "Approved",
+   "date": "2026-09-07"
+  },
+  {
    "item": "Outsourced Game Observer / Director",
    "unitPrice": 9000.0,
    "currency": "PHP",
@@ -19231,6 +19241,16 @@
    "project": "Monster Energy Booth @ PGDX",
    "status": "Approved",
    "date": "2026-06-26"
+  },
+  {
+   "item": "Outsourced Project Coordinator",
+   "unitPrice": 5100.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Aldrin James Varona",
+   "project": "Sportsplus FanZone Phase 2",
+   "status": "Approved",
+   "date": "2026-09-07"
   },
   {
    "item": "Outsourced Project Coordinator",
