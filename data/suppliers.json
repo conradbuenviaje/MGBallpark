@@ -1,6 +1,6 @@
 {
- "_generated": "2026-09-08T22:48:11Z",
- "count": 3042,
+ "_generated": "2026-09-09T22:39:13Z",
+ "count": 3050,
  "rows": [
   {
    "item": "1 Set 9ft x 12ft Complete LED Wall + Pro Audio and Pro Lighting Equipment Rental (Caloocan)",
@@ -1554,6 +1554,26 @@
   },
   {
    "item": "BRIDGE MODE FEE",
+   "unitPrice": 2800.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "",
+   "project": "realme Mobile Legends Cup Season 10 (Campus Edition)",
+   "status": "Approved",
+   "date": "2026-09-08"
+  },
+  {
+   "item": "BRIDGE MODE FEE",
+   "unitPrice": 2800.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "",
+   "project": "realme Mobile Legends Cup Season 10 (Campus Edition)",
+   "status": "Approved",
+   "date": "2026-09-08"
+  },
+  {
+   "item": "BRIDGE MODE FEE",
    "unitPrice": 5600.0,
    "currency": "PHP",
    "qty": "1",
@@ -2321,6 +2341,16 @@
    "project": "MPL PH S15",
    "status": "Approved",
    "date": "2025-07-08"
+  },
+  {
+   "item": "Crew Meals (Sept. 5, 2026)",
+   "unitPrice": 130.0,
+   "currency": "PHP",
+   "qty": "162",
+   "supplier": "Michelle Francine G. Manuntag",
+   "project": "BPI Perawise Caravan",
+   "status": "Approved",
+   "date": "2026-09-08"
   },
   {
    "item": "Crew Meals - (Breakfast, Lunch, Dinner / May 22 & 23)",
@@ -3454,6 +3484,16 @@
   },
   {
    "item": "Delivery Fee",
+   "unitPrice": 1324.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "",
+   "project": "BPI Perawise Caravan",
+   "status": "Approved",
+   "date": "2026-09-08"
+  },
+  {
+   "item": "Delivery Fee",
    "unitPrice": 1494.0,
    "currency": "PHP",
    "qty": "1",
@@ -4143,6 +4183,16 @@
    "date": "2026-08-05"
   },
   {
+   "item": "ENTERPRISE BROADBAND 200MBPS TEMPO SERVICE FEE",
+   "unitPrice": 25000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "PLDT",
+   "project": "realme Mobile Legends Cup Season 10 (Campus Edition)",
+   "status": "Approved",
+   "date": "2026-09-08"
+  },
+  {
    "item": "ENTERPRISE BROADBAND 200MBPS TEMPO SERVICE FEE (Aug. 29 to 30, 2026)",
    "unitPrice": 25000.0,
    "currency": "PHP",
@@ -4151,6 +4201,16 @@
    "project": "realme Mobile Legends Cup Season 10 (Campus Edition)",
    "status": "Approved",
    "date": "2026-08-24"
+  },
+  {
+   "item": "ENTERPRISE BROADBAND 200MBPS TEMPO SERVICE FEE (SM Lanang, Davao)",
+   "unitPrice": 25000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "PLDT",
+   "project": "realme Mobile Legends Cup Season 10 (Campus Edition)",
+   "status": "Approved",
+   "date": "2026-09-08"
   },
   {
    "item": "ENTERPRISE BROADBAND 200MBPS TEMPO SERVICE FEE w/ BRIDGE MODE FEE",
@@ -22841,6 +22901,26 @@
    "project": "BPI Well Legendary Unibankers Cup - MLBB Tournament",
    "status": "Approved",
    "date": "2025-05-22"
+  },
+  {
+   "item": "Outsourced Talent / Caster (Lanang)",
+   "unitPrice": 5000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "JOSELITO AGUILO LAGON JR",
+   "project": "realme Mobile Legends Cup Season 10 (Campus Edition)",
+   "status": "Approved",
+   "date": "2026-09-08"
+  },
+  {
+   "item": "Outsourced Talent / Caster (Lanang)",
+   "unitPrice": 5000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Jill Viemark Lauronilla",
+   "project": "realme Mobile Legends Cup Season 10 (Campus Edition)",
+   "status": "Approved",
+   "date": "2026-09-08"
   },
   {
    "item": "Outsourced Talent / Caster (Manjean)",
