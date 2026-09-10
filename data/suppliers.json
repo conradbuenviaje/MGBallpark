@@ -1,6 +1,6 @@
 {
- "_generated": "2026-09-09T22:39:13Z",
- "count": 3050,
+ "_generated": "2026-09-10T22:41:22Z",
+ "count": 3055,
  "rows": [
   {
    "item": "1 Set 9ft x 12ft Complete LED Wall + Pro Audio and Pro Lighting Equipment Rental (Caloocan)",
@@ -803,6 +803,16 @@
    "date": "2026-02-04"
   },
   {
+   "item": "ACRYLIC TUBE STICKERS",
+   "unitPrice": 2240.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "",
+   "project": "BPI Perawise Caravan",
+   "status": "Approved",
+   "date": "2026-09-09"
+  },
+  {
    "item": "ACTIVITY BOOTH BANNER - Tarpaulins (Materials: 10oz Tarpaulin)",
    "unitPrice": 201.6,
    "currency": "PHP",
@@ -1231,6 +1241,16 @@
    "project": "PUBG Mobile 8th Anniversary Event",
    "status": "Approved",
    "date": "2026-03-19"
+  },
+  {
+   "item": "BANDERITAS INSTALLATION AND DISMANTLING (per leg)",
+   "unitPrice": 11200.0,
+   "currency": "PHP",
+   "qty": "6",
+   "supplier": "RISING DESIGNS PH. INC.",
+   "project": "BPI Perawise Caravan",
+   "status": "Approved",
+   "date": "2026-09-09"
   },
   {
    "item": "Banderitas with Print (15 meters)",
@@ -4331,6 +4351,16 @@
    "project": "",
    "status": "Approved",
    "date": "2026-01-07"
+  },
+  {
+   "item": "EVENT CANCELLATION DURING INGRESS: AUGUST 28, 2026",
+   "unitPrice": 28000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "",
+   "project": "BPI Perawise Caravan",
+   "status": "Approved",
+   "date": "2026-09-09"
   },
   {
    "item": "Event Wristbands with Security Cut",
@@ -29403,6 +29433,16 @@
    "date": "2026-06-26"
   },
   {
+   "item": "StrandtZ BNC Connectors (STR-SDI-BNC)",
+   "unitPrice": 500.0,
+   "currency": "PHP",
+   "qty": "30",
+   "supplier": "Channel International Enterprises",
+   "project": "realme Mobile Legends Cup Season 10 (Campus Edition)",
+   "status": "Approved",
+   "date": "2026-09-10"
+  },
+  {
    "item": "Stretch Fit Table Cloth w/ Full Sublimation Print",
    "unitPrice": 3920.0,
    "currency": "PHP",
@@ -30261,6 +30301,16 @@
    "project": "MPL PH S18",
    "status": "Approved",
    "date": "2026-09-02"
+  },
+  {
+   "item": "Venue Parking (week 3)",
+   "unitPrice": 1600.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "VS HOTEL CORPORATION",
+   "project": "MPL PH S18",
+   "status": "Approved",
+   "date": "2026-09-09"
   },
   {
    "item": "Venue Rental (2 days / Robinsons Galleria)",
