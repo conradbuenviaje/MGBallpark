@@ -1,6 +1,6 @@
 {
- "_generated": "2026-09-10T22:41:22Z",
- "count": 3055,
+ "_generated": "2026-09-11T22:41:18Z",
+ "count": 3070,
  "rows": [
   {
    "item": "1 Set 9ft x 12ft Complete LED Wall + Pro Audio and Pro Lighting Equipment Rental (Caloocan)",
@@ -31,6 +31,16 @@
    "project": "Bingo Plus Panalo Caravan",
    "status": "Approved",
    "date": "2025-10-23"
+  },
+  {
+   "item": "1/2 Plywood (L)",
+   "unitPrice": 820.0,
+   "currency": "PHP",
+   "qty": "6",
+   "supplier": "",
+   "project": "",
+   "status": "Approved",
+   "date": "2026-09-10"
   },
   {
    "item": "1/4pl to male xlr 5m Microphone Cable",
@@ -1341,6 +1351,16 @@
    "project": "",
    "status": "Approved",
    "date": "2026-03-30"
+  },
+  {
+   "item": "Battery Replacement of APC BVX1200 (12V Battery)",
+   "unitPrice": 1300.0,
+   "currency": "PHP",
+   "qty": "5",
+   "supplier": "JESJS INFORMATION TECHNOLOGY SERVICES",
+   "project": "realme Mobile Legends Cup Season 10 (Campus Edition)",
+   "status": "Approved",
+   "date": "2026-09-10"
   },
   {
    "item": "Belden c6p9106005M cat6 patchcord 5Mtrs",
@@ -5684,6 +5704,16 @@
   },
   {
    "item": "Labor Charges (Battery installation, checking and testing)",
+   "unitPrice": 900.0,
+   "currency": "PHP",
+   "qty": "5",
+   "supplier": "",
+   "project": "realme Mobile Legends Cup Season 10 (Campus Edition)",
+   "status": "Approved",
+   "date": "2026-09-10"
+  },
+  {
+   "item": "Labor Charges (Battery installation, checking and testing)",
    "unitPrice": 21900.0,
    "currency": "PHP",
    "qty": "1",
@@ -9493,6 +9523,16 @@
    "date": "2026-03-25"
   },
   {
+   "item": "Outsourced Director / Show Producer (Grand Finals)",
+   "unitPrice": 11400.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "John Mark Ramos",
+   "project": "realme Mobile Legends Cup Season 10 (Campus Edition)",
+   "status": "Approved",
+   "date": "2026-09-10"
+  },
+  {
    "item": "Outsourced Director Asst. / CG Operator",
    "unitPrice": 12000.0,
    "currency": "PHP",
@@ -10121,6 +10161,16 @@
    "project": "GTCC Summer Showdown",
    "status": "Approved",
    "date": "2025-06-25"
+  },
+  {
+   "item": "Outsourced Fabrication Team",
+   "unitPrice": 66667.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Benedick Jamito",
+   "project": "",
+   "status": "Approved",
+   "date": "2026-09-10"
   },
   {
    "item": "Outsourced Facilitator (ASC Permits)",
@@ -14974,6 +15024,16 @@
   },
   {
    "item": "Outsourced Logistics Associate",
+   "unitPrice": 2140.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "John Michael Borja",
+   "project": "",
+   "status": "Approved",
+   "date": "2026-09-10"
+  },
+  {
+   "item": "Outsourced Logistics Associate",
    "unitPrice": 3000.0,
    "currency": "PHP",
    "qty": "1",
@@ -14991,6 +15051,16 @@
    "project": "BPI Bankers Cup 2",
    "status": "Approved",
    "date": "2025-11-26"
+  },
+  {
+   "item": "Outsourced Logistics Associate",
+   "unitPrice": 3480.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Froilan Aboga",
+   "project": "",
+   "status": "Approved",
+   "date": "2026-09-10"
   },
   {
    "item": "Outsourced Logistics Associate",
@@ -15031,6 +15101,16 @@
    "project": "SportsPlus MPBL Fan Zone Opening Day",
    "status": "Approved",
    "date": "2026-04-27"
+  },
+  {
+   "item": "Outsourced Logistics Associate",
+   "unitPrice": 8300.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Nordan Burabo",
+   "project": "",
+   "status": "Approved",
+   "date": "2026-09-10"
   },
   {
    "item": "Outsourced Logistics Associate",
@@ -17723,6 +17803,16 @@
    "date": "2026-03-10"
   },
   {
+   "item": "Outsourced Manpower (Lanang)",
+   "unitPrice": 19350.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Krizzy Joyce Daugdaug",
+   "project": "realme Mobile Legends Cup Season 10 (Campus Edition)",
+   "status": "Approved",
+   "date": "2026-09-11"
+  },
+  {
    "item": "Outsourced Manpower (Obs Operator and Logistics Associates)",
    "unitPrice": 10300.0,
    "currency": "PHP",
@@ -19241,6 +19331,16 @@
    "project": "KIC 2025 - Carnival & Mini Battle",
    "status": "Approved",
    "date": "2025-11-25"
+  },
+  {
+   "item": "Outsourced Production Manager (Lanang)",
+   "unitPrice": 5400.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "John Martin Nery",
+   "project": "realme Mobile Legends Cup Season 10 (Campus Edition)",
+   "status": "Approved",
+   "date": "2026-09-10"
   },
   {
    "item": "Outsourced Production Team",
@@ -23414,6 +23514,16 @@
   },
   {
    "item": "Outsourced Talent / Host",
+   "unitPrice": 1500.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Gio Mari Yumul",
+   "project": "realme Mobile Legends Cup Season 10 (Campus Edition)",
+   "status": "Approved",
+   "date": "2026-09-10"
+  },
+  {
+   "item": "Outsourced Talent / Host",
    "unitPrice": 6000.0,
    "currency": "PHP",
    "qty": "1",
@@ -26143,6 +26253,16 @@
    "date": "2025-10-30"
   },
   {
+   "item": "Philcom Dedicated Internet Access 100 Mbps (Sept. 12, 2026)",
+   "unitPrice": 33734.4,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "SM Prime Holdings Inc.",
+   "project": "realme Mobile Legends Cup Season 10 (Campus Edition)",
+   "status": "Approved",
+   "date": "2026-09-11"
+  },
+  {
    "item": "Philcom Dedicated Internet Access 300 Mbps (Feb. 17 to Mar. 1, 2025)",
    "unitPrice": 541153.93,
    "currency": "PHP",
@@ -26331,6 +26451,16 @@
    "project": "HOK Philippine Kings League - Fall Season",
    "status": "Approved",
    "date": "2025-09-05"
+  },
+  {
+   "item": "Plyboard",
+   "unitPrice": 1000.0,
+   "currency": "PHP",
+   "qty": "7",
+   "supplier": "Goldenstart Construction Supply",
+   "project": "",
+   "status": "Approved",
+   "date": "2026-09-10"
   },
   {
    "item": "Portable Basketball Hoop (10 Ft)",
@@ -29953,6 +30083,16 @@
    "date": "2026-03-30"
   },
   {
+   "item": "Transportation Fee",
+   "unitPrice": 250.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "",
+   "project": "realme Mobile Legends Cup Season 10 (Campus Edition)",
+   "status": "Approved",
+   "date": "2026-09-10"
+  },
+  {
    "item": "Transportation Fee (per day)",
    "unitPrice": 1500.0,
    "currency": "PHP",
@@ -30421,6 +30561,16 @@
    "project": "PUBG Mobile 8th Anniversary Event",
    "status": "Approved",
    "date": "2026-03-27"
+  },
+  {
+   "item": "Venue Rental - SM Mall of Asia, Central Atrium (Sept. 13, 2026)",
+   "unitPrice": 106400.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "SM Prime Holdings Inc.",
+   "project": "realme Mobile Legends Cup Season 10 (Campus Edition)",
+   "status": "Approved",
+   "date": "2026-09-11"
   },
   {
    "item": "Venue Rental - SM North EDSA, Annex Atrium (June 7, 2025)",
