@@ -1,5 +1,5 @@
 {
- "_generated": "2026-10-18T22:30:01Z",
+ "_generated": "2026-10-19T05:58:29Z",
  "note": "DRAFT ONLY - not applied to catalog.json. Review each suggestion and apply the ones you trust via the admin page, then Export catalog.json.",
  "usd_php_rate_used": 55.89,
  "count": 22,
@@ -123,10 +123,10 @@
    "service_name": "Video Editor (Creative)",
    "category": "Manpower (Crew Day Rates)",
    "current_base_rate": 1750.0,
-   "suggested_base_rate": 35000.0,
-   "match_count": 14,
+   "suggested_base_rate": 30000.0,
+   "match_count": 15,
    "confidence": "low",
-   "basis": "median of 14 matched supplier price(s), PHP-normalized",
+   "basis": "median of 15 matched supplier price(s), PHP-normalized",
    "sample_matches": [
     {
      "item": "Outsourced Creative Assistant & Video Editor",

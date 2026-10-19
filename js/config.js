@@ -23,8 +23,8 @@ const CATALOG_PATH = 'data/catalog.json';
  * ballpark math. See js/suppliers.js. Update these if he changes the proxy.
  * ------------------------------------------------------------------- */
 const SUPPLIER_PROXY = 'https://lark-proxy-dwiw.onrender.com';
-const LARK_APP_TOKEN = 'WW2pb1ht1aSTEDstV1qlTR2Igpe';
-const LARK_TABLE_ID = 'tblvHDMbE51scSwf';
+const LARK_APP_TOKEN = 'NP7TbjwHNaTyLOsWafelN9wNgEd';
+const LARK_TABLE_ID = 'tbl3ki9aAQsWCJuR';
 
 // Static snapshot committed by the scheduled GitHub Action (scripts/
 // scrape_suppliers.py). The panel reads this first (instant, works even when

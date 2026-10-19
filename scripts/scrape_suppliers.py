@@ -30,8 +30,8 @@ from statistics import median
 
 # ---- Config (public; mirrors js/config.js) --------------------------------
 PROXY = os.environ.get("SUPPLIER_PROXY", "https://lark-proxy-dwiw.onrender.com").rstrip("/")
-LARK_APP_TOKEN = os.environ.get("LARK_APP_TOKEN", "WW2pb1ht1aSTEDstV1qlTR2Igpe")
-LARK_TABLE_ID = os.environ.get("LARK_TABLE_ID", "tblvHDMbE51scSwf")
+LARK_APP_TOKEN = os.environ.get("LARK_APP_TOKEN", "NP7TbjwHNaTyLOsWafelN9wNgEd")
+LARK_TABLE_ID = os.environ.get("LARK_TABLE_ID", "tbl3ki9aAQsWCJuR")
 LARK_HOST = "https://open.larksuite.com"
 PAGE_SIZE = 500
 MAX_PAGES = 200

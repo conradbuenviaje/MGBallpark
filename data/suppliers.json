@@ -1,6 +1,6 @@
 {
- "_generated": "2026-10-18T22:30:01Z",
- "count": 3070,
+ "_generated": "2026-10-19T05:58:29Z",
+ "count": 3236,
  "rows": [
   {
    "item": "1 Set 9ft x 12ft Complete LED Wall + Pro Audio and Pro Lighting Equipment Rental (Caloocan)",
@@ -173,6 +173,16 @@
    "date": "2026-04-15"
   },
   {
+   "item": "2.75FT X 6.5FT PULL UP BANNER WITH  MECHANISM",
+   "unitPrice": 1904.0,
+   "currency": "PHP",
+   "qty": "3",
+   "supplier": "",
+   "project": "Red Bull Wings Cup PH 2026",
+   "status": "Approved",
+   "date": "2026-09-22"
+  },
+  {
    "item": "2.75ft x 6.5ft PULL UP BANNER WITH MECHANISM",
    "unitPrice": 1700.0,
    "currency": "PHP",
@@ -201,6 +211,16 @@
    "project": "Manila Gin Festival 2026",
    "status": "Approved",
    "date": "2026-02-20"
+  },
+  {
+   "item": "2.75FT X 6.5FT PULL UP BANNER WITH MECHANISM",
+   "unitPrice": 1904.0,
+   "currency": "PHP",
+   "qty": "2",
+   "supplier": "ILIGHT PRODUCTION",
+   "project": "2026 - SportsPlus MPBL Roadtrip Watchparty PHASE 2 Addendum 1",
+   "status": "Approved",
+   "date": "2026-09-14"
   },
   {
    "item": "2.75FT X 6.5FT PULL UP BANNER WITH MECHANISM (Caloocan & Laguna)",
@@ -433,6 +453,16 @@
    "date": "2025-09-17"
   },
   {
+   "item": "4FT X 30” X 27” TABLE STICKER ON  SINTRA BOARD (BOX TYPE)",
+   "unitPrice": 7056.0,
+   "currency": "PHP",
+   "qty": "2",
+   "supplier": "ILIGHT PRODUCTION",
+   "project": "Red Bull Wings Cup PH 2026",
+   "status": "Approved",
+   "date": "2026-09-22"
+  },
+  {
    "item": "4FT X 8FT MLBB BACKDROP BANNER",
    "unitPrice": 3800.0,
    "currency": "PHP",
@@ -491,6 +521,26 @@
    "project": "Add-Ons - PUBG Mobile 8th Anniversary Event",
    "status": "Approved",
    "date": "2026-03-26"
+  },
+  {
+   "item": "62CM X 37CM MONITOR FRAME  STICKER ON SINTRA",
+   "unitPrice": 504.0,
+   "currency": "PHP",
+   "qty": "6",
+   "supplier": "",
+   "project": "Red Bull Wings Cup PH 2026",
+   "status": "Approved",
+   "date": "2026-09-22"
+  },
+  {
+   "item": "6FT X 6FT PALAG NA TO TARP",
+   "unitPrice": 900.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "ILIGHT PRODUCTION",
+   "project": "MPL PH S17 - Addendum 2",
+   "status": "Approved",
+   "date": "2026-09-29"
   },
   {
    "item": "6FT X 7FT BOOTH BACKDROP (TARP)",
@@ -863,6 +913,16 @@
    "date": "2026-08-20"
   },
   {
+   "item": "ADDITIONAL CHAIRS (OCT 3, 2026)",
+   "unitPrice": 400.0,
+   "currency": "PHP",
+   "qty": "2",
+   "supplier": "",
+   "project": "Red Bull Wings Cup PH 2026",
+   "status": "Approved",
+   "date": "2026-10-09"
+  },
+  {
    "item": "Additional Confetti (Loose Metallic Gold)",
    "unitPrice": 1176.6666,
    "currency": "PHP",
@@ -943,6 +1003,16 @@
    "date": "2026-05-06"
   },
   {
+   "item": "ADDITIONAL MONITOR (OCT 3, 2026)",
+   "unitPrice": 400.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "",
+   "project": "Red Bull Wings Cup PH 2026",
+   "status": "Approved",
+   "date": "2026-10-09"
+  },
+  {
    "item": "Additional On-ground Fabrication",
    "unitPrice": 92400.0,
    "currency": "PHP",
@@ -981,6 +1051,16 @@
    "project": "MPL PH S16 Addendum",
    "status": "Approved",
    "date": "2026-02-04"
+  },
+  {
+   "item": "Additional Wall Panel for Broadcast Area, Wood Panels and Paint Works",
+   "unitPrice": 35000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "SIGNFAB SIGN FABRICATION",
+   "project": "reelme Mobile Cup Season IO (Campus Edition)",
+   "status": "Approved",
+   "date": "2026-10-09"
   },
   {
    "item": "Agency Fee",
@@ -1303,6 +1383,16 @@
    "date": "2026-02-04"
   },
   {
+   "item": "Basic Community Marketing",
+   "unitPrice": 0.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "",
+   "project": "SM Cyberzone - STACCX!: SM Marikina Leg",
+   "status": "Approved",
+   "date": "2026-10-08"
+  },
+  {
    "item": "Basketball Arcade Machine",
    "unitPrice": 40000.0,
    "currency": "PHP",
@@ -1411,6 +1501,16 @@
    "project": "MPL PH S15",
    "status": "Approved",
    "date": "2025-02-26"
+  },
+  {
+   "item": "Black Chairs",
+   "unitPrice": 72.0,
+   "currency": "PHP",
+   "qty": "170",
+   "supplier": "GNB'S PARTY NEEDS RENTAL",
+   "project": "MPL PH S18",
+   "status": "Approved",
+   "date": "2026-10-16"
   },
   {
    "item": "Black Katrina cloth (per roll)",
@@ -1723,6 +1823,16 @@
    "date": "2025-10-14"
   },
   {
+   "item": "Campaign & Socmed Manager",
+   "unitPrice": 20000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Kathleen Chryss Calajate",
+   "project": "2026 - COD:M Garena Battle Royale Cup",
+   "status": "Approved",
+   "date": "2026-09-29"
+  },
+  {
    "item": "CAP Navy Blue with DTF print / Size: Baseball Cap Size",
    "unitPrice": 120.0,
    "currency": "PHP",
@@ -1821,6 +1931,26 @@
    "project": "",
    "status": "Approved",
    "date": "2025-10-30"
+  },
+  {
+   "item": "CHAIRS (3 DAYS RENTAL)",
+   "unitPrice": 400.0,
+   "currency": "PHP",
+   "qty": "12",
+   "supplier": "",
+   "project": "Red Bull Wings Cup PH 2026",
+   "status": "Approved",
+   "date": "2026-10-09"
+  },
+  {
+   "item": "CHAIRS (OCT 2, 2026 RENTAL- 50% OFF)",
+   "unitPrice": 200.0,
+   "currency": "PHP",
+   "qty": "4",
+   "supplier": "",
+   "project": "Red Bull Wings Cup PH 2026",
+   "status": "Approved",
+   "date": "2026-10-09"
   },
   {
    "item": "Change of Design Cost - for tote bags",
@@ -1983,6 +2113,16 @@
    "date": "2025-02-28"
   },
   {
+   "item": "Confetti Blizzard",
+   "unitPrice": 8000.0,
+   "currency": "PHP",
+   "qty": "2",
+   "supplier": "Confetti Effects, Inc.",
+   "project": "MPL PH S18",
+   "status": "Approved",
+   "date": "2026-10-09"
+  },
+  {
    "item": "Confetti Blizzard (10lbs / Loose Metallic Gold & Purple)",
    "unitPrice": 8000.0,
    "currency": "PHP",
@@ -2123,6 +2263,16 @@
    "date": "2025-06-27"
   },
   {
+   "item": "Crew & Player Meals (Sept. 12,2026) - Media Day",
+   "unitPrice": 6521.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Sharon Robins (Reimbursement)",
+   "project": "realme Mobile Legends Cup Season 10 (Campus Edition)",
+   "status": "Approved",
+   "date": "2026-09-16"
+  },
+  {
    "item": "Crew Accommodation (Abra / July 10 to 12)",
    "unitPrice": 11581.18,
    "currency": "PHP",
@@ -2241,6 +2391,16 @@
    "project": "MPL PH S17 - Addendum 2",
    "status": "Approved",
    "date": "2026-08-24"
+  },
+  {
+   "item": "Crew Ingress to Event Day Accomodation (Sept 26-27)",
+   "unitPrice": 2898.7,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Sharon Robins",
+   "project": "2026 SM Cyberzone - STACCX! - SMBF Leg",
+   "status": "Approved",
+   "date": "2026-09-29"
   },
   {
    "item": "Crew Meals (2 days / 3 Meals) - 372pax",
@@ -2383,6 +2543,16 @@
    "date": "2025-07-08"
   },
   {
+   "item": "Crew Meals (Sept. 4-6,2026) - Warehouse Movement",
+   "unitPrice": 7844.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Sharon Robins (Reimbursement)",
+   "project": "",
+   "status": "Approved",
+   "date": "2026-09-29"
+  },
+  {
    "item": "Crew Meals (Sept. 5, 2026)",
    "unitPrice": 130.0,
    "currency": "PHP",
@@ -2391,6 +2561,36 @@
    "project": "BPI Perawise Caravan",
    "status": "Approved",
    "date": "2026-09-08"
+  },
+  {
+   "item": "Crew Meals (Sept.12, 2026)",
+   "unitPrice": 130.0,
+   "currency": "PHP",
+   "qty": "165",
+   "supplier": "Michelle Francine G. Manuntag",
+   "project": "BPI Perawise Caravan",
+   "status": "Approved",
+   "date": "2026-09-14"
+  },
+  {
+   "item": "Crew Meals (Sept.13, 2026)",
+   "unitPrice": 130.0,
+   "currency": "PHP",
+   "qty": "272",
+   "supplier": "Michelle Francine G. Manuntag",
+   "project": "realme Mobile Legends Cup Season 10 (Campus Edition)",
+   "status": "Approved",
+   "date": "2026-09-16"
+  },
+  {
+   "item": "Crew Meals (September 19, 2026)",
+   "unitPrice": 130.0,
+   "currency": "PHP",
+   "qty": "153",
+   "supplier": "Michelle Francine G. Manuntag",
+   "project": "BPI Perawise Caravan",
+   "status": "Approved",
+   "date": "2026-09-21"
   },
   {
    "item": "Crew Meals - (Breakfast, Lunch, Dinner / May 22 & 23)",
@@ -2661,6 +2861,16 @@
    "project": "Philippine Kings League Spring Season 2026 (PKL)",
    "status": "Approved",
    "date": "2026-03-25"
+  },
+  {
+   "item": "Cryo Jets Floor Mount",
+   "unitPrice": 4800.0,
+   "currency": "PHP",
+   "qty": "2",
+   "supplier": "",
+   "project": "MPL PH S18",
+   "status": "Approved",
+   "date": "2026-10-09"
   },
   {
    "item": "Cryo Jets Floor Mount (CO2 - 50lbs)",
@@ -3123,6 +3333,16 @@
    "date": "2025-11-11"
   },
   {
+   "item": "Customized Projector Rigs and Mounting",
+   "unitPrice": 11200.0,
+   "currency": "PHP",
+   "qty": "3",
+   "supplier": "LAMP HOUSE ENTERTAINMENT PRODUCTION",
+   "project": "2026 - COD:M Anniversary KOL Livestream",
+   "status": "Approved",
+   "date": "2026-10-16"
+  },
+  {
    "item": "CUSTOMIZED SHIRT",
    "unitPrice": 190.0,
    "currency": "PHP",
@@ -3254,6 +3474,16 @@
   },
   {
    "item": "Dedicated Internet Access (Standard / 200Mbps)",
+   "unitPrice": 224000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "CONVERGE ICT SOLUTIONS, INC",
+   "project": "MPL PH S18",
+   "status": "Approved",
+   "date": "2026-10-09"
+  },
+  {
+   "item": "Dedicated Internet Access (Standard / 200Mbps)",
    "unitPrice": 302400.0,
    "currency": "PHP",
    "qty": "1",
@@ -3311,6 +3541,16 @@
    "project": "MDL PH S5 - Playoffs",
    "status": "Approved",
    "date": "2025-06-23"
+  },
+  {
+   "item": "Delivery & Pick up Charge",
+   "unitPrice": 1500.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "",
+   "project": "MPL PH S18",
+   "status": "Approved",
+   "date": "2026-10-16"
   },
   {
    "item": "Delivery and Installation",
@@ -3381,6 +3621,16 @@
    "project": "HOK Philippine Kings League - Fall Season",
    "status": "Approved",
    "date": "2025-10-08"
+  },
+  {
+   "item": "Delivery and Installation",
+   "unitPrice": 12000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "",
+   "project": "MPL PH S18",
+   "status": "Approved",
+   "date": "2026-10-09"
   },
   {
    "item": "Delivery and Installation (FREE)",
@@ -3524,6 +3774,16 @@
   },
   {
    "item": "Delivery Fee",
+   "unitPrice": 1309.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "",
+   "project": "realme Mobile Legends Cup Season 10 (Campus Edition)",
+   "status": "Approved",
+   "date": "2026-09-16"
+  },
+  {
+   "item": "Delivery Fee",
    "unitPrice": 1324.0,
    "currency": "PHP",
    "qty": "1",
@@ -3621,6 +3881,36 @@
    "project": "SM Cyberzone Game Fest 2026",
    "status": "Approved",
    "date": "2026-05-29"
+  },
+  {
+   "item": "Delivery Fee",
+   "unitPrice": 2240.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "",
+   "project": "realme Mobile Legends Cup Season 10 (Campus Edition)",
+   "status": "Approved",
+   "date": "2026-09-18"
+  },
+  {
+   "item": "Delivery Fee",
+   "unitPrice": 2399.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "",
+   "project": "BPI Perawise Caravan",
+   "status": "Approved",
+   "date": "2026-09-21"
+  },
+  {
+   "item": "Delivery Fee",
+   "unitPrice": 2494.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "",
+   "project": "BPI Perawise Caravan",
+   "status": "Approved",
+   "date": "2026-09-14"
   },
   {
    "item": "Delivery Fee",
@@ -3913,6 +4203,16 @@
    "date": "2026-05-15"
   },
   {
+   "item": "Direct Internet 500mbps",
+   "unitPrice": 219514.4,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Innove Communications, Inc.",
+   "project": "MPL PH S18",
+   "status": "Approved",
+   "date": "2026-10-09"
+  },
+  {
    "item": "Direct Internet Access (500 Mbps)",
    "unitPrice": 224000.0,
    "currency": "PHP",
@@ -3961,6 +4261,16 @@
    "project": "KIC 2025 - Playoffs",
    "status": "Approved",
    "date": "2025-11-27"
+  },
+  {
+   "item": "Discount",
+   "unitPrice": -3600.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "",
+   "project": "SM Cyberzone - STACCX!: SM Marikina Leg",
+   "status": "Approved",
+   "date": "2026-10-08"
   },
   {
    "item": "Discount",
@@ -4281,6 +4591,16 @@
    "project": "BPI Perawise Caravan",
    "status": "Approved",
    "date": "2026-06-26"
+  },
+  {
+   "item": "Envato Subscription Plus",
+   "unitPrice": 39.0,
+   "currency": "USD",
+   "qty": "1",
+   "supplier": "Sharleen Ong Chiong",
+   "project": "2026 - COD:M Garena Battle Royale Cup",
+   "status": "Approved",
+   "date": "2026-09-29"
   },
   {
    "item": "Epson EcoTank L3520/L3350 Printer",
@@ -4703,6 +5023,16 @@
    "date": "2026-02-26"
   },
   {
+   "item": "FIRST FLOOR RENTALS Inclusions: Entire First Floor of Studio 2, 2 Makeup Rooms, 80sqm Conference Room, 2 sets of Restrooms, Photo/Kitchen Studio, Security",
+   "unitPrice": 179200.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Baked Studio Inc.",
+   "project": "2026 - COD:M Anniversary KOL Livestream",
+   "status": "Approved",
+   "date": "2026-09-29"
+  },
+  {
    "item": "Flag with Print (Satin / 4x8ft)",
    "unitPrice": 3449.6,
    "currency": "PHP",
@@ -4723,6 +5053,26 @@
    "date": "2026-09-04"
   },
   {
+   "item": "Flights and Accoms (Davao)",
+   "unitPrice": 81014.89,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Sharon Robins (Reimbursement)",
+   "project": "realme Mobile Legends Cup Season 10 (Campus Edition)",
+   "status": "Approved",
+   "date": "2026-09-22"
+  },
+  {
+   "item": "Flights and Accoms (Players)",
+   "unitPrice": 111817.5,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Sharon Robins (Reimbursement)",
+   "project": "realme Mobile Legends Cup Season 10 (Campus Edition)",
+   "status": "Approved",
+   "date": "2026-09-21"
+  },
+  {
    "item": "Flights and Accoms (SM Davao)",
    "unitPrice": 84905.85,
    "currency": "PHP",
@@ -4731,6 +5081,26 @@
    "project": "Addendum - SM Cyberzone Game Fest 2026",
    "status": "Approved",
    "date": "2026-09-04"
+  },
+  {
+   "item": "Flyers (Material: Glossy Paper 140gsm / 3.75 x 5 inches / one side Print)",
+   "unitPrice": 3.75,
+   "currency": "PHP",
+   "qty": "1000",
+   "supplier": "",
+   "project": "2026 BPI Barangay Perawise Caravan Addendum (Legs 2-6)",
+   "status": "Approved",
+   "date": "2026-09-15"
+  },
+  {
+   "item": "Flyers (Material: Glossy Paper 140gsm / 3.75 x 5 inches / one side Print)",
+   "unitPrice": 4.75,
+   "currency": "PHP",
+   "qty": "300",
+   "supplier": "TBY PRINTING SERVICES",
+   "project": "2026 BPI Barangay Perawise Caravan Addendum (Legs 2-6)",
+   "status": "Approved",
+   "date": "2026-09-15"
   },
   {
    "item": "Flyers (Material: Glossy Paper 140gsm / 7.5 x 10.5inches / Back to Back Print)",
@@ -4761,6 +5131,36 @@
    "project": "Joytify - MPL PH S18 Regular Season Booth Activation",
    "status": "Approved",
    "date": "2026-08-18"
+  },
+  {
+   "item": "Flyers Additional Rush Fee",
+   "unitPrice": 400.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "TBY PRINTING SERVICES",
+   "project": "2026 BPI Barangay Perawise Caravan Addendum (Legs 2-6)",
+   "status": "Approved",
+   "date": "2026-10-16"
+  },
+  {
+   "item": "Flyers Glossy 140gsm (3.75 x 5 inches), One sided print",
+   "unitPrice": 4.15,
+   "currency": "PHP",
+   "qty": "1000",
+   "supplier": "TBY PRINTING SERVICES",
+   "project": "2026 BPI Barangay Perawise Caravan Addendum (Legs 2-6)",
+   "status": "Approved",
+   "date": "2026-10-16"
+  },
+  {
+   "item": "Flyers Glossy 140gsm 1/4 (3.75 x 5 inches) One side print",
+   "unitPrice": 3.75,
+   "currency": "PHP",
+   "qty": "1000",
+   "supplier": "TBY PRINTING SERVICES",
+   "project": "2026 BPI Barangay Perawise Caravan Addendum (Legs 2-6)",
+   "status": "Approved",
+   "date": "2026-10-08"
   },
   {
    "item": "Focusrite Scarlett 2i2 USB-C Audio Interface (4th Generation)",
@@ -4871,6 +5271,16 @@
    "project": "BingoPlus Night Barangay Roadshow 2026 Sponsorship",
    "status": "Approved",
    "date": "2026-05-21"
+  },
+  {
+   "item": "Food and Beverage for Media & VIP",
+   "unitPrice": 270000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "KOPITIAM FOOD CORP.",
+   "project": "2026 - COD:M Garena Battle Royale Cup",
+   "status": "Approved",
+   "date": "2026-10-16"
   },
   {
    "item": "Food Catering Services (100 pax + 15 Crew Meals)",
@@ -5353,6 +5763,16 @@
    "date": "2026-02-04"
   },
   {
+   "item": "Hotel and Flight (Randy Apura)",
+   "unitPrice": 13799.59,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Sharon Robins",
+   "project": "Red Bull Wings Cup PH 2026",
+   "status": "Approved",
+   "date": "2026-10-16"
+  },
+  {
    "item": "House Rules Tarp 78” x 33”",
    "unitPrice": 800.0,
    "currency": "PHP",
@@ -5381,6 +5801,16 @@
    "project": "KIC 2025 - Carnival & Mini Battle",
    "status": "Approved",
    "date": "2025-11-26"
+  },
+  {
+   "item": "IGATE GOLD 500MBPS W/ MANAGED ROUTER TEMPO SERVICE FEE",
+   "unitPrice": 230000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "PLDT",
+   "project": "MPL PH S18",
+   "status": "Approved",
+   "date": "2026-10-16"
   },
   {
    "item": "Inaugural Flower Standee (+ ribbon ball)",
@@ -5461,6 +5891,16 @@
    "project": "MPL PH S15 Golden Month Phone Giveaway",
    "status": "Approved",
    "date": "2025-02-26"
+  },
+  {
+   "item": "INGRESS / EGRESS Ingress / Set Up Day Rate (24 hrs, No AC)",
+   "unitPrice": 28000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "",
+   "project": "2026 - COD:M Anniversary KOL Livestream",
+   "status": "Approved",
+   "date": "2026-09-29"
   },
   {
    "item": "Ingress and Egress (Added structures / leg)",
@@ -5681,6 +6121,16 @@
    "project": "",
    "status": "Approved",
    "date": "2025-08-22"
+  },
+  {
+   "item": "Klein Tools VDV826-754 Modular Data Plug RJ45 (50pcs/1pack)",
+   "unitPrice": 154.98,
+   "currency": "USD",
+   "qty": "1",
+   "supplier": "Sharon Robins (Reimbursement)",
+   "project": "MPL PH S18",
+   "status": "Approved",
+   "date": "2026-10-01"
   },
   {
    "item": "Labor Charges (Battery installation, checking and testing)",
@@ -5963,6 +6413,26 @@
    "date": "2025-01-22"
   },
   {
+   "item": "Less Discount",
+   "unitPrice": -3600.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "",
+   "project": "2026 SM Cyberzone - STACCX! - SMBF Leg",
+   "status": "Approved",
+   "date": "2026-09-24"
+  },
+  {
+   "item": "Less: 10% Discount on Total Rental",
+   "unitPrice": -28560.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "",
+   "project": "2026 - COD:M Anniversary KOL Livestream",
+   "status": "Approved",
+   "date": "2026-09-29"
+  },
+  {
    "item": "Less: Discount",
    "unitPrice": -200680.0,
    "currency": "PHP",
@@ -5971,6 +6441,16 @@
    "project": "GTCC 2025: September Arena",
    "status": "Approved",
    "date": "2025-09-17"
+  },
+  {
+   "item": "LESS: Effects Discount",
+   "unitPrice": -3600.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "",
+   "project": "MPL PH S18",
+   "status": "Approved",
+   "date": "2026-10-09"
   },
   {
    "item": "LGU CDRRMO Permit",
@@ -6533,6 +7013,26 @@
    "date": "2025-08-14"
   },
   {
+   "item": "MONITORS (3 DAYS RENTAL)",
+   "unitPrice": 400.0,
+   "currency": "PHP",
+   "qty": "6",
+   "supplier": "BT Cybercafe Inc.",
+   "project": "Red Bull Wings Cup PH 2026",
+   "status": "Approved",
+   "date": "2026-10-09"
+  },
+  {
+   "item": "MONITORS (OCT 2, 2026 RENTAL- 50% OFF)",
+   "unitPrice": 200.0,
+   "currency": "PHP",
+   "qty": "2",
+   "supplier": "",
+   "project": "Red Bull Wings Cup PH 2026",
+   "status": "Approved",
+   "date": "2026-10-09"
+  },
+  {
    "item": "Monobloc chairs w/ black cover (2 days)",
    "unitPrice": 60.0,
    "currency": "PHP",
@@ -6761,6 +7261,16 @@
    "project": "realme Mobile Legends Cup Season 10 (Campus Edition)",
    "status": "Approved",
    "date": "2026-09-04"
+  },
+  {
+   "item": "Outsourced  Assistant Project Manager",
+   "unitPrice": 10000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Dione Angelica Mananquil Tante",
+   "project": "Red Bull Wings Cup 2026 PH",
+   "status": "Approved",
+   "date": "2026-10-06"
   },
   {
    "item": "Outsourced  Assistant Talent Manager",
@@ -7091,6 +7601,16 @@
    "project": "HOK Philippine Kings League - Fall Season",
    "status": "Approved",
    "date": "2025-09-09"
+  },
+  {
+   "item": "Outsourced Assistant LOPs / Consultant",
+   "unitPrice": 15000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Allan Incillo Rigates",
+   "project": "2026 - COD:M Garena Battle Royale Cup",
+   "status": "Approved",
+   "date": "2026-09-29"
   },
   {
    "item": "Outsourced Assistant Producer",
@@ -7833,6 +8353,16 @@
    "date": "2026-05-14"
   },
   {
+   "item": "Outsourced Brand Ambassador",
+   "unitPrice": 9200.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Jasmine Dava",
+   "project": "Sportsplus FanZone Phase 2",
+   "status": "Approved",
+   "date": "2026-10-09"
+  },
+  {
    "item": "Outsourced Brand Ambassador (Aug. 29 / Montalban)",
    "unitPrice": 2800.0,
    "currency": "PHP",
@@ -7983,6 +8513,26 @@
    "date": "2026-04-22"
   },
   {
+   "item": "Outsourced Brand Ambassador (Sept. 19)",
+   "unitPrice": 2800.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Michael Melchor M. Millendez",
+   "project": "2026 - SportsPlus MPBL Roadtrip Watchparty PHASE 2 - MONTALBAN ALL STAR",
+   "status": "Approved",
+   "date": "2026-09-30"
+  },
+  {
+   "item": "Outsourced Brand Ambassador (Wk 5 & 6)",
+   "unitPrice": 24000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Michael Melchor M. Millendez",
+   "project": "Joytify - MPL PH S18 Regular Season Booth Activation",
+   "status": "Approved",
+   "date": "2026-09-30"
+  },
+  {
    "item": "Outsourced Brand Ambassadors",
    "unitPrice": 75000.0,
    "currency": "PHP",
@@ -8033,6 +8583,16 @@
    "date": "2026-08-24"
   },
   {
+   "item": "Outsourced Brand Ambassadors (Week 4 / Sept. 11-13)",
+   "unitPrice": 12000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Michael Melchor M. Millendez",
+   "project": "Joytify - MPL PH S18 Regular Season Booth Activation",
+   "status": "Approved",
+   "date": "2026-09-23"
+  },
+  {
    "item": "Outsourced Brand Ambassadors (Weeks 2 & 3 / Aug. 28-30 / Sept. 4-6)",
    "unitPrice": 24000.0,
    "currency": "PHP",
@@ -8041,6 +8601,16 @@
    "project": "Joytify - MPL PH S18 Regular Season Booth Activation",
    "status": "Approved",
    "date": "2026-09-01"
+  },
+  {
+   "item": "Outsourced Brand Ambassadors (Wk 7 & 8)",
+   "unitPrice": 24000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Michael Melchor M. Millendez",
+   "project": "Joytify - MPL PH S18 Regular Season Booth Activation",
+   "status": "Approved",
+   "date": "2026-10-06"
   },
   {
    "item": "Outsourced Brand Ambassadors / Ushers (Caloocan & Laguna)",
@@ -8361,6 +8931,16 @@
    "project": "Kings Invitational Series Rebroadcast S4 (KIS S4)",
    "status": "Approved",
    "date": "2026-01-30"
+  },
+  {
+   "item": "Outsourced Broadcast Manpower",
+   "unitPrice": 34100.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "John Benigno R. Magat",
+   "project": "realme Mobile Legends Cup Season 10 (Campus Edition)",
+   "status": "Approved",
+   "date": "2026-09-14"
   },
   {
    "item": "Outsourced Broadcast Manpower",
@@ -8783,6 +9363,26 @@
    "date": "2026-04-27"
   },
   {
+   "item": "Outsourced Caster",
+   "unitPrice": 13500.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Rafael A. Alino",
+   "project": "2026 - COD:M Garena Battle Royale Cup",
+   "status": "Approved",
+   "date": "2026-09-30"
+  },
+  {
+   "item": "Outsourced Caster",
+   "unitPrice": 13500.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Arnold Vincent Desengaño",
+   "project": "2026 - COD:M Garena Battle Royale Cup",
+   "status": "Approved",
+   "date": "2026-09-30"
+  },
+  {
    "item": "Outsourced Caster (Autolose)",
    "unitPrice": 95200.0,
    "currency": "PHP",
@@ -8851,6 +9451,26 @@
    "project": "HOK Philippine Kings League - Fall Season",
    "status": "Approved",
    "date": "2025-09-11"
+  },
+  {
+   "item": "Outsourced Caster (Oct 3-4)",
+   "unitPrice": 9000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "John Philip Labong",
+   "project": "2026 - COD:M Garena Battle Royale Cup",
+   "status": "Approved",
+   "date": "2026-10-13"
+  },
+  {
+   "item": "Outsourced Caster (Oct 3-4)",
+   "unitPrice": 9000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Rafael A. Alino",
+   "project": "2026 - COD:M Garena Battle Royale Cup",
+   "status": "Approved",
+   "date": "2026-10-13"
   },
   {
    "item": "Outsourced Caster (Osiris)",
@@ -8983,6 +9603,26 @@
    "date": "2025-10-28"
   },
   {
+   "item": "Outsourced CG Dynamic Artist",
+   "unitPrice": 3018.08,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Jan Laurence Antonio",
+   "project": "MPL PH S18",
+   "status": "Approved",
+   "date": "2026-10-02"
+  },
+  {
+   "item": "Outsourced CG Dynamic Operator",
+   "unitPrice": 3004.05,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "JUAN MIGUEL NAVARRO",
+   "project": "MPL PH S18",
+   "status": "Approved",
+   "date": "2026-10-02"
+  },
+  {
    "item": "Outsourced CG Dynamic Operator (RS & PO)",
    "unitPrice": 103600.0,
    "currency": "PHP",
@@ -9021,6 +9661,16 @@
    "project": "BPI Bankers Cup 2",
    "status": "Approved",
    "date": "2025-11-26"
+  },
+  {
+   "item": "Outsourced CG Operator",
+   "unitPrice": 2000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Franz Nicole Valles",
+   "project": "realme Mobile Legends Cup Season 10 (Campus Edition)",
+   "status": "Approved",
+   "date": "2026-09-14"
   },
   {
    "item": "Outsourced CG Operator",
@@ -9404,6 +10054,16 @@
   },
   {
    "item": "Outsourced Creative Director",
+   "unitPrice": 88888.89,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Camille Elize F. Datuin",
+   "project": "",
+   "status": "Approved",
+   "date": "2026-09-29"
+  },
+  {
+   "item": "Outsourced Creative Director",
    "unitPrice": 120000.0,
    "currency": "PHP",
    "qty": "1",
@@ -9651,6 +10311,16 @@
    "project": "HOK Invitational S3 Addendum",
    "status": "Approved",
    "date": "2025-04-23"
+  },
+  {
+   "item": "Outsourced Drone Operator (May 18 to 25, 2026)",
+   "unitPrice": 115000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Ryan Matias",
+   "project": "MPL PH S18",
+   "status": "Approved",
+   "date": "2026-10-16"
   },
   {
    "item": "Outsourced Drone Operator (May 24 to 31, 2026",
@@ -9923,6 +10593,26 @@
    "date": "2026-05-14"
   },
   {
+   "item": "Outsourced Event Coordinator - NCR",
+   "unitPrice": 8100.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Rebecca Coronado",
+   "project": "Red Bull Wings Cup PH 2026",
+   "status": "Approved",
+   "date": "2026-10-01"
+  },
+  {
+   "item": "Outsourced Event Coordinator - NCR",
+   "unitPrice": 8100.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Aira Camille Canilang",
+   "project": "Red Bull Wings Cup PH 2026",
+   "status": "Approved",
+   "date": "2026-10-01"
+  },
+  {
    "item": "Outsourced Event Day Usher / Runner",
    "unitPrice": 4500.0,
    "currency": "PHP",
@@ -10061,6 +10751,26 @@
    "project": "HOK Philippine Kings League - Fall Season",
    "status": "Approved",
    "date": "2025-09-17"
+  },
+  {
+   "item": "Outsourced Event Runner - NCR",
+   "unitPrice": 14400.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Nordan Burabo",
+   "project": "Red Bull Wings Cup PH 2026",
+   "status": "Approved",
+   "date": "2026-10-02"
+  },
+  {
+   "item": "Outsourced Event Runner - NCR",
+   "unitPrice": 14400.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Arhies Arrozal",
+   "project": "Red Bull Wings Cup PH 2026",
+   "status": "Approved",
+   "date": "2026-10-01"
   },
   {
    "item": "Outsourced Event Safety & Security Team",
@@ -10553,6 +11263,16 @@
    "date": "2026-02-24"
   },
   {
+   "item": "Outsourced Game Director / OBS Backup",
+   "unitPrice": 18000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Jeremy Brian Bungay Alix",
+   "project": "2026 - COD:M Garena Battle Royale Cup",
+   "status": "Approved",
+   "date": "2026-09-29"
+  },
+  {
    "item": "Outsourced Game Director / Observer",
    "unitPrice": 6600.0,
    "currency": "PHP",
@@ -10661,6 +11381,16 @@
    "project": "GTCC Summer Showdown",
    "status": "Approved",
    "date": "2025-06-18"
+  },
+  {
+   "item": "Outsourced Game Observer",
+   "unitPrice": 12000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "CARL VINCENT ALONZO RUBIO",
+   "project": "2026 - COD:M Garena Battle Royale Cup",
+   "status": "Approved",
+   "date": "2026-09-29"
   },
   {
    "item": "Outsourced Game Observer",
@@ -11083,6 +11813,16 @@
    "date": "2025-11-13"
   },
   {
+   "item": "Outsourced Graphic Designer",
+   "unitPrice": 20000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Jan Nikolai Esporlas",
+   "project": "2026 - COD:M Garena Battle Royale Cup",
+   "status": "Approved",
+   "date": "2026-09-29"
+  },
+  {
    "item": "Outsourced Graphics Artist",
    "unitPrice": 10000.0,
    "currency": "PHP",
@@ -11111,6 +11851,26 @@
    "project": "MPL PH S16 - Regular Season",
    "status": "Approved",
    "date": "2025-09-17"
+  },
+  {
+   "item": "Outsourced Head League Operations",
+   "unitPrice": 15000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Ardhy J. Yutiga",
+   "project": "Red Bull Wings Cup 2026 PH",
+   "status": "Approved",
+   "date": "2026-10-01"
+  },
+  {
+   "item": "Outsourced Head League Operations",
+   "unitPrice": 25000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Michael Joseph T. Ibarra",
+   "project": "2026 - COD:M Garena Battle Royale Cup",
+   "status": "Approved",
+   "date": "2026-09-29"
   },
   {
    "item": "Outsourced Head League Ops",
@@ -11241,6 +12001,16 @@
    "project": "BPI Perawise Caravan",
    "status": "Approved",
    "date": "2026-08-14"
+  },
+  {
+   "item": "Outsourced Head of Operations and Stage Hands",
+   "unitPrice": 16000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Jasmine Dava",
+   "project": "BPI Perawise Caravan",
+   "status": "Approved",
+   "date": "2026-09-29"
   },
   {
    "item": "Outsourced Head Operations League",
@@ -11763,6 +12533,16 @@
    "date": "2026-05-29"
   },
   {
+   "item": "Outsourced HMUA (PLAYOFFS)",
+   "unitPrice": 66000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Grace Filomeno",
+   "project": "MPL PH S18",
+   "status": "Approved",
+   "date": "2026-10-09"
+  },
+  {
    "item": "Outsourced HMUA (RS)",
    "unitPrice": 230400.0,
    "currency": "PHP",
@@ -11981,6 +12761,16 @@
    "project": "Met Park: Rainy Day Tails Pet Party",
    "status": "Approved",
    "date": "2025-09-25"
+  },
+  {
+   "item": "Outsourced Host",
+   "unitPrice": 12000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Michael Melchor M. Millendez",
+   "project": "BPI Perawise Caravan",
+   "status": "Approved",
+   "date": "2026-09-24"
   },
   {
    "item": "Outsourced Host",
@@ -13573,6 +14363,16 @@
    "date": "2025-04-25"
   },
   {
+   "item": "Outsourced League Operations - NCR",
+   "unitPrice": 18000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Kriz Lance Angelo Madriaga",
+   "project": "Red Bull Wings Cup PH 2026",
+   "status": "Approved",
+   "date": "2026-10-01"
+  },
+  {
    "item": "Outsourced League Operations Associate",
    "unitPrice": 4500.0,
    "currency": "PHP",
@@ -15057,6 +15857,46 @@
    "unitPrice": 3480.0,
    "currency": "PHP",
    "qty": "1",
+   "supplier": "Arhies Arrozal",
+   "project": "",
+   "status": "Approved",
+   "date": "2026-09-29"
+  },
+  {
+   "item": "Outsourced Logistics Associate",
+   "unitPrice": 3480.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Glenn Quinquilleria",
+   "project": "",
+   "status": "Approved",
+   "date": "2026-09-29"
+  },
+  {
+   "item": "Outsourced Logistics Associate",
+   "unitPrice": 3480.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Von Aloysius To",
+   "project": "",
+   "status": "Approved",
+   "date": "2026-09-29"
+  },
+  {
+   "item": "Outsourced Logistics Associate",
+   "unitPrice": 3480.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Hilario V. Hernandez",
+   "project": "",
+   "status": "Approved",
+   "date": "2026-09-29"
+  },
+  {
+   "item": "Outsourced Logistics Associate",
+   "unitPrice": 3480.0,
+   "currency": "PHP",
+   "qty": "1",
    "supplier": "Froilan Aboga",
    "project": "",
    "status": "Approved",
@@ -15324,6 +16164,26 @@
   },
   {
    "item": "Outsourced Logistics Associate (Egress)",
+   "unitPrice": 5750.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Jeremiah C. Escal",
+   "project": "MPL PH S18",
+   "status": "Approved",
+   "date": "2026-10-16"
+  },
+  {
+   "item": "Outsourced Logistics Associate (Egress)",
+   "unitPrice": 6900.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "RIC JACA",
+   "project": "MPL PH S18",
+   "status": "Approved",
+   "date": "2026-10-16"
+  },
+  {
+   "item": "Outsourced Logistics Associate (Egress)",
    "unitPrice": 7050.0,
    "currency": "PHP",
    "qty": "1",
@@ -15371,6 +16231,26 @@
    "project": "MPL PH S17",
    "status": "Approved",
    "date": "2026-05-26"
+  },
+  {
+   "item": "Outsourced Logistics Associate (Egress)",
+   "unitPrice": 12650.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Nordan San Jose Burabo",
+   "project": "MPL PH S18",
+   "status": "Approved",
+   "date": "2026-10-16"
+  },
+  {
+   "item": "Outsourced Logistics Associate (Egress)",
+   "unitPrice": 14950.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Cristopher Garcia Borja",
+   "project": "MPL PH S18",
+   "status": "Approved",
+   "date": "2026-10-16"
   },
   {
    "item": "Outsourced Logistics Associate (Event Days / Week 5 & 6)",
@@ -15451,6 +16331,36 @@
    "project": "KIC 2025 - Playoffs",
    "status": "Approved",
    "date": "2025-12-05"
+  },
+  {
+   "item": "Outsourced Logistics Associate (Ingress & Egress)",
+   "unitPrice": 2500.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Glenn Quinquilleria",
+   "project": "realme Mobile Legends Cup Season 10 (Campus Edition)",
+   "status": "Approved",
+   "date": "2026-09-16"
+  },
+  {
+   "item": "Outsourced Logistics Associate (Ingress & Egress)",
+   "unitPrice": 2500.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Froilan Aboga",
+   "project": "realme Mobile Legends Cup Season 10 (Campus Edition)",
+   "status": "Approved",
+   "date": "2026-09-16"
+  },
+  {
+   "item": "Outsourced Logistics Associate (Ingress & Egress)",
+   "unitPrice": 2500.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Arhies Arrozal",
+   "project": "realme Mobile Legends Cup Season 10 (Campus Edition)",
+   "status": "Approved",
+   "date": "2026-09-14"
   },
   {
    "item": "Outsourced Logistics Associate (Ingress & Egress)",
@@ -17133,6 +18043,16 @@
    "date": "2026-08-28"
   },
   {
+   "item": "Outsourced Logistics Head",
+   "unitPrice": 62000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Juan Angelo B. Masongsong",
+   "project": "MPL PH S18",
+   "status": "Approved",
+   "date": "2026-09-30"
+  },
+  {
    "item": "Outsourced Logistics Manager",
    "unitPrice": 40000.0,
    "currency": "PHP",
@@ -17151,6 +18071,36 @@
    "project": "MPL PH S16 - Regular Season",
    "status": "Approved",
    "date": "2025-08-27"
+  },
+  {
+   "item": "Outsourced Logistics Manpower",
+   "unitPrice": 1000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "JASMINE DE GUZMAN DAVA",
+   "project": "SM Cyberzone - STACCX!: SM East Ortigas Leg",
+   "status": "Approved",
+   "date": "2026-10-16"
+  },
+  {
+   "item": "Outsourced Logistics Manpower",
+   "unitPrice": 1000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Aldrin James Varona",
+   "project": "SM Cyberzone - STACCX!: SM East Ortigas Leg",
+   "status": "Approved",
+   "date": "2026-10-16"
+  },
+  {
+   "item": "Outsourced Logistics Manpower",
+   "unitPrice": 2000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "John Benigno R. Magat",
+   "project": "2026 SM Cyberzone - STACCX! - SMBF Leg",
+   "status": "Approved",
+   "date": "2026-09-30"
   },
   {
    "item": "Outsourced Logistics Manpower",
@@ -17331,6 +18281,16 @@
    "project": "WCG 2025 Creator Rumble",
    "status": "Approved",
    "date": "2025-12-11"
+  },
+  {
+   "item": "Outsourced Logistics Services (16ft Closed Van / Sept. 12 & 13, 2026)",
+   "unitPrice": 13384.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "ONE-MAX TRUCKING SERVICES",
+   "project": "realme Mobile Legends Cup Season 10 (Campus Edition)",
+   "status": "Approved",
+   "date": "2026-09-16"
   },
   {
    "item": "Outsourced Logistics Services (17ft - July 24, 2026)",
@@ -17734,6 +18694,16 @@
   },
   {
    "item": "Outsourced Manpower",
+   "unitPrice": 60000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "John Benigno R. Magat",
+   "project": "2026 - COD:M Garena Battle Royale Cup",
+   "status": "Approved",
+   "date": "2026-09-30"
+  },
+  {
+   "item": "Outsourced Manpower",
    "unitPrice": 121400.0,
    "currency": "PHP",
    "qty": "1",
@@ -17771,6 +18741,16 @@
    "project": "realme Mobile Legends Cup Season 10 (Campus Edition)",
    "status": "Approved",
    "date": "2026-08-24"
+  },
+  {
+   "item": "Outsourced Manpower (Cebu)",
+   "unitPrice": 15600.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "John Clifford Abear",
+   "project": "Red Bull Wings Cup PH 2026",
+   "status": "Approved",
+   "date": "2026-10-09"
   },
   {
    "item": "Outsourced Manpower (for headset repair)",
@@ -18413,6 +19393,16 @@
    "date": "2025-11-05"
   },
   {
+   "item": "Outsourced Operations Manpower",
+   "unitPrice": 20400.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Aldrin James Varona",
+   "project": "Sportsplus FanZone Phase 2",
+   "status": "Approved",
+   "date": "2026-10-09"
+  },
+  {
    "item": "Outsourced Operations Manpower (July 24 - Batangas City Coliseum)",
    "unitPrice": 1700.0,
    "currency": "PHP",
@@ -18611,6 +19601,16 @@
    "project": "Sportsplus FanZone Phase 2",
    "status": "Approved",
    "date": "2026-07-14"
+  },
+  {
+   "item": "Outsourced Operations Manpower (Sept. 19)",
+   "unitPrice": 10200.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Aldrin James Varona",
+   "project": "Sportsplus FanZone Phase 2",
+   "status": "Approved",
+   "date": "2026-09-30"
   },
   {
    "item": "Outsourced Parking Personnel",
@@ -19434,6 +20434,36 @@
   },
   {
    "item": "Outsourced Project Coordinator",
+   "unitPrice": 2320.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Jose Miguel Gatchalian",
+   "project": "Sportsplus FanZone Phase 2",
+   "status": "Approved",
+   "date": "2026-09-29"
+  },
+  {
+   "item": "Outsourced Project Coordinator",
+   "unitPrice": 2320.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Kervin Valencia",
+   "project": "Sportsplus FanZone Phase 2",
+   "status": "Approved",
+   "date": "2026-10-16"
+  },
+  {
+   "item": "Outsourced Project Coordinator",
+   "unitPrice": 4480.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "John Martin Nery",
+   "project": "Sportsplus FanZone Phase 2",
+   "status": "Approved",
+   "date": "2026-10-09"
+  },
+  {
+   "item": "Outsourced Project Coordinator",
    "unitPrice": 5100.0,
    "currency": "PHP",
    "qty": "1",
@@ -19644,6 +20674,16 @@
   },
   {
    "item": "Outsourced Project Manager (Ingress)",
+   "unitPrice": 2000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "John Benigno R. Magat",
+   "project": "BPI Perawise Caravan",
+   "status": "Approved",
+   "date": "2026-09-24"
+  },
+  {
+   "item": "Outsourced Project Manager (Ingress)",
    "unitPrice": 2200.0,
    "currency": "PHP",
    "qty": "1",
@@ -19791,6 +20831,26 @@
    "project": "SMDC Heroes Clash Community Arena Tournament Year 3",
    "status": "Approved",
    "date": "2025-10-15"
+  },
+  {
+   "item": "Outsourced Referee",
+   "unitPrice": 1500.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "LAQUISHA COLLET YACAT LICUANAN",
+   "project": "realme Mobile Legends Cup Season 10 (Campus Edition)",
+   "status": "Approved",
+   "date": "2026-09-14"
+  },
+  {
+   "item": "Outsourced Referee",
+   "unitPrice": 1500.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Keith Anne Hugo Delos Reyes",
+   "project": "realme Mobile Legends Cup Season 10 (Campus Edition)",
+   "status": "Approved",
+   "date": "2026-09-14"
   },
   {
    "item": "Outsourced Referee",
@@ -20194,6 +21254,16 @@
   },
   {
    "item": "Outsourced Referee",
+   "unitPrice": 9000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Jonh Neri Abrematea Pamen",
+   "project": "2026 - COD:M Garena Battle Royale Cup",
+   "status": "Approved",
+   "date": "2026-10-16"
+  },
+  {
+   "item": "Outsourced Referee",
    "unitPrice": 9900.0,
    "currency": "PHP",
    "qty": "1",
@@ -20251,6 +21321,56 @@
    "project": "GTCC Summer Showdown",
    "status": "Approved",
    "date": "2025-06-19"
+  },
+  {
+   "item": "Outsourced Referee",
+   "unitPrice": 15000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Aljen Joshua Gamba",
+   "project": "2026 - COD:M Garena Battle Royale Cup",
+   "status": "Approved",
+   "date": "2026-09-29"
+  },
+  {
+   "item": "Outsourced Referee",
+   "unitPrice": 15000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Aaron Raphael Pascual",
+   "project": "2026 - COD:M Garena Battle Royale Cup",
+   "status": "Approved",
+   "date": "2026-09-29"
+  },
+  {
+   "item": "Outsourced Referee",
+   "unitPrice": 15000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Brian Angelo Rollo",
+   "project": "2026 - COD:M Garena Battle Royale Cup",
+   "status": "Approved",
+   "date": "2026-09-29"
+  },
+  {
+   "item": "Outsourced Referee",
+   "unitPrice": 15000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Orense Ortega",
+   "project": "2026 - COD:M Garena Battle Royale Cup",
+   "status": "Approved",
+   "date": "2026-09-29"
+  },
+  {
+   "item": "Outsourced Referee",
+   "unitPrice": 15000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Arienne Janina G. Macaso",
+   "project": "2026 - COD:M Garena Battle Royale Cup",
+   "status": "Approved",
+   "date": "2026-09-29"
   },
   {
    "item": "Outsourced Referee",
@@ -20973,6 +22093,16 @@
    "date": "2025-11-19"
   },
   {
+   "item": "Outsourced Safety & Security Team (Playoffs)",
+   "unitPrice": 407000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "JC SAFETY AND MEDICAL SERVICES",
+   "project": "MPL PH S18",
+   "status": "Approved",
+   "date": "2026-10-16"
+  },
+  {
    "item": "Outsourced Safety & Security Team (Regular Season)",
    "unitPrice": 597500.0,
    "currency": "PHP",
@@ -21383,6 +22513,16 @@
    "date": "2026-05-06"
   },
   {
+   "item": "Outsourced Services - Actuarial Valuation (2025)",
+   "unitPrice": 39200.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "E.M. ZALAMEA ACTUARIAL SERVICES, INC.",
+   "project": "",
+   "status": "Approved",
+   "date": "2026-09-29"
+  },
+  {
    "item": "Outsourced Set-up Manpower",
    "unitPrice": 2250.0,
    "currency": "PHP",
@@ -21644,6 +22784,16 @@
   },
   {
    "item": "Outsourced Social Media and Campaign Manager",
+   "unitPrice": 10000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Rogette Mianne Cudal",
+   "project": "Red Bull Wings Cup PH 2026",
+   "status": "Approved",
+   "date": "2026-10-09"
+  },
+  {
+   "item": "Outsourced Social Media and Campaign Manager",
    "unitPrice": 80000.0,
    "currency": "PHP",
    "qty": "1",
@@ -21813,6 +22963,16 @@
    "date": "2026-02-27"
   },
   {
+   "item": "Outsourced Speaker and Microphone Rental",
+   "unitPrice": 2900.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Sabrina Anne Valencia",
+   "project": "Red Bull Wings Cup PH 2026",
+   "status": "Approved",
+   "date": "2026-10-07"
+  },
+  {
    "item": "Outsourced Spinner",
    "unitPrice": 50000.0,
    "currency": "PHP",
@@ -21861,6 +23021,16 @@
    "project": "MPL PH S18",
    "status": "Approved",
    "date": "2026-08-18"
+  },
+  {
+   "item": "Outsourced Sponsors' Logistics Coordinator",
+   "unitPrice": 18000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Zyrone Nery",
+   "project": "MPL PH S18",
+   "status": "Approved",
+   "date": "2026-10-07"
   },
   {
    "item": "Outsourced Sponsors' Logistics Coordinator (RS)",
@@ -22011,6 +23181,16 @@
    "project": "MPL PH S18",
    "status": "Approved",
    "date": "2026-08-28"
+  },
+  {
+   "item": "Outsourced Stage Hands",
+   "unitPrice": 1500.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Zoe Monique Soliva",
+   "project": "realme Mobile Legends Cup Season 10 (Campus Edition)",
+   "status": "Approved",
+   "date": "2026-09-24"
   },
   {
    "item": "Outsourced Stage Hands (PO)",
@@ -22234,6 +23414,16 @@
   },
   {
    "item": "Outsourced Stream Engineer",
+   "unitPrice": 1700.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Kyle Gloria Jimenez",
+   "project": "realme Mobile Legends Cup Season 10 (Campus Edition)",
+   "status": "Approved",
+   "date": "2026-09-14"
+  },
+  {
+   "item": "Outsourced Stream Engineer",
    "unitPrice": 5400.0,
    "currency": "PHP",
    "qty": "1",
@@ -22301,6 +23491,16 @@
    "project": "KIC 2025 - Group Stage & Knockouts",
    "status": "Approved",
    "date": "2025-11-25"
+  },
+  {
+   "item": "Outsourced Stream Engineer",
+   "unitPrice": 18000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "John Mark Ramos",
+   "project": "2026 - COD:M Garena Battle Royale Cup",
+   "status": "Approved",
+   "date": "2026-09-29"
   },
   {
    "item": "Outsourced Stream Engineer",
@@ -22391,6 +23591,16 @@
    "project": "KIC 2025 - Playoffs",
    "status": "Approved",
    "date": "2025-12-05"
+  },
+  {
+   "item": "Outsourced Stream Moderator",
+   "unitPrice": 16500.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Juan Nikholas Naluz",
+   "project": "MPL PH S18",
+   "status": "Approved",
+   "date": "2026-10-16"
   },
   {
    "item": "Outsourced Stream Moderator",
@@ -22781,6 +23991,36 @@
    "project": "HOK Philippine Kings League - Fall Season",
    "status": "Approved",
    "date": "2025-10-14"
+  },
+  {
+   "item": "Outsourced Talent - Caster (Rockhart)",
+   "unitPrice": 15000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "John Agustin Karl C. To",
+   "project": "realme Mobile Legends Cup Season 10 (Campus Edition)",
+   "status": "Approved",
+   "date": "2026-09-14"
+  },
+  {
+   "item": "Outsourced Talent - Caster (Santie)",
+   "unitPrice": 11000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Arjay Santie Magcalas",
+   "project": "realme Mobile Legends Cup Season 10 (Campus Edition)",
+   "status": "Approved",
+   "date": "2026-09-14"
+  },
+  {
+   "item": "Outsourced Talent - Host (Manjean)",
+   "unitPrice": 22000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Manjean F. Faldas",
+   "project": "realme Mobile Legends Cup Season 10 (Campus Edition)",
+   "status": "Approved",
+   "date": "2026-09-14"
   },
   {
    "item": "Outsourced Talent / Ambassador",
@@ -23754,6 +24994,56 @@
   },
   {
    "item": "Outsourced Talent / KOL",
+   "unitPrice": 10000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Arvie Calderon",
+   "project": "realme Mobile Legends Cup Season 10 (Campus Edition)",
+   "status": "Approved",
+   "date": "2026-09-16"
+  },
+  {
+   "item": "Outsourced Talent / KOL",
+   "unitPrice": 10000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Denniel Denison Gomez",
+   "project": "realme Mobile Legends Cup Season 10 (Campus Edition)",
+   "status": "Approved",
+   "date": "2026-09-16"
+  },
+  {
+   "item": "Outsourced Talent / KOL",
+   "unitPrice": 10000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Frederic Benedict A Gonzales",
+   "project": "realme Mobile Legends Cup Season 10 (Campus Edition)",
+   "status": "Approved",
+   "date": "2026-09-16"
+  },
+  {
+   "item": "Outsourced Talent / KOL",
+   "unitPrice": 10000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Rianne Dominique Magsino",
+   "project": "realme Mobile Legends Cup Season 10 (Campus Edition)",
+   "status": "Approved",
+   "date": "2026-09-16"
+  },
+  {
+   "item": "Outsourced Talent / KOL",
+   "unitPrice": 10000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "CRUZEM, KIEL VJ HERNANDEZ",
+   "project": "realme Mobile Legends Cup Season 10 (Campus Edition)",
+   "status": "Approved",
+   "date": "2026-09-16"
+  },
+  {
+   "item": "Outsourced Talent / KOL",
    "unitPrice": 33600.0,
    "currency": "PHP",
    "qty": "1",
@@ -23951,6 +25241,36 @@
    "project": "GOSH Live Streamers for FIFA World Cup",
    "status": "Approved",
    "date": "2026-07-24"
+  },
+  {
+   "item": "Outsourced Talent Caster",
+   "unitPrice": 10000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Jonas Escaler Oraña",
+   "project": "2026 - COD:M Garena Battle Royale Cup",
+   "status": "Approved",
+   "date": "2026-10-16"
+  },
+  {
+   "item": "Outsourced Talent Caster",
+   "unitPrice": 11200.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Dannel Picaccio P. Lozano",
+   "project": "2026 - COD:M Garena Battle Royale Cup",
+   "status": "Approved",
+   "date": "2026-10-16"
+  },
+  {
+   "item": "Outsourced Talent Caster",
+   "unitPrice": 16000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Dominico Javier Gayoso",
+   "project": "2026 - COD:M Garena Battle Royale Cup",
+   "status": "Approved",
+   "date": "2026-10-16"
   },
   {
    "item": "Outsourced Talent Caster",
@@ -24303,6 +25623,16 @@
    "date": "2025-07-17"
   },
   {
+   "item": "Outsourced Talent Manager/FM",
+   "unitPrice": 6000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Zoe Monique Soliva",
+   "project": "2026 - COD:M Garena Battle Royale Cup",
+   "status": "Approved",
+   "date": "2026-10-16"
+  },
+  {
    "item": "Outsourced Talent Performers (MNL48)",
    "unitPrice": 60000.0,
    "currency": "PHP",
@@ -24571,6 +25901,16 @@
    "project": "HOK Philippine Kings League - Fall Season",
    "status": "Approved",
    "date": "2025-09-09"
+  },
+  {
+   "item": "Outsourced Technical Director/ Audio Engineer",
+   "unitPrice": 19000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Ma Kathrina Dela Cruz Buhay",
+   "project": "realme Mobile Legends Cup Season 10 (Campus Edition)",
+   "status": "Approved",
+   "date": "2026-09-16"
   },
   {
    "item": "Outsourced Technical PIC",
@@ -25023,6 +26363,26 @@
    "date": "2025-06-13"
   },
   {
+   "item": "Outsourced Tournament Personnel  Provision & Coordination - for  Event on  Oct 10, 2026",
+   "unitPrice": 13350.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Green Gate Hobbies Toys Wholesaling",
+   "project": "SM Cyberzone - STACCX!: SM Marikina Leg",
+   "status": "Approved",
+   "date": "2026-10-08"
+  },
+  {
+   "item": "Outsourced Tournament Personnel  Provision & Coordination - for  Event on Oct 24, 2026",
+   "unitPrice": 13350.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "",
+   "project": "SM Cyberzone - STACCX!: SM Marikina Leg",
+   "status": "Approved",
+   "date": "2026-10-08"
+  },
+  {
    "item": "Outsourced Tournament Referee",
    "unitPrice": 5400.0,
    "currency": "PHP",
@@ -25081,6 +26441,16 @@
    "project": "Philippine Kings League Spring Season 2026 (PKL)",
    "status": "Approved",
    "date": "2026-02-20"
+  },
+  {
+   "item": "Outsourced TV and TV Stand Rental",
+   "unitPrice": 17500.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "John Clifford Abear",
+   "project": "Red Bull Wings Cup PH 2026",
+   "status": "Approved",
+   "date": "2026-10-06"
   },
   {
    "item": "Outsourced Unreal Engine Operator",
@@ -25723,6 +27093,16 @@
    "date": "2026-04-01"
   },
   {
+   "item": "Outsourced Ushers / Runners",
+   "unitPrice": 6000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Cristina Pascua Saludo",
+   "project": "realme Mobile Legends Cup Season 10 (Campus Edition)",
+   "status": "Approved",
+   "date": "2026-09-14"
+  },
+  {
    "item": "Outsourced Video and Photography Team",
    "unitPrice": 36000.0,
    "currency": "PHP",
@@ -25791,6 +27171,16 @@
    "project": "Philippine Kings League Spring Season 2026 (PKL)",
    "status": "Approved",
    "date": "2026-02-27"
+  },
+  {
+   "item": "Outsourced Video Editor",
+   "unitPrice": 30000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Ziegfred Perez Domingo",
+   "project": "2026 - COD:M Garena Battle Royale Cup (GBRC)",
+   "status": "Approved",
+   "date": "2026-10-13"
   },
   {
    "item": "Outsourced Video editor",
@@ -26443,6 +27833,26 @@
    "date": "2026-09-04"
   },
   {
+   "item": "Players' and Teams' Snacks (Week 4 & 5)",
+   "unitPrice": 7518.35,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Sharon Robins (Reimbursement)",
+   "project": "MPL PH S18",
+   "status": "Approved",
+   "date": "2026-09-21"
+  },
+  {
+   "item": "Players' and Teams' Snacks (Week 6 & 7)",
+   "unitPrice": 6639.45,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Sharon Robins (Reimbursement)",
+   "project": "MPL PH S18",
+   "status": "Approved",
+   "date": "2026-10-06"
+  },
+  {
    "item": "Players' Meals (Aug. 21 to 22, 2025)",
    "unitPrice": 115.0,
    "currency": "PHP",
@@ -26643,6 +28053,16 @@
    "date": "2025-12-11"
   },
   {
+   "item": "Projection Mapping  Projector Rental (3 days)  Inclusive of ingress, 1 day set-up and installation",
+   "unitPrice": 650000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "LAMP HOUSE ENTERTAINMENT PRODUCTION",
+   "project": "2026 - COD:M Anniversary KOL Livestream",
+   "status": "Approved",
+   "date": "2026-09-29"
+  },
+  {
    "item": "PS5 Rental (3 days)",
    "unitPrice": 4750.0,
    "currency": "PHP",
@@ -26671,6 +28091,16 @@
    "project": "PUBG Mobile 8th Anniversary Event",
    "status": "Approved",
    "date": "2026-03-19"
+  },
+  {
+   "item": "Pull Up Banner 33x77inches",
+   "unitPrice": 1500.0,
+   "currency": "PHP",
+   "qty": "3",
+   "supplier": "",
+   "project": "Red Bull Wings Cup PH 2026",
+   "status": "Approved",
+   "date": "2026-09-24"
   },
   {
    "item": "Pull up banner tarp 33” x 78” with installation",
@@ -28003,6 +29433,16 @@
    "date": "2025-11-06"
   },
   {
+   "item": "Rental of Monobloc Chairs (1 day)",
+   "unitPrice": 16.8,
+   "currency": "PHP",
+   "qty": "43",
+   "supplier": "",
+   "project": "realme Mobile Legends Cup Season 10 (Campus Edition)",
+   "status": "Approved",
+   "date": "2026-09-18"
+  },
+  {
    "item": "Rental of Monobloc Chairs (3 days)",
    "unitPrice": 45.0,
    "currency": "PHP",
@@ -28021,6 +29461,16 @@
    "project": "GTCC 2025: September Arena",
    "status": "Approved",
    "date": "2025-10-23"
+  },
+  {
+   "item": "Rental of Monobloc Chairs with Cover (1 day)",
+   "unitPrice": 28.0,
+   "currency": "PHP",
+   "qty": "77",
+   "supplier": "SPE Events Management And Services Party Needs Rental",
+   "project": "realme Mobile Legends Cup Season 10 (Campus Edition)",
+   "status": "Approved",
+   "date": "2026-09-18"
   },
   {
    "item": "Rental of Monoblock Chairs (2 days)",
@@ -28613,6 +30063,16 @@
    "date": "2025-08-22"
   },
   {
+   "item": "Reskinning of Table",
+   "unitPrice": 3584.0,
+   "currency": "PHP",
+   "qty": "2",
+   "supplier": "ILIGHT PRODUCTION",
+   "project": "Red Bull Wings Cup PH 2026",
+   "status": "Approved",
+   "date": "2026-10-16"
+  },
+  {
    "item": "Retainer for Vade Payroll System (Year 2026)",
    "unitPrice": 60000.0,
    "currency": "PHP",
@@ -28621,6 +30081,46 @@
    "project": "",
    "status": "Approved",
    "date": "2026-01-19"
+  },
+  {
+   "item": "Riftbound: League of Legends TCG: ORIGINS: Booster Pack (72)",
+   "unitPrice": 32400.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Green Gate Hobbies Toys Wholesaling",
+   "project": "2026 SM Cyberzone - STACCX! - SMBF Leg",
+   "status": "Approved",
+   "date": "2026-09-24"
+  },
+  {
+   "item": "Riftbound: League of Legends TCG: ORIGINS: Booster Pack (72)",
+   "unitPrice": 32400.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Green Gate Hobbies Toys Wholesaling",
+   "project": "SM Cyberzone - STACCX!: SM Marikina Leg",
+   "status": "Approved",
+   "date": "2026-10-08"
+  },
+  {
+   "item": "Riftbound: League of Legends TCG: Vendetta: Booster Pack  (3)",
+   "unitPrice": 1200.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "",
+   "project": "SM Cyberzone - STACCX!: SM Marikina Leg",
+   "status": "Approved",
+   "date": "2026-10-08"
+  },
+  {
+   "item": "Riftbound: League of Legends TCG: Vendetta: Booster Pack (3)",
+   "unitPrice": 1200.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "",
+   "project": "2026 SM Cyberzone - STACCX! - SMBF Leg",
+   "status": "Approved",
+   "date": "2026-09-24"
   },
   {
    "item": "RMC Mock Check 2ft x 3.5ft Sticker on Sintra",
@@ -28731,6 +30231,16 @@
    "project": "HOK Invitational S3",
    "status": "Approved",
    "date": "2025-02-27"
+  },
+  {
+   "item": "Rush Fee",
+   "unitPrice": 400.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "",
+   "project": "2026 BPI Barangay Perawise Caravan Addendum (Legs 2-6)",
+   "status": "Approved",
+   "date": "2026-09-15"
   },
   {
    "item": "Rush Fee",
@@ -28983,6 +30493,16 @@
    "date": "2025-11-04"
   },
   {
+   "item": "SECOND LEVEL LOUNGE & FACILITIES Inclusions: Second Floor Lounge, Glass Conference Room, Small Conference Room",
+   "unitPrice": 78400.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "",
+   "project": "2026 - COD:M Anniversary KOL Livestream",
+   "status": "Approved",
+   "date": "2026-09-29"
+  },
+  {
    "item": "Security Deposit (for first 3 months - VAT Exempt)",
    "unitPrice": 2054662.5,
    "currency": "PHP",
@@ -29073,6 +30593,26 @@
    "date": "2026-07-21"
   },
   {
+   "item": "Sintra Table Wooden Frame 30x48inches",
+   "unitPrice": 26750.0,
+   "currency": "PHP",
+   "qty": "2",
+   "supplier": "HDP PRINTING",
+   "project": "Red Bull Wings Cup PH 2026",
+   "status": "Approved",
+   "date": "2026-09-24"
+  },
+  {
+   "item": "Sintraboard (Monitor Frame)",
+   "unitPrice": 500.0,
+   "currency": "PHP",
+   "qty": "2",
+   "supplier": "",
+   "project": "Red Bull Wings Cup PH 2026",
+   "status": "Approved",
+   "date": "2026-09-24"
+  },
+  {
    "item": "Skyworth 65” Android Smart LED TV",
    "unitPrice": 28500.0,
    "currency": "PHP",
@@ -29123,6 +30663,26 @@
    "date": "2026-04-17"
   },
   {
+   "item": "Slash Outsourced Tech Support",
+   "unitPrice": 1700.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Ian Ocampo",
+   "project": "Press Hit Play’s LEVEL V - 5TH ANNIVERSARY CONCERT",
+   "status": "Approved",
+   "date": "2026-10-06"
+  },
+  {
+   "item": "Slash Outsourced Tech Support",
+   "unitPrice": 1700.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Jhun Aldrin Manes",
+   "project": "Press Hit Play’s LEVEL V - 5TH ANNIVERSARY CONCERT",
+   "status": "Approved",
+   "date": "2026-10-06"
+  },
+  {
    "item": "Snacks (Aug. 1 & 2, 2025)",
    "unitPrice": 67500.0,
    "currency": "PHP",
@@ -29163,6 +30723,26 @@
    "date": "2025-07-18"
   },
   {
+   "item": "Sofa MTO 3 seaters (Made to order) 68X28X28   Black suede fabric",
+   "unitPrice": 16500.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "IZYYAH HOME & OFFICE FUNITURE TRADING",
+   "project": "2026 - COD:M Garena Battle Royale Cup",
+   "status": "Approved",
+   "date": "2026-09-29"
+  },
+  {
+   "item": "Sofa repair only 2 seater loose cushion black suede.",
+   "unitPrice": 6500.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "",
+   "project": "2026 - COD:M Garena Battle Royale Cup",
+   "status": "Approved",
+   "date": "2026-09-29"
+  },
+  {
    "item": "SOFA set 3 seater & 1 seater",
    "unitPrice": 33000.0,
    "currency": "PHP",
@@ -29201,6 +30781,16 @@
    "project": "MPL PH S16 Addendum",
    "status": "Approved",
    "date": "2025-11-04"
+  },
+  {
+   "item": "Sparkular - Mini",
+   "unitPrice": 5000.0,
+   "currency": "PHP",
+   "qty": "2",
+   "supplier": "",
+   "project": "MPL PH S18",
+   "status": "Approved",
+   "date": "2026-10-09"
   },
   {
    "item": "Sparkular - Mini (Granules - Medium)",
@@ -29493,6 +31083,16 @@
    "date": "2026-03-27"
   },
   {
+   "item": "Sticker on Sintraboard (Monitor Frame)",
+   "unitPrice": 460.0,
+   "currency": "PHP",
+   "qty": "3",
+   "supplier": "",
+   "project": "Red Bull Wings cup PH 2026",
+   "status": "Approved",
+   "date": "2026-09-30"
+  },
+  {
    "item": "Sticker pack - A5 size, kiss-cut, packaging",
    "unitPrice": 87.36,
    "currency": "PHP",
@@ -29581,6 +31181,16 @@
    "project": "SportsPlus MPBL Roadtrip Watchparty 2026",
    "status": "Approved",
    "date": "2026-04-17"
+  },
+  {
+   "item": "Studio Fabrication & Set Design",
+   "unitPrice": 96680.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Benedick Jamito",
+   "project": "2026 - COD:M Garena Battle Royale Cup",
+   "status": "Approved",
+   "date": "2026-09-29"
   },
   {
    "item": "Studio Rental (Aug. 1 to 3, 2025)",
@@ -29991,6 +31601,36 @@
    "project": "Cobra Core Event",
    "status": "Approved",
    "date": "2026-04-14"
+  },
+  {
+   "item": "Tension Fabric Double Face Inclusions: Tension fabric Size: 10x8ft Materials: Nylon Full Sublimation",
+   "unitPrice": 14560.0,
+   "currency": "PHP",
+   "qty": "2",
+   "supplier": "Golden Arts Printing Services",
+   "project": "Red Bull Wings Cup PH 2026",
+   "status": "Approved",
+   "date": "2026-09-22"
+  },
+  {
+   "item": "Tickets for Solaire's Annual Suppliers' Night (Nov. 2026)",
+   "unitPrice": 10000.0,
+   "currency": "PHP",
+   "qty": "4",
+   "supplier": "SURESTE PROPERTIES INC.",
+   "project": "",
+   "status": "Approved",
+   "date": "2026-09-21"
+  },
+  {
+   "item": "Tickets for Solaire's Annual Suppliers' Night (Nov. 2026)",
+   "unitPrice": 10000.0,
+   "currency": "PHP",
+   "qty": "8",
+   "supplier": "SURESTE PROPERTIES INC.",
+   "project": "",
+   "status": "Approved",
+   "date": "2026-09-29"
   },
   {
    "item": "Tote bag 12\"x14\" Canvas Black, one side print",
@@ -30423,6 +32063,16 @@
    "date": "2025-07-02"
   },
   {
+   "item": "Venue Fee",
+   "unitPrice": 25000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "3to1 Partners Inc.",
+   "project": "Red Bull Wings Cup PH 2026",
+   "status": "Approved",
+   "date": "2026-10-13"
+  },
+  {
    "item": "Venue Parking (Regular Season)",
    "unitPrice": 23300.0,
    "currency": "PHP",
@@ -30611,6 +32261,16 @@
    "project": "Met Park Community Run (Federal Land)",
    "status": "Approved",
    "date": "2025-07-30"
+  },
+  {
+   "item": "Vinyl Sticker with matte lamination and installation (Front Logo)",
+   "unitPrice": 2500.0,
+   "currency": "PHP",
+   "qty": "2",
+   "supplier": "HDP PRINTING",
+   "project": "Red Bull Wings cup PH 2026",
+   "status": "Approved",
+   "date": "2026-09-30"
   },
   {
    "item": "Water Bill (Aug. 25 to Sept. 4, 2025)",
