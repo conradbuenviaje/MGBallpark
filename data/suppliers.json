@@ -1,6 +1,6 @@
 {
- "_generated": "2026-10-19T23:49:47Z",
- "count": 3243,
+ "_generated": "2026-10-20T23:15:12Z",
+ "count": 3257,
  "rows": [
   {
    "item": "1 Set 9ft x 12ft Complete LED Wall + Pro Audio and Pro Lighting Equipment Rental (Caloocan)",
@@ -1433,6 +1433,16 @@
    "date": "2026-03-30"
   },
   {
+   "item": "Battery Replacement of AO SRT2200XLI (12V5AH BATTERY) - 5 units",
+   "unitPrice": 1200.0,
+   "currency": "PHP",
+   "qty": "30",
+   "supplier": "JESJS INFORMATION TECHNOLOGY SERVICES",
+   "project": "",
+   "status": "Approved",
+   "date": "2026-10-20"
+  },
+  {
    "item": "Battery Replacement of APC BVX1200 (12V Battery)",
    "unitPrice": 1300.0,
    "currency": "PHP",
@@ -2543,6 +2553,16 @@
    "date": "2025-07-08"
   },
   {
+   "item": "Crew Meals (October 17, 2026)",
+   "unitPrice": 156.0,
+   "currency": "PHP",
+   "qty": "130",
+   "supplier": "Michelle Francine G. Manuntag",
+   "project": "2026 BPI Barangay Perawise Caravan Addendum (Legs 2-6)",
+   "status": "Approved",
+   "date": "2026-10-20"
+  },
+  {
    "item": "Crew Meals (Sept. 4-6,2026) - Warehouse Movement",
    "unitPrice": 7844.0,
    "currency": "PHP",
@@ -3483,6 +3503,16 @@
    "date": "2025-11-27"
   },
   {
+   "item": "Dancer Costume (Rental Fee)",
+   "unitPrice": 3684.21,
+   "currency": "PHP",
+   "qty": "2",
+   "supplier": "ARTISTNETWORK INC.",
+   "project": "MPL PH S17 - Addendum 2",
+   "status": "Approved",
+   "date": "2026-10-20"
+  },
+  {
    "item": "Datwyler RJ-45 Module Plug Cat6A Shielded With Rubber Boot",
    "unitPrice": 180.0,
    "currency": "PHP",
@@ -3801,6 +3831,16 @@
    "project": "SportsPlus MPBL Roadtrip Watchparty 2026",
    "status": "Approved",
    "date": "2026-03-31"
+  },
+  {
+   "item": "Delivery Fee",
+   "unitPrice": 1242.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "",
+   "project": "2026 BPI Barangay Perawise Caravan Addendum (Legs 2-6)",
+   "status": "Approved",
+   "date": "2026-10-20"
   },
   {
    "item": "Delivery Fee",
@@ -6194,6 +6234,16 @@
   },
   {
    "item": "Labor Charges (Battery installation, checking and testing)",
+   "unitPrice": 1200.0,
+   "currency": "PHP",
+   "qty": "5",
+   "supplier": "",
+   "project": "",
+   "status": "Approved",
+   "date": "2026-10-20"
+  },
+  {
+   "item": "Labor Charges (Battery installation, checking and testing)",
    "unitPrice": 21900.0,
    "currency": "PHP",
    "qty": "1",
@@ -6231,6 +6281,16 @@
    "project": "PUBG Mobile 8th Anniversary Event",
    "status": "Approved",
    "date": "2026-04-08"
+  },
+  {
+   "item": "Laptop Rental (7 days)",
+   "unitPrice": 4412.5,
+   "currency": "PHP",
+   "qty": "4",
+   "supplier": "LAPTOPS BY M & A LAPTOP TRADING",
+   "project": "MPL PH S18",
+   "status": "Approved",
+   "date": "2026-10-20"
   },
   {
    "item": "Lark Automations Annual Package_50K runs (13 May 2026 - 12 May 2027)",
@@ -6393,6 +6453,16 @@
    "date": "2026-04-13"
   },
   {
+   "item": "Led Standee Rental",
+   "unitPrice": 44210.52,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "POWERBEAT EVENTS MANAGEMENT",
+   "project": "2026 - Monster Energy @ MPL Playoffs",
+   "status": "Approved",
+   "date": "2026-10-20"
+  },
+  {
    "item": "LED STANDEE RENTAL (May 13, 2026)",
    "unitPrice": 18000.0,
    "currency": "PHP",
@@ -6511,6 +6581,16 @@
    "project": "MPL PH S16 - Regular Season",
    "status": "Approved",
    "date": "2025-12-11"
+  },
+  {
+   "item": "Lights, Sound, Controllers, Trussing Rental",
+   "unitPrice": 125000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Gian Manuel B. Vergel or GDV Sounds and Lights Rental",
+   "project": "2026 - Monster Energy @ MPL Playoffs",
+   "status": "Approved",
+   "date": "2026-10-20"
   },
   {
    "item": "Logistics Associate",
@@ -9993,6 +10073,16 @@
    "date": "2026-03-31"
   },
   {
+   "item": "Outsourced Content Team",
+   "unitPrice": 1000000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Tiradores Media Productions",
+   "project": "2026 - COD:M Anniversary KOL Livestream",
+   "status": "Approved",
+   "date": "2026-10-20"
+  },
+  {
    "item": "Outsourced Coordinator (Mayor's permit)",
    "unitPrice": 28500.0,
    "currency": "PHP",
@@ -10931,6 +11021,16 @@
    "project": "",
    "status": "Approved",
    "date": "2026-09-10"
+  },
+  {
+   "item": "Outsourced Fabricator",
+   "unitPrice": 93500.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Benedick Jamito",
+   "project": "2026 - Monster Energy @ MPL Playoffs",
+   "status": "Approved",
+   "date": "2026-10-20"
   },
   {
    "item": "Outsourced Facilitator (ASC Permits)",
@@ -30324,6 +30424,16 @@
   },
   {
    "item": "Rush Fee",
+   "unitPrice": 560.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "",
+   "project": "MPL PH S17 - Addendum 2",
+   "status": "Approved",
+   "date": "2026-10-20"
+  },
+  {
+   "item": "Rush Fee",
    "unitPrice": 630.78,
    "currency": "PHP",
    "qty": "1",
@@ -30511,6 +30621,16 @@
    "project": "MPL PH S16 Media Day",
    "status": "Approved",
    "date": "2025-08-05"
+  },
+  {
+   "item": "Sash",
+   "unitPrice": 392.0,
+   "currency": "PHP",
+   "qty": "30",
+   "supplier": "Golden Arts Printing Services",
+   "project": "MPL PH S17 - Addendum 2",
+   "status": "Approved",
+   "date": "2026-10-20"
   },
   {
    "item": "Seaory S Series Full - Panel YMCKO Ribbon",
@@ -31563,6 +31683,16 @@
    "date": "2025-12-03"
   },
   {
+   "item": "Tassle",
+   "unitPrice": 44.8,
+   "currency": "PHP",
+   "qty": "30",
+   "supplier": "",
+   "project": "MPL PH S17 - Addendum 2",
+   "status": "Approved",
+   "date": "2026-10-20"
+  },
+  {
    "item": "TAXI TOP ADS (TOBLERONE) (1 MONTH)",
    "unitPrice": 182784.0,
    "currency": "PHP",
@@ -31801,6 +31931,16 @@
    "project": "realme Mobile Legends Cup Season 10 (Campus Edition)",
    "status": "Approved",
    "date": "2026-09-10"
+  },
+  {
+   "item": "Transportation Fee",
+   "unitPrice": 250.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "",
+   "project": "",
+   "status": "Approved",
+   "date": "2026-10-20"
   },
   {
    "item": "Transportation Fee (per day)",
