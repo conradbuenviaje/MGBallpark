@@ -1,6 +1,6 @@
 {
- "_generated": "2026-10-20T23:15:12Z",
- "count": 3257,
+ "_generated": "2026-10-21T23:29:02Z",
+ "count": 3266,
  "rows": [
   {
    "item": "1 Set 9ft x 12ft Complete LED Wall + Pro Audio and Pro Lighting Equipment Rental (Caloocan)",
@@ -1041,6 +1041,16 @@
    "project": "MPL-PH S14 Addendum",
    "status": "Approved",
    "date": "2024-12-18"
+  },
+  {
+   "item": "Additional Restream Subscription",
+   "unitPrice": 39.2,
+   "currency": "USD",
+   "qty": "1",
+   "supplier": "Sharon Robins (Reimbursement)",
+   "project": "MPL PH S18",
+   "status": "Approved",
+   "date": "2026-10-21"
   },
   {
    "item": "Additional Safety Officer (5 days)",
@@ -5743,6 +5753,16 @@
    "date": "2025-12-01"
   },
   {
+   "item": "Hotel Accommodation (Internal Manpower)",
+   "unitPrice": 37087.2,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Sharon Robins (Reimbursement)",
+   "project": "MPL PH S18",
+   "status": "Approved",
+   "date": "2026-10-21"
+  },
+  {
    "item": "Hotel Accommodation (June 9 to 16,  2025)",
    "unitPrice": 73110.0,
    "currency": "PHP",
@@ -7481,6 +7501,16 @@
    "project": "KIC 2025 - Group Stage & Knockouts",
    "status": "Approved",
    "date": "2025-11-24"
+  },
+  {
+   "item": "Outsourced  Logistics Egress",
+   "unitPrice": 600.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "John Michael Borja",
+   "project": "Red Bull Wings Cup 2026 PH",
+   "status": "Approved",
+   "date": "2026-10-21"
   },
   {
    "item": "Outsourced 3D Artist",
@@ -9451,6 +9481,16 @@
    "project": "HOK Philippine Kings League - Fall Season",
    "status": "Approved",
    "date": "2025-11-03"
+  },
+  {
+   "item": "Outsourced Campaign Manager",
+   "unitPrice": 11120.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Genevieve Rebeque A. Ilao",
+   "project": "",
+   "status": "Approved",
+   "date": "2026-10-21"
   },
   {
    "item": "Outsourced Campaign Manager (Arena Plus Pitching)",
@@ -13764,6 +13804,16 @@
   },
   {
    "item": "Outsourced Japanese Translator",
+   "unitPrice": 11200.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "CRISTOPHER VINCENT L DOFITAS",
+   "project": "",
+   "status": "Approved",
+   "date": "2026-10-21"
+  },
+  {
+   "item": "Outsourced Japanese Translator",
    "unitPrice": 13000.0,
    "currency": "PHP",
    "qty": "1",
@@ -15911,6 +15961,26 @@
    "project": "PUBG Mobile 8th Anniversary Event",
    "status": "Approved",
    "date": "2026-04-10"
+  },
+  {
+   "item": "Outsourced Logistics (Egress) QC to Pasig",
+   "unitPrice": 7500.0,
+   "currency": "PHP",
+   "qty": "3",
+   "supplier": "Truckrentalph Transport Logistics Inc.",
+   "project": "MPL PH S18",
+   "status": "Approved",
+   "date": "2026-10-21"
+  },
+  {
+   "item": "Outsourced Logistics (Egress) QC to Pasig",
+   "unitPrice": 10500.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "",
+   "project": "MPL PH S18",
+   "status": "Approved",
+   "date": "2026-10-21"
   },
   {
    "item": "Outsourced Logistics and Housekeeping Manpower",
@@ -19051,6 +19121,16 @@
    "project": "MPL PH S18",
    "status": "Approved",
    "date": "2026-08-24"
+  },
+  {
+   "item": "Outsourced Master Cam / Blackmagic Ursa Operator",
+   "unitPrice": 38900.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Isidro Sir Joseph Ay-ay IV",
+   "project": "MPL PH S18",
+   "status": "Approved",
+   "date": "2026-10-21"
   },
   {
    "item": "Outsourced Media Manager",
@@ -30861,6 +30941,16 @@
    "project": "1xbet VEEWISE watch party",
    "status": "Approved",
    "date": "2025-08-14"
+  },
+  {
+   "item": "Social Media Boosting - Open League",
+   "unitPrice": 1250.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "FACEBOOK",
+   "project": "Red Bull Wings Cup PH 2026",
+   "status": "Approved",
+   "date": "2026-10-21"
   },
   {
    "item": "Social Media Post",

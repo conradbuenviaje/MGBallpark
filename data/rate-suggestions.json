@@ -1,8 +1,8 @@
 {
- "_generated": "2026-10-20T23:15:12Z",
+ "_generated": "2026-10-21T23:29:02Z",
  "note": "DRAFT ONLY - not applied to catalog.json. Review each suggestion and apply the ones you trust via the admin page, then Export catalog.json.",
  "usd_php_rate_used": 55.89,
- "count": 22,
+ "count": 23,
  "suggestions": [
   {
    "service_id": 4,
@@ -504,6 +504,30 @@
      "item": "Outsourced Statsman",
      "price_php": 198000.0,
      "supplier": "John Paulo De Guzman",
+     "similarity": 0.5
+    }
+   ]
+  },
+  {
+   "service_id": 6,
+   "service_name": "Campaign Manager (Marketing)",
+   "category": "Manpower (Crew Day Rates)",
+   "current_base_rate": 2500.0,
+   "suggested_base_rate": 15560.0,
+   "match_count": 2,
+   "confidence": "low",
+   "basis": "median of 2 matched supplier price(s), PHP-normalized",
+   "sample_matches": [
+    {
+     "item": "Campaign & Socmed Manager",
+     "price_php": 20000.0,
+     "supplier": "Kathleen Chryss Calajate",
+     "similarity": 0.5
+    },
+    {
+     "item": "Outsourced Campaign Manager",
+     "price_php": 11120.0,
+     "supplier": "Genevieve Rebeque A. Ilao",
      "similarity": 0.5
     }
    ]
