@@ -1,6 +1,6 @@
 {
- "_generated": "2026-10-21T23:29:02Z",
- "count": 3266,
+ "_generated": "2026-10-22T23:29:05Z",
+ "count": 3280,
  "rows": [
   {
    "item": "1 Set 9ft x 12ft Complete LED Wall + Pro Audio and Pro Lighting Equipment Rental (Caloocan)",
@@ -3493,6 +3493,16 @@
    "date": "2026-02-04"
   },
   {
+   "item": "Customized Vouchers (Glossy 250gsm|15x7cm|back to back print)",
+   "unitPrice": 4.5,
+   "currency": "PHP",
+   "qty": "5000",
+   "supplier": "TBY PRINTING SERVICES",
+   "project": "Joytify - MPL PH S18 Playoffs Addendum",
+   "status": "Approved",
+   "date": "2026-10-22"
+  },
+  {
    "item": "Customized Wristbands w/ security cut",
    "unitPrice": 5.6,
    "currency": "PHP",
@@ -4271,6 +4281,26 @@
    "project": "SM Cyberzone Trading Card Game (TCG) Activations",
    "status": "Approved",
    "date": "2026-03-03"
+  },
+  {
+   "item": "Direct Internet  (500Mbps)",
+   "unitPrice": 180314.4,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Innove Communications, Inc.",
+   "project": "2026 - COD:M Garena Battle Royale Cup",
+   "status": "Approved",
+   "date": "2026-10-22"
+  },
+  {
+   "item": "Direct Internet (500Mbps)",
+   "unitPrice": 224000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Innove Communications, Inc.",
+   "project": "2026 - COD:M Anniversary KOL Livestream",
+   "status": "Approved",
+   "date": "2026-10-22"
   },
   {
    "item": "Direct Internet (Trinoma)",
@@ -6541,6 +6571,16 @@
    "project": "2026 SM Cyberzone - STACCX! - SMBF Leg",
    "status": "Approved",
    "date": "2026-09-24"
+  },
+  {
+   "item": "Less Discount",
+   "unitPrice": -3600.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "",
+   "project": "SM Cyberzone - STACCX!: SM Marikina Leg",
+   "status": "Approved",
+   "date": "2026-10-22"
   },
   {
    "item": "Less: 10% Discount on Total Rental",
@@ -13231,6 +13271,16 @@
    "project": "PUBG Mobile 8th Anniversary Event",
    "status": "Approved",
    "date": "2026-03-26"
+  },
+  {
+   "item": "Outsourced Host/Caster",
+   "unitPrice": 5000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Stephen Paul C. Flores",
+   "project": "2026 - ThemeWorks x Honda Rider's Convention (CDO) - MLBB Tournament Management",
+   "status": "Approved",
+   "date": "2026-10-22"
   },
   {
    "item": "Outsourced Hotel & Transpo PIC (Players)",
@@ -26583,6 +26633,16 @@
    "date": "2025-09-04"
   },
   {
+   "item": "Outsourced Teleprompter Operator",
+   "unitPrice": 6000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "John Benigno R. Magat",
+   "project": "2026 - COD:M Garena Battle Royale Cup",
+   "status": "Approved",
+   "date": "2026-10-22"
+  },
+  {
    "item": "Outsourced Ticketing Assistant",
    "unitPrice": 15000.0,
    "currency": "PHP",
@@ -27783,6 +27843,16 @@
    "date": "2024-01-25"
   },
   {
+   "item": "PALLET STRETCH FILM",
+   "unitPrice": 379.0,
+   "currency": "PHP",
+   "qty": "6",
+   "supplier": "SYNERGY SALES INTERNATIONAL CORP",
+   "project": "MPL PH S17 - Addendum 2",
+   "status": "Approved",
+   "date": "2026-10-22"
+  },
+  {
    "item": "Pancit Canton",
    "unitPrice": 39.2,
    "currency": "PHP",
@@ -28561,6 +28631,16 @@
    "project": "MPL PH S16 - Regular Season",
    "status": "Approved",
    "date": "2025-08-20"
+  },
+  {
+   "item": "Renewal of Docusign Account 2026-2027 (1YEAR)",
+   "unitPrice": 300.0,
+   "currency": "USD",
+   "qty": "1",
+   "supplier": "DocuSign | Sharleen Ong Chiong (REIMBURSEMENT)",
+   "project": "",
+   "status": "Approved",
+   "date": "2026-10-22"
   },
   {
    "item": "Rental 1 seater Black Sofa (3 days)",
@@ -30313,6 +30393,16 @@
    "date": "2026-01-19"
   },
   {
+   "item": "Riftbound: League of Legends TCG: ORIGINS: Booster Pack (36 pcs)",
+   "unitPrice": 16200.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Green Gate Hobbies Toys Wholesaling",
+   "project": "SM Cyberzone - STACCX!: SM Marikina Leg",
+   "status": "Approved",
+   "date": "2026-10-22"
+  },
+  {
    "item": "Riftbound: League of Legends TCG: ORIGINS: Booster Pack (72)",
    "unitPrice": 32400.0,
    "currency": "PHP",
@@ -30331,6 +30421,16 @@
    "project": "SM Cyberzone - STACCX!: SM Marikina Leg",
    "status": "Approved",
    "date": "2026-10-08"
+  },
+  {
+   "item": "Riftbound: League of Legends TCG: RADIANCE: Booster Pack (36 pcs)",
+   "unitPrice": 16200.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "",
+   "project": "SM Cyberzone - STACCX!: SM Marikina Leg",
+   "status": "Approved",
+   "date": "2026-10-22"
   },
   {
    "item": "Riftbound: League of Legends TCG: Vendetta: Booster Pack  (3)",
@@ -30351,6 +30451,16 @@
    "project": "2026 SM Cyberzone - STACCX! - SMBF Leg",
    "status": "Approved",
    "date": "2026-09-24"
+  },
+  {
+   "item": "Riftbound: League of Legends TCG: Vendetta: Booster Pack (3pcs)",
+   "unitPrice": 1200.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "",
+   "project": "SM Cyberzone - STACCX!: SM Marikina Leg",
+   "status": "Approved",
+   "date": "2026-10-22"
   },
   {
    "item": "RMC Mock Check 2ft x 3.5ft Sticker on Sintra",
@@ -30471,6 +30581,16 @@
    "project": "2026 BPI Barangay Perawise Caravan Addendum (Legs 2-6)",
    "status": "Approved",
    "date": "2026-09-15"
+  },
+  {
+   "item": "Rush Fee",
+   "unitPrice": 400.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "",
+   "project": "Joytify - MPL PH S18 Playoffs Addendum",
+   "status": "Approved",
+   "date": "2026-10-22"
   },
   {
    "item": "Rush Fee",
@@ -31683,6 +31803,16 @@
    "date": "2025-05-07"
   },
   {
+   "item": "Taft: Venue Rental and Utilities",
+   "unitPrice": 10000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "NAOS ESPORTS INC.",
+   "project": "Red Bull Wings Cup PH 2026",
+   "status": "Approved",
+   "date": "2026-10-22"
+  },
+  {
    "item": "Talents and Team Meals (Lunch and Dinner)",
    "unitPrice": 200.0,
    "currency": "PHP",
@@ -32471,6 +32601,16 @@
    "project": "PUBG Mobile 8th Anniversary Event",
    "status": "Approved",
    "date": "2026-03-28"
+  },
+  {
+   "item": "Venue Rental (Kadiliman Esport Cafe Hub)",
+   "unitPrice": 5000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Manila Esports Icafe Inc.",
+   "project": "Red Bull Wings Cup PH 2026",
+   "status": "Approved",
+   "date": "2026-10-22"
   },
   {
    "item": "Venue Rental (MET Live Mall, GF Atrium / Sept. 17, Oct. 25 and 26, 2025)",
