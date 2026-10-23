@@ -1,7 +1,17 @@
 {
- "_generated": "2026-10-22T23:29:05Z",
- "count": 3280,
+ "_generated": "2026-10-23T23:16:24Z",
+ "count": 3291,
  "rows": [
+  {
+   "item": "1 INCH COTTON LANYARD WITH 2 SIDE PRINT DIRECT TO MEDAL",
+   "unitPrice": 150.0,
+   "currency": "PHP",
+   "qty": "20",
+   "supplier": "322 DIGITAL PRINTING SERVICES",
+   "project": "MPL PH S18",
+   "status": "Approved",
+   "date": "2026-10-23"
+  },
   {
    "item": "1 Set 9ft x 12ft Complete LED Wall + Pro Audio and Pro Lighting Equipment Rental (Caloocan)",
    "unitPrice": 75000.0,
@@ -1491,6 +1501,26 @@
    "project": "MPL PH S15",
    "status": "Approved",
    "date": "2025-02-28"
+  },
+  {
+   "item": "Belden Cat6 Patch Cord Machine Crimp 10meters",
+   "unitPrice": 852.5,
+   "currency": "PHP",
+   "qty": "10",
+   "supplier": "",
+   "project": "2026 - COD:M Garena Battle Royale Cup",
+   "status": "Approved",
+   "date": "2026-10-23"
+  },
+  {
+   "item": "Belden Cat6 Patch Cord Machine Crimp 5meters",
+   "unitPrice": 696.25,
+   "currency": "PHP",
+   "qty": "20",
+   "supplier": "C3E Information Technology Services",
+   "project": "2026 - COD:M Garena Battle Royale Cup",
+   "status": "Approved",
+   "date": "2026-10-23"
   },
   {
    "item": "Belden® DataTwist® Industrial Cable Category-6 4 Twisted Pairs Shielded Outdoor F/UTP 23 AWG Solid Bare Copper Conductors",
@@ -4683,6 +4713,16 @@
    "date": "2026-09-01"
   },
   {
+   "item": "ENTERPRISE BROADBAND 500MBPS  TEMPO SERVICE FEE W/ BRIDGE MODE FEE",
+   "unitPrice": 32800.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "PLDT",
+   "project": "2026 - COD:M Anniversary KOL Livestream",
+   "status": "Approved",
+   "date": "2026-10-23"
+  },
+  {
    "item": "ENTERPRISE BROADBAND 500MBPS x2 TEMPO SERVICE FEE (May 21 to June 1, 2026)",
    "unitPrice": 90000.0,
    "currency": "PHP",
@@ -5773,6 +5813,16 @@
    "date": "2025-07-17"
   },
   {
+   "item": "Higgsfield Subsription",
+   "unitPrice": 165.0,
+   "currency": "USD",
+   "qty": "1",
+   "supplier": "Sharleen Ong Chiong",
+   "project": "2026 - COD:M Garena Battle Royale Cup",
+   "status": "Approved",
+   "date": "2026-10-23"
+  },
+  {
    "item": "Hotel Accommodation (Cebu and Davao / Oct. 10 to 13 & Oct. 17 to 20, 2025)",
    "unitPrice": 30600.0,
    "currency": "PHP",
@@ -5931,6 +5981,16 @@
    "project": "MPL PH S18",
    "status": "Approved",
    "date": "2026-10-16"
+  },
+  {
+   "item": "IGATE GOLD 500MBPS W/ MANAGED ROUTER TEMPO SERVICE FEE",
+   "unitPrice": 230000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "PLDT",
+   "project": "2026 - COD:M Garena Battle Royale Cup",
+   "status": "Approved",
+   "date": "2026-10-23"
   },
   {
    "item": "Inaugural Flower Standee (+ ribbon ball)",
@@ -6793,6 +6853,16 @@
    "date": "2025-11-25"
   },
   {
+   "item": "Magnific Credits (30k extra credits)",
+   "unitPrice": 23.66,
+   "currency": "USD",
+   "qty": "1",
+   "supplier": "Shaleen Ong Chiong",
+   "project": "MPL PH S17 - Addendum 2",
+   "status": "Approved",
+   "date": "2026-10-23"
+  },
+  {
    "item": "Main and Satellite Stage Fabrications",
    "unitPrice": 1000000.0,
    "currency": "PHP",
@@ -7341,6 +7411,16 @@
    "project": "MPL PH S15 Addendum",
    "status": "Approved",
    "date": "2025-07-07"
+  },
+  {
+   "item": "ONSITE GF: Main Stage Fabrication (November 3-8, 2026)",
+   "unitPrice": 742967.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Mangotree Marketing Solutions Corp.",
+   "project": "2026 - COD:M Garena Battle Royale Cup",
+   "status": "Approved",
+   "date": "2026-10-23"
   },
   {
    "item": "ONSITE POSTER (Material: 3mm sintra board, matte vinyl sticker / Size: A41 Side Print / NO LAM)",
@@ -11584,6 +11664,16 @@
   },
   {
    "item": "Outsourced Game Observer",
+   "unitPrice": 6670.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Ralp Gabriel Garcia",
+   "project": "MPL PH S18",
+   "status": "Approved",
+   "date": "2026-10-23"
+  },
+  {
+   "item": "Outsourced Game Observer",
    "unitPrice": 7200.0,
    "currency": "PHP",
    "qty": "1",
@@ -14781,6 +14871,16 @@
    "project": "MDL PH S5 - Playoffs",
    "status": "Approved",
    "date": "2025-06-26"
+  },
+  {
+   "item": "Outsourced LED Operator",
+   "unitPrice": 10800.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Leonarciso Dagoy Jr.",
+   "project": "MPL PH S17 - Addendum 2",
+   "status": "Approved",
+   "date": "2026-10-23"
   },
   {
    "item": "Outsourced LED Operator",
@@ -28531,6 +28631,16 @@
    "project": "BingoPlus Night Barangay Roadshow 2026 Sponsorship",
    "status": "Approved",
    "date": "2026-06-02"
+  },
+  {
+   "item": "Punching Machine Rental",
+   "unitPrice": 92488.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "TRIPLE JC PHOTOGRAPHY EQUIPMENT RENTAL",
+   "project": "2026 - Monster Energy @ MPL Playoffs",
+   "status": "Approved",
+   "date": "2026-10-23"
   },
   {
    "item": "QR POSTER (Material: 3mm sintra board, matte vinyl sticker / Size: A41 Side Print / NO LAM)",
