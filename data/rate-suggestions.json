@@ -1,5 +1,5 @@
 {
- "_generated": "2026-10-26T23:57:41Z",
+ "_generated": "2026-10-27T23:52:30Z",
  "note": "DRAFT ONLY - not applied to catalog.json. Review each suggestion and apply the ones you trust via the admin page, then Export catalog.json.",
  "usd_php_rate_used": 55.89,
  "count": 23,
@@ -245,6 +245,48 @@
    ]
   },
   {
+   "service_id": 20,
+   "service_name": "Project Manager (Project Management)",
+   "category": "Manpower (Crew Day Rates)",
+   "current_base_rate": 2500.0,
+   "suggested_base_rate": 20000.0,
+   "match_count": 9,
+   "confidence": "low",
+   "basis": "median of 9 matched supplier price(s), PHP-normalized",
+   "sample_matches": [
+    {
+     "item": "Outsourced Project Manager",
+     "price_php": 3600.0,
+     "supplier": "",
+     "similarity": 0.5
+    },
+    {
+     "item": "Outsourced Project Manager",
+     "price_php": 10000.0,
+     "supplier": "Jose Miguel Gatchalian",
+     "similarity": 0.5
+    },
+    {
+     "item": "Outsourced Project Manager",
+     "price_php": 18000.0,
+     "supplier": "Glean F. Roque",
+     "similarity": 0.5
+    },
+    {
+     "item": "Outsourced Project Manager",
+     "price_php": 20000.0,
+     "supplier": "Juan Angelo B. Masongsong",
+     "similarity": 0.5
+    },
+    {
+     "item": "Outsourced Project Manager",
+     "price_php": 20000.0,
+     "supplier": "John David Dacut",
+     "similarity": 0.5
+    }
+   ]
+  },
+  {
    "service_id": 635,
    "service_name": "SOCIAL MEDIA MANAGER INT - WEEKDAYS",
    "category": "Other Equipment",
@@ -324,48 +366,6 @@
      "item": "Outsourced Social Media Manager",
      "price_php": 25000.0,
      "supplier": "Kathleen Chryss D Calajate",
-     "similarity": 0.5
-    }
-   ]
-  },
-  {
-   "service_id": 20,
-   "service_name": "Project Manager (Project Management)",
-   "category": "Manpower (Crew Day Rates)",
-   "current_base_rate": 2500.0,
-   "suggested_base_rate": 21000.0,
-   "match_count": 8,
-   "confidence": "low",
-   "basis": "median of 8 matched supplier price(s), PHP-normalized",
-   "sample_matches": [
-    {
-     "item": "Outsourced Project Manager",
-     "price_php": 3600.0,
-     "supplier": "",
-     "similarity": 0.5
-    },
-    {
-     "item": "Outsourced Project Manager",
-     "price_php": 10000.0,
-     "supplier": "Jose Miguel Gatchalian",
-     "similarity": 0.5
-    },
-    {
-     "item": "Outsourced Project Manager",
-     "price_php": 18000.0,
-     "supplier": "Glean F. Roque",
-     "similarity": 0.5
-    },
-    {
-     "item": "Outsourced Project Manager",
-     "price_php": 20000.0,
-     "supplier": "Juan Angelo B. Masongsong",
-     "similarity": 0.5
-    },
-    {
-     "item": "Outsourced Project Manager",
-     "price_php": 22000.0,
-     "supplier": "Aiza Chua",
      "similarity": 0.5
     }
    ]

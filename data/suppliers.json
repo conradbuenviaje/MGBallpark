@@ -1,6 +1,6 @@
 {
- "_generated": "2026-10-26T23:57:41Z",
- "count": 3291,
+ "_generated": "2026-10-27T23:52:30Z",
+ "count": 3305,
  "rows": [
   {
    "item": "1 INCH COTTON LANYARD WITH 2 SIDE PRINT DIRECT TO MEDAL",
@@ -4263,6 +4263,16 @@
    "date": "2025-07-08"
   },
   {
+   "item": "Deluxe King with Breakfast- 25 Rooms (November 5-9, 2026)",
+   "unitPrice": 420000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "SEQUOIAMANILA CORP.",
+   "project": "2026 - COD:M Anniversary KOL Livestream",
+   "status": "Approved",
+   "date": "2026-10-27"
+  },
+  {
    "item": "Deployment & Configuration Services: One (1) Man-day",
    "unitPrice": 16800.0,
    "currency": "PHP",
@@ -4793,6 +4803,16 @@
    "date": "2025-10-28"
   },
   {
+   "item": "EQUIPMENT & RENTAL FEES - INGRESS & EGRESS",
+   "unitPrice": 95200.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "",
+   "project": "2026 - COD:M Garena Battle Royale Cup",
+   "status": "Approved",
+   "date": "2026-10-27"
+  },
+  {
    "item": "Equipment Rental (Camera)",
    "unitPrice": 11000.0,
    "currency": "PHP",
@@ -4881,6 +4901,16 @@
    "project": "GTCC Summer Showdown",
    "status": "Approved",
    "date": "2025-06-10"
+  },
+  {
+   "item": "Fabrication Materials",
+   "unitPrice": 130455.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "KOKO BUILDERS SUPPLY",
+   "project": "2026 - COD:M Anniversary KOL Livestream",
+   "status": "Approved",
+   "date": "2026-10-27"
   },
   {
    "item": "Fabrication of 45ft x 18.5ft x 8in high multilevel stage extension",
@@ -6031,6 +6061,16 @@
    "project": "PUBG Mobile 8th Anniversary Event",
    "status": "Approved",
    "date": "2026-03-28"
+  },
+  {
+   "item": "INCIDENTAL FEES - MANPOWER & ELECTRICITY",
+   "unitPrice": 61600.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "",
+   "project": "2026 - COD:M Garena Battle Royale Cup",
+   "status": "Approved",
+   "date": "2026-10-27"
   },
   {
    "item": "INCIDENTAL FEES - MANPOWER & ELECTRICITY",
@@ -8583,6 +8623,26 @@
    "date": "2025-11-25"
   },
   {
+   "item": "Outsourced Booth Staff",
+   "unitPrice": 8850.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Glenn Quinquilleria",
+   "project": "2026 - Monster Energy @ MPL Playoffs",
+   "status": "Approved",
+   "date": "2026-10-27"
+  },
+  {
+   "item": "Outsourced Booth Staff",
+   "unitPrice": 10350.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Arhies Arrozal",
+   "project": "2026 - Monster Energy @ MPL Playoffs",
+   "status": "Approved",
+   "date": "2026-10-27"
+  },
+  {
    "item": "Outsourced Booth Staff (July 24 to 26, 2026)",
    "unitPrice": 4500.0,
    "currency": "PHP",
@@ -8641,6 +8701,16 @@
    "project": "Sportsplus FanZone Phase 2",
    "status": "Approved",
    "date": "2026-10-09"
+  },
+  {
+   "item": "Outsourced Brand Ambassador",
+   "unitPrice": 75000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Michael Melchor M. Millendez",
+   "project": "2026 - Monster Energy @ MPL Playoffs",
+   "status": "Approved",
+   "date": "2026-10-27"
   },
   {
    "item": "Outsourced Brand Ambassador (Aug. 29 / Montalban)",
@@ -13401,6 +13471,46 @@
    "project": "",
    "status": "Approved",
    "date": "2026-01-29"
+  },
+  {
+   "item": "Outsourced Ingress - Event days (Playoffs)",
+   "unitPrice": 23000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "RIC JACA",
+   "project": "MPL PH S18",
+   "status": "Approved",
+   "date": "2026-10-27"
+  },
+  {
+   "item": "Outsourced Ingress - Event days (Playoffs)",
+   "unitPrice": 25300.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Christian jay arellano",
+   "project": "MPL PH S18",
+   "status": "Approved",
+   "date": "2026-10-27"
+  },
+  {
+   "item": "Outsourced Ingress - Event days (Playoffs)",
+   "unitPrice": 25300.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Eroll Jhon Mark Duenas",
+   "project": "MPL PH S18",
+   "status": "Approved",
+   "date": "2026-10-27"
+  },
+  {
+   "item": "Outsourced Ingress - Event days (Playoffs)",
+   "unitPrice": 27600.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Cristopher Borja",
+   "project": "MPL PH S18",
+   "status": "Approved",
+   "date": "2026-10-27"
   },
   {
    "item": "Outsourced Ingress/Egress Logistics Associate",
@@ -20123,6 +20233,16 @@
    "date": "2025-07-08"
   },
   {
+   "item": "Outsourced Photo and Video documentation",
+   "unitPrice": 28900.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Joseph Jerome Tupaz",
+   "project": "2026 - Monster Energy @ MPL Playoffs",
+   "status": "Approved",
+   "date": "2026-10-27"
+  },
+  {
    "item": "Outsourced Photo and Video documentation Team",
    "unitPrice": 215000.0,
    "currency": "PHP",
@@ -20981,6 +21101,16 @@
    "project": "MPL PH S16 Media Day",
    "status": "Approved",
    "date": "2025-08-14"
+  },
+  {
+   "item": "Outsourced Project Manager",
+   "unitPrice": 20000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "John David Dacut",
+   "project": "2026 - Monster Energy @ MPL Playoffs",
+   "status": "Approved",
+   "date": "2026-10-27"
   },
   {
    "item": "Outsourced Project Manager",
@@ -32641,6 +32771,16 @@
    "project": "MPL PH S18",
    "status": "Approved",
    "date": "2026-09-09"
+  },
+  {
+   "item": "VENUE RENTAL",
+   "unitPrice": 1442000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "BAY CITY COMMERCIAL VENTURES CORP.",
+   "project": "2026 - COD:M Garena Battle Royale Cup",
+   "status": "Approved",
+   "date": "2026-10-27"
   },
   {
    "item": "Venue Rental (2 days / Robinsons Galleria)",
