@@ -1,6 +1,6 @@
 {
- "_generated": "2026-10-27T23:52:30Z",
- "count": 3305,
+ "_generated": "2026-10-29T00:06:08Z",
+ "count": 3322,
  "rows": [
   {
    "item": "1 INCH COTTON LANYARD WITH 2 SIDE PRINT DIRECT TO MEDAL",
@@ -2603,6 +2603,16 @@
    "date": "2026-10-20"
   },
   {
+   "item": "Crew Meals (Online)",
+   "unitPrice": 30055.35,
+   "currency": "USD",
+   "qty": "1",
+   "supplier": "Sharon Robins (Reimbursement)",
+   "project": "2026 - COD:M Garena Battle Royale Cup",
+   "status": "Approved",
+   "date": "2026-10-28"
+  },
+  {
    "item": "Crew Meals (Sept. 4-6,2026) - Warehouse Movement",
    "unitPrice": 7844.0,
    "currency": "PHP",
@@ -2651,6 +2661,16 @@
    "project": "BPI Perawise Caravan",
    "status": "Approved",
    "date": "2026-09-21"
+  },
+  {
+   "item": "Crew Meals (UNIVERSITY LEAGUE - ON GROUND ACTIVATION)",
+   "unitPrice": 19171.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Sharon Robins (Reimbursement)",
+   "project": "Red Bull Wings Cup PH 2026",
+   "status": "Approved",
+   "date": "2026-10-28"
   },
   {
    "item": "Crew Meals - (Breakfast, Lunch, Dinner / May 22 & 23)",
@@ -4263,6 +4283,16 @@
    "date": "2025-07-08"
   },
   {
+   "item": "Deluxe  Twin- 4 Rooms (November 4-9, 2026)",
+   "unitPrice": 70000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "SEQUOIAMANILA CORP.",
+   "project": "2026 - COD:M Garena Battle Royale Cup",
+   "status": "Approved",
+   "date": "2026-10-28"
+  },
+  {
    "item": "Deluxe King with Breakfast- 25 Rooms (November 5-9, 2026)",
    "unitPrice": 420000.0,
    "currency": "PHP",
@@ -4271,6 +4301,36 @@
    "project": "2026 - COD:M Anniversary KOL Livestream",
    "status": "Approved",
    "date": "2026-10-27"
+  },
+  {
+   "item": "Deluxe Triple- 4 Rooms (November 4-9, 2026)",
+   "unitPrice": 90000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "",
+   "project": "2026 - COD:M Garena Battle Royale Cup",
+   "status": "Approved",
+   "date": "2026-10-28"
+  },
+  {
+   "item": "Deluxe Triple- 6 Rooms (November 5-9, 2026)",
+   "unitPrice": 108000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "",
+   "project": "2026 - COD:M Garena Battle Royale Cup",
+   "status": "Approved",
+   "date": "2026-10-28"
+  },
+  {
+   "item": "Deluxe Twin- 6 Rooms (November 5-9, 2026)",
+   "unitPrice": 84000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "",
+   "project": "2026 - COD:M Garena Battle Royale Cup",
+   "status": "Approved",
+   "date": "2026-10-28"
   },
   {
    "item": "Deployment & Configuration Services: One (1) Man-day",
@@ -11143,6 +11203,26 @@
    "date": "2026-10-01"
   },
   {
+   "item": "Outsourced Event Runner - NCR (Oct 23)",
+   "unitPrice": 1200.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Nordan Burabo",
+   "project": "Red Bull Wings Cup PH 2026",
+   "status": "Approved",
+   "date": "2026-10-28"
+  },
+  {
+   "item": "Outsourced Event Runner - NCR (Oct 23)",
+   "unitPrice": 1200.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Aldrin James Varona",
+   "project": "Red Bull Wings Cup PH 2026",
+   "status": "Approved",
+   "date": "2026-10-28"
+  },
+  {
    "item": "Outsourced Event Safety & Security Team",
    "unitPrice": 23000.0,
    "currency": "PHP",
@@ -13343,6 +13423,16 @@
    "date": "2025-12-17"
   },
   {
+   "item": "Outsourced Host (Oct 17)",
+   "unitPrice": 12000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Michael Melchor M. Millendez",
+   "project": "BPI Perawise Caravan",
+   "status": "Approved",
+   "date": "2026-10-28"
+  },
+  {
    "item": "Outsourced Host (Phaister)",
    "unitPrice": 89200.0,
    "currency": "PHP",
@@ -13471,6 +13561,16 @@
    "project": "",
    "status": "Approved",
    "date": "2026-01-29"
+  },
+  {
+   "item": "Outsourced Ingress - Event days (Playoffs)",
+   "unitPrice": 11500.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Nordan Burabo",
+   "project": "MPL PH S18",
+   "status": "Approved",
+   "date": "2026-10-28"
   },
   {
    "item": "Outsourced Ingress - Event days (Playoffs)",
@@ -23284,6 +23384,36 @@
   },
   {
    "item": "Outsourced Slash On-Ground Support",
+   "unitPrice": 3400.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Jhun Aldrin Manes",
+   "project": "WhiskyLive Manila 2026",
+   "status": "Approved",
+   "date": "2026-10-28"
+  },
+  {
+   "item": "Outsourced Slash On-Ground Support",
+   "unitPrice": 3400.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Justine Ronne Salvador",
+   "project": "WhiskyLive Manila 2026",
+   "status": "Approved",
+   "date": "2026-10-28"
+  },
+  {
+   "item": "Outsourced Slash On-Ground Support",
+   "unitPrice": 3400.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Ian Ocampo",
+   "project": "WhiskyLive Manila 2026",
+   "status": "Approved",
+   "date": "2026-10-28"
+  },
+  {
+   "item": "Outsourced Slash On-Ground Support",
    "unitPrice": 14400.0,
    "currency": "PHP",
    "qty": "1",
@@ -25933,6 +26063,36 @@
    "date": "2025-10-28"
   },
   {
+   "item": "Outsourced Talent Caster (Oct 17-18)",
+   "unitPrice": 10000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Jonas Escaler Oraña",
+   "project": "2026 - COD:M Garena Battle Royale Cup",
+   "status": "Approved",
+   "date": "2026-10-28"
+  },
+  {
+   "item": "Outsourced Talent Caster (Oct 17-18)",
+   "unitPrice": 11200.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Dannel Picaccio P. Lozano",
+   "project": "2026 - COD:M Garena Battle Royale Cup",
+   "status": "Approved",
+   "date": "2026-10-28"
+  },
+  {
+   "item": "Outsourced Talent Caster (Oct 17-18)",
+   "unitPrice": 16000.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Dominico Javier Gayoso",
+   "project": "2026 - COD:M Garena Battle Royale Cup",
+   "status": "Approved",
+   "date": "2026-10-28"
+  },
+  {
    "item": "Outsourced Talent Caster (Osiris)",
    "unitPrice": 58450.0,
    "currency": "PHP",
@@ -28391,6 +28551,16 @@
    "project": "HOK Philippine Kings League - Fall Season",
    "status": "Approved",
    "date": "2025-09-05"
+  },
+  {
+   "item": "Playoffs Meal (October 20-25, 2026)",
+   "unitPrice": 36900.0,
+   "currency": "PHP",
+   "qty": "1",
+   "supplier": "Michelle Francine G. Manuntag",
+   "project": "2026 - Monster Energy @ MPL Playoffs",
+   "status": "Approved",
+   "date": "2026-10-28"
   },
   {
    "item": "Plyboard",
