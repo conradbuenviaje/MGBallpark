@@ -1,12 +1,19 @@
 name: Update supplier data
 
 # Scrapes the Lark procurement base (via the public proxy) and commits
-# data/suppliers.json + data/rate-suggestions.json. Runs on a daily schedule
-# and can be triggered by hand from the Actions tab ("Run workflow").
+# data/suppliers.json + data/rate-suggestions.json.
+#
+# SCHEDULE PAUSED (2026-11-12): the Lark base now requires a signed-in USER
+# token to read, which a headless cron cannot obtain (it needs an interactive
+# browser login). Until that's resolved, refresh the data manually with the
+# local login tool (tools/supplier-sync/index.html) and commit the files. The cron
+# is disabled; the manual "Run workflow" button is kept but will fail until the
+# auth model changes (e.g. the app is added to the base, or a refresh token is
+# wired up).
 
 on:
-  schedule:
-    - cron: '30 20 * * *'   # 20:30 UTC daily = 04:30 Asia/Manila
+  # schedule:
+  #   - cron: '30 20 * * *'   # 20:30 UTC daily = 04:30 Asia/Manila (PAUSED)
   workflow_dispatch: {}
 
 permissions:

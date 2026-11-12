@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>MGBallpark · Supplier Sync (manual)</title>
+<style>
+  :root { color-scheme: light dark; --bg:#0f1115; --fg:#e8e8ea; --mut:#9aa0aa; --line:#2a2f3a; --acc:#e6c200; --ok:#2ecc71; --err:#ff5c5c; }
+  body { font-family: system-ui, sans-serif; background:var(--bg); color:var(--fg); max-width:820px; margin:0 auto; padding:1.5rem; line-height:1.5; }
+  h1 { font-size:1.3rem; margin:0 0 .25rem; }
+  .sub { color:var(--mut); margin:0 0 1.25rem; font-size:.9rem; }
+  .card { border:1px solid var(--line); border-radius:10px; padding:1rem 1.1rem; margin:0 0 1rem; }
+  label { display:block; font-size:.8rem; color:var(--mut); margin:.6rem 0 .2rem; }
+  input[type=text] { width:100%; padding:.5rem .6rem; background:transparent; color:var(--fg); border:1px solid var(--line); border-radius:7px; box-sizing:border-box; }
+  button { font:inherit; padding:.55rem 1rem; border-radius:8px; border:1px solid var(--line); background:#1b1f27; color:var(--fg); cursor:pointer; }
+  button.primary { background:var(--acc); color:#111; border-color:var(--acc); font-weight:600; }
+  button:disabled { opacity:.45; cursor:not-allowed; }
+  .row { display:flex; gap:.5rem; flex-wrap:wrap; align-items:center; }
+  .step-n { display:inline-block; width:1.5rem; height:1.5rem; line-height:1.5rem; text-align:center; border-radius:50%; background:#1b1f27; border:1px solid var(--line); font-size:.8rem; margin-right:.4rem; }
+  #log { font-family:ui-monospace,monospace; font-size:.8rem; white-space:pre-wrap; background:#0a0c10; border:1px solid var(--line); border-radius:7px; padding:.6rem; max-height:220px; overflow:auto; }
+  .ok { color:var(--ok); } .err { color:var(--err); } .mut { color:var(--mut); }
+  code { background:#1b1f27; padding:.1rem .3rem; border-radius:4px; }
+  .note { font-size:.8rem; color:var(--mut); }
+</style>
+</head>
+<body>
+  <h1>🔄 Supplier Sync <span class="mut" style="font-size:.9rem;font-weight:400">(manual)</span></h1>
+  <p class="sub">Logs into Lark as you, pulls the procurement base, and builds
+  <code>data/suppliers.json</code> (+ an optional <code>rate-suggestions.json</code>)
+  for you to commit. Use this when the automated sync can't run.</p>
+
+  <div class="card">
+    <div class="row"><span class="step-n">1</span><strong>Sign in to Lark</strong></div>
+    <label for="baseUrl">Base link (paste the Lark URL if the base ever moves)</label>
+    <input type="text" id="baseUrl" value="https://example.larksuite.com/base/NP7TbjwHNaTyLOsWafelN9wNgEd?table=tbl3ki9aAQsWCJuR&view=vewAJYXpoE" />
+    <div class="row" style="margin-top:.7rem">
+      <button class="primary" id="loginBtn">Sign in to Lark</button>
+      <button id="logoutBtn" disabled>Sign out</button>
+      <span id="authState" class="mut">Not signed in.</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="row"><span class="step-n">2</span><strong>Fetch &amp; build suppliers.json</strong></div>
+    <div class="row" style="margin-top:.6rem">
+      <button class="primary" id="fetchBtn" disabled>Fetch supplier data</button>
+      <button id="dlSuppliers" disabled>⬇ Download suppliers.json</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="row"><span class="step-n">3</span><strong>Rate suggestions (optional)</strong></div>
+    <p class="note" style="margin:.4rem 0">Load your repo's <code>data/catalog.json</code> to regenerate the review-only draft.</p>
+    <div class="row">
+      <input type="file" id="catalogFile" accept="application/json,.json" />
+      <button id="dlSuggestions" disabled>⬇ Download rate-suggestions.json</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <strong>Log</strong>
+    <div id="log" style="margin-top:.5rem"></div>
+    <p class="note" style="margin-top:.6rem">Then drop both files into <code>data/</code>, commit &amp; push. ·
+    Must run at <code>http://127.0.0.1:9123/</code> so the Lark redirect matches.</p>
+  </div>
+
+<script>
+"use strict";
+/* ---- Config (reuses the coworker's proxy + demo app; same as lark-user-login) ---- */
+const PROXY = "https://lark-proxy-dwiw.onrender.com";
+const APP_ID = "cli_aab0716138b8ded3";
+const SCOPES = "bitable:app";
+const OPEN_API = "https://open.larksuite.com/open-apis";
+const AUTHORIZE_URL = "https://accounts.larksuite.com/open-apis/authen/v1/authorize";
+const REDIRECT_URI = location.origin + location.pathname.replace(/index\.html?$/i, "");
+const PAGE_SIZE = 500, MAX_PAGES = 200, PAGE_DELAY = 120;
+const TKEY = "mgbSync.token", PKEY = "mgbSync.pending";
+
+let supplierRows = null;   // built approved rows
+let catalog = null;        // loaded catalog.json for suggestions
+
+const $ = id => document.getElementById(id);
+function log(msg, cls) { const d=document.createElement("div"); if(cls)d.className=cls; d.textContent=msg; $("log").appendChild(d); $("log").scrollTop=1e9; }
+function proxied(url) { return PROXY.replace(/\/+$/,"") + "/proxy?url=" + encodeURIComponent(url); }
+
+/* ---- PKCE ---- */
+function b64url(bytes){ let s=""; bytes.forEach(b=>s+=String.fromCharCode(b)); return btoa(s).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,""); }
+async function sha256(str){ return new Uint8Array(await crypto.subtle.digest("SHA-256", new TextEncoder().encode(str))); }
+function rand(n){ return b64url(crypto.getRandomValues(new Uint8Array(n))); }
+
+async function startLogin(){
+  if(!window.crypto || !crypto.subtle){ log("This page must be served over http://127.0.0.1 or https.","err"); return; }
+  const verifier = rand(32), state = rand(16);
+  const challenge = b64url(await sha256(verifier));
+  sessionStorage.setItem(PKEY, JSON.stringify({state, verifier}));
+  const q = new URLSearchParams({ client_id:APP_ID, redirect_uri:REDIRECT_URI, scope:SCOPES, state, code_challenge:challenge, code_challenge_method:"S256" });
+  location.assign(AUTHORIZE_URL + "?" + q.toString().replace(/\+/g,"%20"));
+}
+
+async function exchangeToken(code){
+  const resp = await fetch(proxied(OPEN_API + "/authen/v2/oauth/token"), {
+    method:"POST",
+    headers:{ "Content-Type":"application/json; charset=utf-8" },
+    body: JSON.stringify({ grant_type:"authorization_code", client_id:APP_ID, code, redirect_uri:REDIRECT_URI, code_verifier: JSON.parse(sessionStorage.getItem(PKEY)||"{}").verifier })
+  });
+  const j = await resp.json();
+  if(String(j.code) !== "0" || !j.access_token) throw new Error("token exchange failed: " + (j.msg || JSON.stringify(j).slice(0,160)));
+  const tok = { access_token:j.access_token, expires_at: Date.now() + (j.expires_in||7200)*1000 };
+  sessionStorage.setItem(TKEY, JSON.stringify(tok));
+  sessionStorage.removeItem(PKEY);
+  return tok;
+}
+function token(){ try{ const t=JSON.parse(sessionStorage.getItem(TKEY)||"null"); return (t && t.expires_at>Date.now()) ? t : null; }catch(e){ return null; } }
+function refreshAuthUi(){ const t=token(); $("authState").textContent = t ? "Signed in ✓ (expires "+new Date(t.expires_at).toLocaleTimeString()+")" : "Not signed in."; $("authState").className = t?"ok":"mut"; $("fetchBtn").disabled=!t; $("logoutBtn").disabled=!t; }
+
+/* ---- Handle redirect back ---- */
+async function handleRedirect(){
+  const p = new URLSearchParams(location.search);
+  if(p.get("error")){ log("Lark error: "+p.get("error")+" "+(p.get("error_description")||""),"err"); history.replaceState(null,"",REDIRECT_URI); return; }
+  const code=p.get("code"), state=p.get("state");
+  if(!code) return;
+  history.replaceState(null,"",REDIRECT_URI);
+  const pend = JSON.parse(sessionStorage.getItem(PKEY)||"null");
+  if(!pend || pend.state!==state){ log("State mismatch — ignoring redirect.","err"); return; }
+  try{ await exchangeToken(code); log("Signed in to Lark.","ok"); }
+  catch(e){ log(String(e.message||e),"err"); }
+  refreshAuthUi();
+}
+
+/* ---- Lark base link parsing ---- */
+function parseBase(raw){
+  const u = new URL(raw.trim());
+  if(u.pathname.includes("/wiki/")) throw new Error("Wiki links aren't supported — use a /base/ link.");
+  const m = u.pathname.match(/\/base\/([A-Za-z0-9]+)/); if(!m) throw new Error("No /base/<token> in the URL.");
+  const table = u.searchParams.get("table")||""; if(!/^tbl[A-Za-z0-9]+$/.test(table)) throw new Error("No valid ?table=tbl... in the URL.");
+  const view = u.searchParams.get("view")||"";
+  return { app: m[1], table, view: /^vew[A-Za-z0-9]+$/.test(view)?view:"" };
+}
+
+/* ---- Lark cell flattening ---- */
+function cellText(v){
+  if(v==null) return "";
+  if(typeof v==="string") return v;
+  if(typeof v==="number"||typeof v==="boolean") return String(v);
+  if(Array.isArray(v)) return v.map(e=>{ if(e==null)return ""; if(typeof e==="string"||typeof e==="number")return String(e); if(typeof e!=="object")return ""; return e.text||e.name||e.en_name||e.email||""; }).filter(Boolean).join(", ");
+  if(typeof v==="object") return v.text||v.name||v.full_address|| (v.value!=null?cellText(v.value):"") || "";
+  return "";
+}
+function num(v){ const t=cellText(v).replace(/[^0-9.\-]/g,""); const n=parseFloat(t); return isNaN(n)?null:n; }
+function pad(n){ return n<10?"0"+n:""+n; }
+function fmtDate(v){ let n=Number(Array.isArray(v)||typeof v==="object"?cellText(v):v); if(!n||n<=0)return ""; const d=new Date(n+8*3600*1000); return d.getUTCFullYear()+"-"+pad(d.getUTCMonth()+1)+"-"+pad(d.getUTCDate()); }
+function mapRecord(f){ f=f||{}; return {
+  item: cellText(f["Particulars_Item"]),
+  unitPrice: num(f["Particulars_Unit Price"]),
+  currency: (cellText(f["Particulars_Unit Price-Currency"])||"PHP").toUpperCase(),
+  qty: cellText(f["Particulars_Quantity"]),
+  supplier: cellText(f["Supplier Details_Supplier Name"]),
+  project: cellText(f["Project Name"]),
+  status: cellText(f["Status"]),
+  date: fmtDate(f["Completed at"]||f["Submitted at"]),
+}; }
+
+/* ---- Fetch all records ---- */
+async function fetchAll(base){
+  const t = token(); if(!t) throw new Error("Not signed in.");
+  const url0 = OPEN_API + "/bitable/v1/apps/" + encodeURIComponent(base.app) + "/tables/" + encodeURIComponent(base.table) + "/records/search?page_size=" + PAGE_SIZE;
+  let pageToken="", pages=0, hasMore=true, out=[];
+  const body = JSON.stringify(base.view ? { view_id: base.view } : {});
+  while(hasMore && pages<MAX_PAGES){
+    const url = url0 + (pageToken ? "&page_token="+encodeURIComponent(pageToken) : "");
+    const resp = await fetch(proxied(url), { method:"POST", headers:{ "Authorization":"Bearer "+t.access_token, "Content-Type":"application/json; charset=utf-8" }, body });
+    const j = await resp.json();
+    if(String(j.code)!=="0"){ if(pages===0) throw new Error("Lark error "+j.code+(j.msg?" ("+j.msg+")":"")); break; }
+    const d=j.data||{}; (d.items||[]).forEach(it=>out.push(mapRecord(it.fields||{})));
+    hasMore=!!d.has_more; pageToken=d.page_token||""; pages++;
+    log("  page "+pages+" — "+out.length+" records"+(d.total!=null?" of "+d.total:""));
+    if(hasMore && !pageToken) break;
+    if(hasMore) await new Promise(r=>setTimeout(r,PAGE_DELAY));
+  }
+  return out;
+}
+
+/* ---- Build suppliers.json ---- */
+async function doFetch(){
+  try{
+    const base = parseBase($("baseUrl").value);
+    log("Fetching from base "+base.app+" / "+base.table+(base.view?" (view "+base.view+")":"")+" …");
+    const all = await fetchAll(base);
+    const approved = all.filter(r=> (!r.status || /approved/i.test(r.status)) && r.item && r.unitPrice!=null);
+    approved.sort((a,b)=> a.item.toLowerCase()<b.item.toLowerCase()?-1 : a.item.toLowerCase()>b.item.toLowerCase()?1 : a.unitPrice-b.unitPrice);
+    supplierRows = approved;
+    log("Done: "+all.length+" rows, "+approved.length+" approved with a price.","ok");
+    $("dlSuppliers").disabled = approved.length===0;
+    if(catalog) $("dlSuggestions").disabled=false;
+  }catch(e){ log(String(e.message||e),"err"); }
+}
+
+function download(name, obj){
+  const blob = new Blob([JSON.stringify(obj,null,1)], {type:"application/json"});
+  const a=document.createElement("a"); a.href=URL.createObjectURL(blob); a.download=name;
+  document.body.appendChild(a); a.click(); a.remove(); setTimeout(()=>URL.revokeObjectURL(a.href),1000);
+}
+function stamp(){ return new Date().toISOString().replace(/\.\d+Z$/,"Z"); }
+
+/* ---- Rate suggestions (mirror of scripts/scrape_suppliers.py) ---- */
+const STOP = new Set("per day pcs pc set sets unit units of the a an and or for with to hrs hr hour hours pax lot lots ea each x rate fee".split(" "));
+function toks(s){ return new Set((s||"").toLowerCase().replace(/[^a-z0-9 ]/g," ").split(" ").filter(t=>t&&t.length>1&&!STOP.has(t))); }
+function jaccard(a,b){ if(!a.size||!b.size)return 0; let inter=0; a.forEach(x=>{ if(b.has(x))inter++; }); return inter? inter/(a.size+b.size-inter) : 0; }
+function median(arr){ const s=arr.slice().sort((x,y)=>x-y); const n=s.length; return n? (n%2? s[(n-1)/2] : (s[n/2-1]+s[n/2])/2) : 0; }
+function buildSuggestions(){
+  const usd = Number((catalog.settings||{}).usd_php_rate)||55.89;
+  const priced = supplierRows.filter(r=>r.unitPrice>0&&r.item).map(r=>({ t:toks(r.item), php:r.unitPrice*(r.currency==="USD"?usd:1), r }));
+  const out=[];
+  (catalog.services||[]).forEach(s=>{
+    const st=toks(s.name||""); if(!st.size) return;
+    const matches=[];
+    priced.forEach(p=>{ const sim=jaccard(st,p.t); if(sim>=0.5) matches.push({sim,php:p.php,r:p.r}); });
+    if(matches.length<2) return;
+    const sug=Math.round(median(matches.map(m=>m.php))*100)/100;
+    const cur=Number(s.base_rate)||0;
+    if(cur>0 && Math.abs(sug-cur)/cur<0.05) return;
+    matches.sort((a,b)=>b.sim-a.sim);
+    const avg=matches.reduce((n,m)=>n+m.sim,0)/matches.length;
+    out.push({ service_id:s.id, service_name:s.name, category:s.category, current_base_rate:cur, suggested_base_rate:sug, match_count:matches.length,
+      confidence:(matches.length>=3&&avg>=0.6)?"high":"low", basis:"median of "+matches.length+" matched supplier price(s), PHP-normalized",
+      sample_matches: matches.slice(0,5).map(m=>({ item:m.r.item, price_php:Math.round(m.php*100)/100, supplier:m.r.supplier, similarity:Math.round(m.sim*100)/100 })) });
+  });
+  out.sort((a,b)=> (b.confidence==="high")-(a.confidence==="high") || b.match_count-a.match_count);
+  return { _generated:stamp(), note:"DRAFT ONLY - not applied to catalog.json. Review each suggestion and apply the ones you trust via the admin page, then Export catalog.json.", usd_php_rate_used:usd, count:out.length, suggestions:out };
+}
+
+/* ---- Wiring ---- */
+$("loginBtn").addEventListener("click", startLogin);
+$("logoutBtn").addEventListener("click", ()=>{ sessionStorage.removeItem(TKEY); refreshAuthUi(); log("Signed out."); });
+$("fetchBtn").addEventListener("click", doFetch);
+$("dlSuppliers").addEventListener("click", ()=>{ if(supplierRows) download("suppliers.json", { _generated:stamp(), count:supplierRows.length, rows:supplierRows }); });
+$("catalogFile").addEventListener("change", function(){ const f=this.files&&this.files[0]; if(!f)return; const rd=new FileReader(); rd.onload=()=>{ try{ catalog=JSON.parse(rd.result); log("Loaded catalog.json ("+(catalog.services||[]).length+" services)."); $("dlSuggestions").disabled=!supplierRows; }catch(e){ log("Bad catalog.json: "+e.message,"err"); } }; rd.readAsText(f); });
+$("dlSuggestions").addEventListener("click", ()=>{ if(supplierRows&&catalog){ const s=buildSuggestions(); download("rate-suggestions.json", s); log("Built "+s.count+" suggestions."); } });
+
+log("Redirect URI: "+REDIRECT_URI+(REDIRECT_URI==="http://127.0.0.1:9123/"?"  (OK)":"  (must be http://127.0.0.1:9123/ and registered on the Lark app)"), REDIRECT_URI==="http://127.0.0.1:9123/"?"mut":"err");
+handleRedirect();
+refreshAuthUi();
+</script>
+</body>
+</html>
